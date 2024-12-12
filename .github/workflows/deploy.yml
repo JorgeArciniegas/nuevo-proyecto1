@@ -2,7 +2,8 @@ name: Serverless Prod Deployment
 on:
   push:
     branches:
-      - local  
+      - "main"
+      - "master"
 
 concurrency:
   # Cancel in-progress deploys to same branch
@@ -22,20 +23,7 @@ jobs:
     outputs:
       build_info: ${{ steps.parse-workspace.outputs.build_info }}
 
-    steps: 
-      - name: Debugging Step
-        run: |
-          echo "Current branch: ${{ github.ref }}"
-          echo "Current head_ref: ${{ github.head_ref }}"
-          echo "Listing files in the repo:"
-          ls -alh
-
-    
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          ref: local  # Usar la rama 'local'
-          
+    steps:
       - name: Prerun Checks
         id: prerun
         uses: dagster-io/dagster-cloud-action/actions/utils/prerun@v0.1
