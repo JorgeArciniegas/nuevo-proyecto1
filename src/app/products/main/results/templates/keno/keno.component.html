@@ -1,0 +1,26 @@
+<ng-container *ngFor="let kenoResultContainer of (results$|async) | hideLastResult: resultsService?.resultsUtils?.countDownInSeconds">
+  <div class="results-event" *ngIf="kenoResultContainer?.kenoResults?.length > 0">
+  <mat-grid-list fxFill cols="{{ kenoResultContainer.kenoResults.length }}" rowHeight="{{rowHeight + 1}}">
+    <mat-grid-tile colspan="{{ kenoResultContainer.kenoResults.length }}">
+      <div fxFill class="card-box-result-keno">
+        <!-- header -->
+        <div fxFill fxLayoutAlign="center center" class="header radius-5 eventNumber">
+          {{ kenoResultContainer.eventLabel }}
+        </div>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="{{ kenoResultContainer.kenoResults.length }}">
+      <!--List of draw results -->
+      <mat-grid-list fxFill cols="{{ kenoResultContainer.kenoResults.length }}" rowHeight="{{rowHeight + 1}}" class="position">
+        <mat-grid-tile *ngFor="let kenoResult of kenoResultContainer.kenoResults">
+          <div fxLayout="column" fxLayoutAlign="center center" class="radius-5 btn-default btn-keno-result" fxFill>
+            <span>{{ kenoResult }}</span>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+</ng-container>
+
+

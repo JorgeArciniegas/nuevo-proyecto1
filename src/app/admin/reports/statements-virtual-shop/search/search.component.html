@@ -1,0 +1,45 @@
+<div fxLayout="column" fxLayoutGap="20px" [style.padding.px]="10" class="statement-virutal-shop">
+  <div fxFlex="10" class="title">
+    <h1>{{'STATEMENT_VIRTUAL_SHOP' | translate}} </h1>
+  </div>
+  <div fxFlex="80" class="form" fxLayout="column" fxLayoutGap="20px">
+    <!-- ROW 0 -->
+    <div fxLayout="row" fxLayoutGap="20px">
+      <!-- DATA SELECTED -->
+      <div fxFlex="70" fxLayout="row" fxLayoutGap="20px" class="display padding-20" *ngIf="service.request">
+        <h3 class="label-overlap">{{ 'DATE' | translate }}</h3>
+        <div fxFlex="50" class="row filter-input" fxLayoutGap="20px">
+          <div fxFlex class="row" fxLayoutGap="20px">
+            <div fxLayout="column" fxLayoutGap="5px">
+              <h4>{{ 'DATE_FROM' | translate }}</h4>
+              <mat-form-field class="btn-filter btn-default padding-5 radius-5" (click)="pickerDateFrom.open()">
+                <input matInput class="datepicker" [matDatepickerFilter]="service.dateFilterFrom"
+                  [matDatepicker]="pickerDateFrom" disabled [(ngModel)]="service.dateFrom">
+                <mat-datepicker-toggle matSuffix [for]="pickerDateFrom"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #pickerDateFrom disabled="false"></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div fxFlex="50" class="row filter-input" fxLayoutGap="20px">
+          <div fxFlex class="row" fxLayoutGap="20px">
+            <div fxLayout="column" fxLayoutGap="5px">
+              <h4>{{ 'DATE_TO' | translate }}</h4>
+              <mat-form-field class="btn-filter btn-default padding-5 radius-5" (click)="pickerDateTo.open()">
+                <input matInput class="datepicker" [matDatepickerFilter]="service.dateFilterTo"
+                  [matDatepicker]="pickerDateTo" disabled [(ngModel)]="service.dateTo">
+                <mat-datepicker-toggle matSuffix [for]="pickerDateTo"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #pickerDateTo disabled="false"></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxFlex="5" fxLayout="row" fxLayoutAlign="center">
+    <div fxFlex="40"></div>
+    <button fxFlex="20" class="btn btn-default btn-grey radius-5" (click)="getData()">{{'SEARCH' | translate}}</button>
+    <div fxFlex="40"></div>
+  </div>
+</div>

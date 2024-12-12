@@ -1,0 +1,850 @@
+@import "../../icons";
+
+/**
+* THEME DEFAULT
+**/
+%font-family {
+	font-family: "Open Sans", sans-serif;
+}
+
+//BACKGROUNDS COLOR
+$color-bg-transparent: transparent;
+$color-bg-primary: #1b2432;
+$color-bg-primary-op: rgba(27, 36, 50, 0.4);
+$color-bg-primary-op-dark: rgba(27, 36, 50, 0.7);
+$color-bg-secodary: #273142;
+$color-bg-event: #274442;
+$color-bg-accent: #c0c0c0;
+$color-bg-allert: #ff0000;
+$color-bg-warn: #ffca18;
+$color-bg-success: #00cc00;
+$color-bg-header: #171d24;
+$btn-bg-keyboard: #273142;
+$btn-bg-orange: #d67900;
+$btn-bg-yellow: #ffca18;
+
+//BORDERS COLOR
+$border-warning: #ffffff;
+$border-success: #02a502;
+$border-card-title: #313d4f;
+$border-event: #1fb537;
+$color-border-box: #6b7279;
+$btn-border-keyboard: #03030a;
+$btn-border-opacity: rgba(0, 0, 0, 0.12);
+$btn-border-selected: #538939;
+
+//TEXT COLOR
+$color-text-dark: #000;
+$color-text-primary: #ffffff;
+$color-text-shadow: #8a8a8a;
+$color-text-warn: #ff0000;
+$color-text-operator: #3dab14;
+$color-text-gray: #6b7279;
+
+// BUTTONS GRADIENT
+$gradient-red1: #ff7f7f;
+$gradient-red2: #cb1e1e;
+$gradient-green1: #52e566;
+$gradient-green2: #1fb537;
+$gradient-blue1: #91c8fa;
+$gradient-blue2: #5b9bd5;
+$gradient-blue3: #2f3a4d;
+$gradient-orange1: #f88739;
+$gradient-orange2: #c55a11;
+$gradient-light-grey1: #ffffff;
+$gradient-light-grey2: #bebebe;
+$gradient-grey1: #dcdcdc;
+$gradient-grey2: #a5a5a5;
+$gradient-yellow1: #ffdf7f;
+$gradient-yellow2: #ffc000;
+$gradient-white1: #ffffff;
+$gradient-white2: #e4e4e4;
+$gradient-dark1: #393939;
+$gradient-dark2: #000000;
+//EXTENDS
+%color-bg-default {
+	background: $color-bg-primary;
+	color: #ffffff;
+}
+
+%color-placeholder {
+	placeholder-color: $color-bg-accent;
+}
+%color-disabled {
+	color: $color-text-gray;
+}
+%bg-default {
+	background: $color-bg-primary;
+}
+
+%bg-transparent {
+	background: $color-bg-transparent;
+}
+
+%bg-opacity {
+	background: $color-bg-primary-op;
+	color: $color-bg-accent;
+}
+
+%bg-opacity-dark {
+	background: $color-bg-primary-op-dark;
+	color: $color-bg-accent;
+}
+
+%bg-opacity-dark-variant {
+	background: $color-bg-primary-op-dark;
+	color: $color-text-primary;
+}
+
+%color-bg-white {
+	background: white;
+	color: $color-text-dark;
+}
+
+%color-bg-success {
+	background: $color-bg-success;
+	color: $color-text-primary;
+}
+
+%color-bg-allert {
+	background: $color-bg-allert;
+	color: $color-text-primary;
+}
+
+%color-bg-warn {
+	background: $color-bg-warn;
+	color: $color-text-dark;
+}
+
+// Header Area
+%header {
+	background: $color-bg-header;
+}
+
+%header-notification-style {
+	background-color: #f88739;
+	color: $color-text-primary;
+	border-radius: 50%;
+}
+
+%header-notification-style-mobile {
+	background-color: #f88739;
+	color: $color-text-primary;
+}
+
+%header-notification-img {
+	background-image: url("/assets/icons/account.svg");
+}
+
+%header-btn-menu-selected {
+	border-bottom: 3px solid $btn-border-selected;
+}
+
+%header-btn-menu-color-selected {
+	border-color: $btn-border-selected;
+}
+
+%header-btn-menu {
+	border: 1px solid #86878a;
+}
+
+%header-btn-menu-color {
+	border-color: #86878a;
+}
+
+%header-text-operator {
+	color: $color-text-operator;
+}
+
+%logo-with-text {
+	background: url("/assets/theme/image/Logo.png") center center no-repeat;
+	background-size: contain;
+}
+
+%logo-with-text-mobile {
+	background: url("~/assets/theme/image/Logo.png") center center no-repeat;
+	background-size: contain;
+}
+
+%remove-image {
+	background: url("/assets/icons/baseline-delete_outline-white-24px.png") center center no-repeat;
+	background-size: contain;
+}
+
+// Card title
+%card-title {
+	background-color: $color-bg-secodary;
+	color: $color-text-primary;
+	border: 1px solid $border-card-title;
+	border-radius: 4px;
+}
+
+%card-title-mobile {
+	background-color: $color-bg-secodary;
+	color: $color-text-primary;
+	border-color: $border-card-title;
+	border-width: 1;
+	border-radius: 4;
+}
+
+%card-title-label {
+	background-color: $color-bg-primary;
+}
+
+%sub-card-title {
+	background-color: $color-bg-event;
+	color: $color-text-primary;
+	border-radius: 4px;
+}
+
+%sub-card-title-mobile {
+	background-color: $color-bg-event;
+	color: $color-text-primary;
+	border-radius: 4;
+}
+
+%time-card-title {
+	background-color: $color-bg-event;
+	color: $color-text-primary;
+	border: 1px solid $border-event;
+	border-radius: 4px;
+}
+
+%time-card-title-mobile {
+	background-color: $color-bg-event;
+	color: $color-text-primary;
+	border-color: $border-event;
+}
+
+%card-title-noborder {
+	background-color: $color-bg-secodary;
+	color: $color-text-primary;
+}
+// RACE-CONTROL HEADER INFO
+%current-event {
+	color: $color-bg-success;
+}
+%current-event-id {
+	color: $color-text-primary;
+}
+// LINK
+%primary-link {
+	color: $color-text-primary;
+}
+
+// BUTTONS DEFINITION
+%btn-keyboard {
+	background: $btn-bg-keyboard;
+	border-color: $btn-border-keyboard;
+}
+
+// BUTTONS FLAT
+%btn-dark {
+	background: black;
+	color: $color-text-primary;
+	border-color: $border-warning;
+}
+
+%btn-gray {
+	background: $color-bg-accent;
+	color: $color-text-dark;
+	border-color: $btn-border-opacity;
+}
+
+%btn-yellow {
+	background: $btn-bg-yellow;
+	color: $color-text-dark;
+	border-color: $btn-border-opacity;
+}
+
+%btn-white {
+	background: white;
+	color: $color-text-dark;
+	border-color: $btn-border-opacity;
+}
+
+%btn-transparent {
+	background: transparent;
+	color: $color-bg-accent;
+}
+
+%btn-advance-game {
+	background-color: #fefefe;
+	color: $color-text-dark;
+	border-color: #ffffff;
+}
+
+%btn-advance-game-mobile {
+	background-color: #fefefe;
+	color: $color-text-dark;
+}
+
+%btn-filter-form {
+	background-color: $color-bg-secodary;
+	border: 1px solid $border-card-title;
+}
+%btn-filter-mobile {
+	background-color: $color-bg-secodary;
+	border-width: 1;
+	border-color: $border-card-title;
+}
+
+%btn-filter-success {
+	background-color: $btn-border-selected;
+	border: 1px solid $border-event;
+}
+%btn-filter-success-mobile {
+	background-color: $btn-border-selected;
+	border-width: 1;
+	border-color: $border-event;
+}
+
+%color-border-blu-2 {
+	border-color: $gradient-blue2;
+}
+
+%btn-warning {
+	background: $gradient-red1;
+	background: -moz-linear-gradient(top, $gradient-red1 0%, $gradient-red2 100%);
+	background: -webkit-linear-gradient(top, $gradient-red1 0%, $gradient-red2 100%);
+	background: linear-gradient(to bottom, $gradient-red1 0%, $gradient-red2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-red1', endColorstr='$gradient-red2',GradientType=0 );
+	color: $color-text-primary;
+}
+
+%btn-danger {
+	background: $gradient-red2;
+	color: $color-text-primary;
+}
+%btn-warning-mobile {
+	background: linear-gradient(to bottom, $gradient-red1 0%, $gradient-red2 100%);
+	color: $color-text-primary;
+}
+%btn-success {
+	background: $color-bg-success;
+	color: $color-text-primary;
+}
+
+%btn-success-gradient {
+	background: $gradient-green1;
+	background: -moz-linear-gradient(top, $gradient-green1 0%, $gradient-green2 100%);
+	background: -webkit-linear-gradient(top, $gradient-green1 0%, $gradient-green2 100%);
+	background: linear-gradient(to bottom, $gradient-green1 0%, $gradient-green2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-green1', endColorstr='$gradient-green2',GradientType=0 );
+	color: $color-text-primary;
+}
+
+%btn-success-gradient-mobile {
+	background: linear-gradient(to bottom, $gradient-green1 0%, $gradient-green2 100%);
+	color: $color-text-primary;
+}
+
+%btn-blue-gradient {
+	background: $gradient-blue1;
+	background: -moz-linear-gradient(top, $gradient-blue1 34%, $gradient-blue2 100%);
+	background: -webkit-linear-gradient(top, $gradient-blue1 34%, $gradient-blue2 100%);
+	background: linear-gradient(to bottom, $gradient-blue1 34%, $gradient-blue2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-blue1', endColorstr='$gradient-blue2',GradientType=0 );
+	color: $color-text-primary;
+}
+
+%btn-blue-gradient-mobile {
+	background: linear-gradient(to bottom, $gradient-blue1 34%, $gradient-blue2 100%);
+	color: $color-text-primary;
+}
+
+%btn-blue2-gradient {
+	background: $btn-bg-keyboard;
+	background: -moz-linear-gradient(top, $gradient-blue3 34%, $btn-bg-keyboard 100%);
+	background: -webkit-linear-gradient(top, $gradient-blue3 34%, $btn-bg-keyboard 100%);
+	background: linear-gradient(to bottom, $gradient-blue3 34%, $btn-bg-keyboard 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-blue3', endColorstr='$btn-bg-keyboard',GradientType=0 );
+	color: $color-text-primary;
+}
+
+%btn-blue2-gradient-mobile {
+	background: linear-gradient(to bottom, $gradient-blue3 34%, $btn-bg-keyboard 100%);
+	color: $color-text-primary;
+}
+%btn-orange {
+	background: $gradient-orange1;
+	background: -moz-linear-gradient(
+		top,
+		$gradient-orange1 0%,
+		$gradient-orange1 51%,
+		$gradient-orange2 100%
+	); /* FF3.6-15 */
+	background: -webkit-linear-gradient(
+		top,
+		$gradient-orange1 0%,
+		$gradient-orange1 51%,
+		$gradient-orange2 100%
+	); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(
+		to bottom,
+		$gradient-orange1 0%,
+		$gradient-orange1 51%,
+		$gradient-orange2 100%
+	); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	color: $color-text-dark;
+}
+
+%btn-orange-mobile {
+	background: linear-gradient(to bottom, $gradient-orange1 0%, $gradient-orange1 51%, $gradient-orange2 100%);
+	color: $color-text-dark;
+}
+
+%btn-gray-gradient-2 {
+	background: $gradient-grey1;
+	background: -moz-linear-gradient(top, $gradient-grey1 0%, $gradient-grey2 100%);
+	background: -webkit-linear-gradient(top, $gradient-grey1 0%, $gradient-grey2 100%);
+	background: linear-gradient(to bottom, $gradient-grey1 0%, $gradient-grey2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-grey1', endColorstr='$gradient-grey2',GradientType=0 );
+	color: $color-text-dark;
+}
+
+%btn-gray-gradient-2-mobile {
+	background: linear-gradient(to bottom, $gradient-grey1 0%, $gradient-grey2 100%);
+	color: $color-text-dark;
+}
+
+%btn-gray-gradient {
+	background: $gradient-light-grey1;
+	background: -moz-linear-gradient(top, $gradient-light-grey1 0%, $gradient-light-grey2 100%);
+	background: -webkit-linear-gradient(top, $gradient-light-grey1 0%, $gradient-light-grey2 100%);
+	background: linear-gradient(to bottom, $gradient-light-grey1 0%, $gradient-light-grey2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-light-grey1', endColorstr='$gradient-light-grey2',GradientType=0 );
+	color: $color-text-dark;
+}
+
+%btn-gray-gradient-mobile {
+	background: linear-gradient(to bottom, $gradient-light-grey1 0%, $gradient-light-grey2 100%);
+	color: $color-text-dark;
+}
+
+%btn-yellow-gradient {
+	background: $gradient-yellow1;
+	background: -moz-linear-gradient(top, $gradient-yellow1 0%, $gradient-yellow2 100%);
+	background: -webkit-linear-gradient(top, $gradient-yellow1 0% $gradient-yellow2 100%);
+	background: linear-gradient(to bottom, $gradient-yellow1 0%, $gradient-yellow2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-yellow1', endColorstr='$gradient-yellow2',GradientType=0 );
+	color: $color-text-dark;
+}
+
+%btn-yellow-gradient-mobile {
+	background: linear-gradient(to bottom, $gradient-yellow1 0%, $gradient-yellow2 100%);
+	color: $color-text-dark;
+}
+
+%btn-white-gradient {
+	background: $gradient-white1;
+	background: -moz-linear-gradient(top, $gradient-white1 0%, $gradient-white2 100%);
+	background: -webkit-linear-gradient(top, $gradient-white1 0% $gradient-white2 100%);
+	background: linear-gradient(to bottom, $gradient-white1 0%, $gradient-white2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-white1', endColorstr='$gradient-white2',GradientType=0 );
+	color: $color-text-dark;
+}
+
+%btn-white-gradient-mobile {
+	background: linear-gradient(to bottom, $gradient-white1 0%, $gradient-white2 100%);
+	color: $color-text-dark;
+}
+
+%btn-dark-gradient {
+	background: $gradient-dark1;
+	background: -moz-linear-gradient(top, $gradient-dark1 0%, $gradient-dark1 50%, $gradient-dark2 100%);
+	background: -webkit-linear-gradient(top, $gradient-dark1 0%, $gradient-dark1 50%, $gradient-dark2 100%);
+	background: linear-gradient(to bottom, $gradient-dark1 0%, $gradient-dark1 50%, $gradient-dark2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-dark1', endColorstr='$gradient-dark2',GradientType=0 );
+	color: $color-text-primary;
+}
+
+%btn-dark-gradient-mobile {
+	background: linear-gradient(to bottom, $gradient-dark1 0%, $gradient-dark1 50%, $gradient-dark2 100%);
+	color: $color-text-primary;
+}
+
+// BADGE
+%badge--off {
+	border: 1px solid $border-card-title;
+	background-color: $border-card-title;
+	color: $color-text-primary;
+}
+
+%badge--on {
+	border: 1px solid $border-card-title;
+	background: $gradient-blue1;
+	background: -moz-linear-gradient(top, $gradient-blue1 34%, $gradient-blue2 100%);
+	background: -webkit-linear-gradient(top, $gradient-blue1 34%, $gradient-blue2 100%);
+	background: linear-gradient(to bottom, $gradient-blue1 34%, $gradient-blue2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-blue1', endColorstr='$gradient-blue2',GradientType=0 );
+	color: $color-text-primary;
+}
+
+// GAME AREA
+// Dog racing
+%PRODUCT-DOG-BG {
+	background: url("/assets/images/Dog-Racing.png") left center no-repeat;
+	background-size: contain;
+}
+
+%PRODUCT-DOG-BG-MOBILE {
+	background: url("~/assets/images/Dog-Racing.png") left center no-repeat;
+	background-size: contain;
+}
+// HORSERACING
+%PRODUCT-HORSE-BG {
+	background: url("/assets/images/horse-racing.png") left center no-repeat;
+	background-size: contain;
+}
+%PRODUCT-HORSE-BG-MOBILE {
+	background: url("~/assets/images/horse-racing.png") left center no-repeat;
+	background-size: contain;
+}
+// HORSERACING-VIRTUAL
+%PRODUCT-HORSE-V-BG {
+	background: url("/assets/images/horse-racing.png") left center no-repeat;
+	background-size: contain;
+}
+%PRODUCT-HORSE-V-BG-MOBILE {
+	background: url("~/assets/images/horse-racing.png") left center no-repeat;
+	background-size: contain;
+}
+
+// COCK FIGHT
+%PRODUCT-COCK-BG {
+	background: url("/assets/images/Cock-fight.png") left center no-repeat;
+	background-size: contain;
+}
+%PRODUCT-COCK-BG-MOBILE {
+	background: url("~/assets/images/Cock-fight.png") left center no-repeat;
+	background-size: contain;
+}
+
+%ICON-COCK-RED {
+	background: url("~/assets/images/cockfight/cock-red.png") no-repeat center;
+	background-size: contain;
+}
+
+%ICON-COCK-BLUE {
+	background: url("~/assets/images/cockfight/cock-blue.png") no-repeat center;
+	background-size: contain;
+}
+
+// SOCCER FIGHT
+%PRODUCT-ITA-LEAGUE-BG {
+	background: url("/assets/images/Soccer-IT.png") left center no-repeat;
+	background-size: contain;
+}
+%PRODUCT-ITA-LEAGUE-BG-MOBILE {
+	background: url("~/assets/images/Soccer-IT.png") left center no-repeat;
+	background-size: contain;
+}
+
+%PRODUCT-ENG-LEAGUE-BG {
+	background: url("/assets/images/Soccer-EN.png") left center no-repeat;
+	background-size: contain;
+}
+
+%PRODUCT-ENG-LEAGUE-BG-MOBILE {
+	background: url("~/assets/images/Soccer-EN.png") left center no-repeat;
+	background-size: contain;
+}
+
+// KENO
+%PRODUCT-KENO-BG {
+	background: url("/assets/images/Icon-keno.png") left center no-repeat;
+	background-size: contain;
+}
+%PRODUCT-KENO-BG-MOBILE {
+	background: url("~/assets/images/Icon-keno.png") left center no-repeat;
+	background-size: contain;
+}
+
+// COLOURS
+%PRODUCT-CLRS-BG {
+	background: url("/assets/images/Icon-colours.png") left center no-repeat;
+	background-size: contain;
+}
+%PRODUCT-CLRS-BG-MOBILE {
+	background: url("~/assets/images/Icon-colours.png") left center no-repeat;
+	background-size: contain;
+}
+// AMERINCAN ROULETTE
+
+%PRODUCT-ARLT-BG{
+	background: url("/assets/images/Icon-americanroulette.png") left center no-repeat;
+	background-size: contain;
+}
+
+%PRODUCT-ARLT-BG-MOBILE{
+	background: url("~/assets/images/Icon-americanroulette.png") left center no-repeat;
+	background-size: contain;
+}
+
+%text-primary {
+	color: $color-text-primary;
+}
+// BORDER BOX DEFINITION
+%border-gray {
+	border-color: $color-border-box;
+}
+%border-primary {
+	border-color: $color-text-primary;
+}
+
+// PRODUCT DIALOG
+%dialog {
+	background-color: $color-bg-primary;
+	color: $color-text-primary;
+	border: 1px solid $border-card-title;
+	border-radius: 5px;
+}
+
+%dialog-mobile {
+	background-color: $color-bg-primary;
+	color: $color-text-primary;
+	border-color: $border-card-title;
+}
+
+%dialog-card {
+	background-color: $color-bg-secodary;
+	border: 1px solid $border-card-title;
+}
+
+%dialog-card-mobile {
+	background-color: $color-bg-secodary;
+	border-width: 1;
+	border-color: $border-card-title;
+}
+
+%dialog-card-header {
+	background-color: $border-card-title;
+}
+
+%indicator {
+	color: $color-text-shadow;
+}
+//ADMIN (MAIN MENU)
+%admin {
+	background: url("/assets/theme/image/Bg-login-vdesk.jpg") center center no-repeat;
+}
+%admin-mobile {
+	background: url("~/assets/theme/image/Bg-login-vdesk.jpg") center center no-repeat;
+	background-size: cover;
+}
+// LOGIN
+%login {
+	background: url("/assets/theme/image/Bg-login-vdesk.jpg") center center no-repeat;
+}
+
+%login-mobile {
+	background: url("~/assets/theme/image/Bg-login-vdesk.jpg") center center no-repeat;
+	background-size: cover;
+}
+
+%user-icon {
+	background: url("/assets/icons/icona-user.svg") center center no-repeat;
+}
+
+%user-icon-mobile {
+	background: url("~/assets/icons/icona-user.png") center center no-repeat;
+	background-size: contain;
+}
+
+%users-icon-mobile {
+	background: url("~/assets/icons/baseline_supervised_user_circle_white_24px.png") center center no-repeat;
+	background-size: contain;
+}
+
+%pwd-icon {
+	background: url("/assets/icons/icona-pwd.svg") center center no-repeat;
+}
+
+%pwd-icon-mobile {
+	background: url("~/assets/icons/icona-pwd.png") center center no-repeat;
+	background-size: contain;
+}
+%warning-icon-mobile {
+	background: url("~/assets/icons/warning.png") center center no-repeat;
+	background-size: contain;
+}
+
+%error-icon {
+	background: url("/assets/icons/alert.svg") center center no-repeat;
+}
+
+%error-icon-mobile {
+	background: url("~/assets/icons/alert.png") center center no-repeat;
+	background-size: contain;
+}
+
+%check-circle-icon {
+	background: url("/assets/icons/baseline-check_circle-24px.svg") center center no-repeat;
+}
+
+%check-circle-icon-mobile {
+	background: url("~/assets/icons/baseline-check_circle-24px.png") center center no-repeat;
+	background-size: contain;
+}
+
+%shopping-cart-icon {
+	background: url("/assets/icons/baseline-shopping_cart-24px.svg") center center no-repeat;
+}
+
+%shopping-cart-icon-mobile {
+	background: url("~/assets/icons/baseline-shopping_cart-24px.png") center center no-repeat;
+	background-size: contain;
+}
+%camera-icon-mobile {
+	background: url("~/assets/icons/baseline_photo_camera_white_18dp.png") center center no-repeat;
+	background-size: contain;
+}
+
+%star-yellow-icon {
+	background: url("/assets/icons/baseline_star_rate_yellow_18px.svg") center center no-repeat;
+	background-size: contain;
+}
+
+%star-yellow-icon-mobile {
+	background: url("~/assets/icons/baseline_star_rate_yellow_18dp.png") center center no-repeat;
+	background-size: contain;
+}
+
+%star-red-icon {
+	background: url("/assets/icons/baseline_star_rate_red_18px.svg") center center no-repeat;
+	background-size: contain;
+}
+
+%star-red-icon-mobile {
+	background: url("~/assets/icons/baseline_star_rate_red_18dp.png") center center no-repeat;
+	background-size: contain;
+}
+
+%video-enabled-icon {
+	background: url("/assets/icons/video-enabled.svg") center center no-repeat;
+	background-size: contain;
+}
+
+%video-enabled-icon-mobile {
+	background: url("~/assets/icons/video-enabled.png") center center no-repeat;
+	background-size: contain;
+}
+
+%video-disabled-icon {
+	background: url("/assets/icons/video-disabled.svg") center center no-repeat;
+	background-size: contain;
+}
+
+%video-disabled-icon-mobile {
+	background: url("~/assets/icons/video-disabled.png") center center no-repeat;
+	background-size: contain;
+}
+
+%rank-up-icon {
+	background: url("/assets/icons/rank-up.svg") center center no-repeat;
+	background-size: contain;
+}
+
+%rank-up-icon-mobile {
+	background: url("~/assets/icons/rank-up.png") center center no-repeat;
+	background-size: contain;
+}
+
+%rank-same-icon {
+	background: url("/assets/icons/rank-same.svg") center center no-repeat;
+	background-size: contain;
+}
+
+%rank-same-icon-mobile {
+	background: url("~/assets/icons/rank-same.png") center center no-repeat;
+	background-size: contain;
+}
+
+%rank-down-icon {
+	background: url("/assets/icons/rank-down.svg") center center no-repeat;
+	background-size: contain;
+}
+
+%rank-down-icon-mobile {
+	background: url("~/assets/icons/rank-down.png") center center no-repeat;
+	background-size: contain;
+}
+
+%remove-data-or-close {
+	background: url("~/assets/icons/baseline_close_white_36px.png") no-repeat center center;
+	background-size: contain;
+}
+
+%border-input-area {
+	border: 1px solid $border-card-title;
+}
+
+%border-input-area-error {
+	border: 1px solid $color-bg-allert;
+}
+
+%border-input-area-mobile {
+	border-width: 1;
+	border-color: $border-card-title;
+}
+
+%border-input-area-error-mobile {
+	border-width: 1;
+	border-color: $color-bg-allert;
+}
+
+%error-area {
+	color: $color-text-warn;
+}
+
+%login-input {
+	background-color: $color-bg-transparent;
+	color: $color-text-primary;
+}
+
+%login-input-mobile {
+	background-color: $color-bg-transparent;
+	color: $color-text-primary;
+	placeholder-color: $color-text-shadow;
+}
+
+%border-bottom-overlay {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+%border-bottom-overlay-mobile {
+	border-bottom-color: rgba(255, 255, 255, 0.1);
+	border-bottom-width: 1;
+}
+
+// PRINT TEMPLATE
+%logo-header {
+	content: url("/assets/theme/image/Logo-coupon.png");
+}
+
+%logo-header-mobile {
+	background: url("~/assets/theme/image/Logo-coupon.png") center center no-repeat;
+	background-size: contain;
+}
+
+// STATISTIC
+%bar-fitness-pecentage {
+	background: $border-success;
+}
+
+// GROUPINGS
+
+%bg-slide-toggle-thumb-container-selected {
+	background: $color-bg-event;
+	box-shadow: 0px 0px 3px 0px $color-bg-primary-op-dark;
+}
+%bg-slide-toggle-thumb-label {
+	background: $color-bg-primary;
+}
+%bg-slide-toggle-thumb-label-selected {
+	background: $color-bg-event;
+}
+
+%hr-border-bottom {
+	border-bottom-color: $btn-border-keyboard;
+}

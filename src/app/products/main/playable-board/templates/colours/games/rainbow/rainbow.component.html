@@ -1,0 +1,17 @@
+<div fxLayout="column" [style.height.px]="(rowHeight * 14) - 10" fxLayoutAlign="space-around stretch">
+    <div fxLayout="row" fxLayoutAlign="space-between stretch"
+        *ngFor="let colour of [Colour.RED, Colour.BLUE, Colour.GREEN]" fxFlex="30">
+        <button *ngFor="let coloursNumber of getColouredRow(colour); let idx = index"
+            (click)="selectColourNumber(coloursNumber)" fxFlex="16" [disabled]="isDisabled(coloursNumber)"
+            class="btn-default btn-colours rainbow radius-15 btn-colours-{{Colour[colour]}}"
+            fxLayoutAlign="center center" [ngClass]="{'selected' : coloursNumber.isSelected }">
+            <div
+                *ngIf="waitingSelection?.name !== coloursNumber.name || waitingSelection?.colour !== coloursNumber.colour">
+                {{ coloursNumber.name + (idx > 0 && idx < 5 ? '+' : '') }}
+            </div>
+            <div class="vg-loader-spinner"
+                *ngIf="waitingSelection?.name === coloursNumber.name && waitingSelection?.colour === coloursNumber.colour">
+            </div>
+        </button>
+    </div>
+</div>

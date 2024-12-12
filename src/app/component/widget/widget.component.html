@@ -1,0 +1,8 @@
+<div class="widgets" fxFlexFill fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="6px">
+  <ng-container *ngFor="let icon of product.widgets">
+    <button (click)="openRouting( icon.routing )" [style.height.px]="widgetIcon.height"
+      [style.width.px]="widgetIcon.width" class="btn-reset widget-btn">
+      <img class="icon" src="assets/icons/{{ icon.icon }}.svg">
+    </button>
+  </ng-container>
+</div>

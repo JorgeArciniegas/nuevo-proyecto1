@@ -1,0 +1,38 @@
+<div fxFlexFill fxLayout="column" class="dialog-pay-cancel-coupon">
+  <div mat-dialog-title fxLayoutAlign="center center">
+    <div class="title">{{ dialogTypeCoupon[data] | translate | uppercase }}
+      {{ 'DYNAMIC_KEYS.PRODUCT_DIALOG.COUPON' | translate | uppercase }}</div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <mat-dialog-content>
+      <div fxFlexFill fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+        <div fxFlex="30" fxLayoutAlign="center center" class="polifuctional-area">
+          <div fxLayoutAlign="center center" fxFlex="66" class="pay-cancel-input input-container input radius-2">
+            <i class="icon-baseline-shopping_cart-24px icon"></i>
+            <input matInput class="input-field" formControlName="couponCode"
+              pattern="[A-Z0-9]{6}[^A-Za-z0-9]{1}[A-Z0-9]{1,4}[^A-Za-z0-9]{1}[A-Z0-9]{6}$" placeholder="{{ 'COUPON_CODE' | translate}}"
+              autocomplete="on" />
+          </div>
+        </div>
+        <div fxFlex="30" fxLayoutAlign="center end" class="polifuctional-area">
+          <div fxFlexFill fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="80px">
+            <button fxFlex="50" class="btn-default btn-warning radius-10 padding-10" type="button"
+              (click)="close()">{{'CLOSE' | translate | uppercase}}</button>
+            <button fxFlex="50" class="btn-default btn-success radius-10 padding-10" type="submit"
+              [disabled]="form.invalid">{{'CONFIRM' | translate | uppercase}}</button>
+          </div>
+        </div>
+        <div fxFlex="20">
+          <div class="error-message" fxLayout="column" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center">
+              <i *ngIf="errorNumberIcon && errorNumberIcon !== 1" class="alert icon"></i>
+              <i *ngIf="errorMessage && !errorNumberIcon" class="alert icon"></i>
+              <i *ngIf="errorNumberIcon === 1" class="baseline-check_circle-24px icon"></i>{{ errorMessage }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+  </form>
+</div>

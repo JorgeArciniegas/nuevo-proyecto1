@@ -1,0 +1,118 @@
+<div fxLayout="column" fxLayoutAlign="center space-between" *ngIf="operatorSummaryService.reportsOperatorVolumeResponse"
+  [style.height.%]="100">
+  <div fxFlex="90" fxLayout="column" [style.padding.px]="10">
+    <div class="title">
+      <h3> {{'OPERATOR_SUMMARY' | translate | uppercase}} </h3>
+    </div>
+    <div fxFlex="10" class="padding-horizontal-6">
+      <div fxFlex fxLayout="row">
+        <div fxFlex fxLayout="row nowrap" fxLayoutAlign="start center">
+          <div fxFlex="5">
+            <button class="btn-default radius-5" routerLink="../">
+              <img class="icon icon-24px" src="assets/icons/baseline-arrow_back-24px.png">
+            </button>
+          </div>
+          <div fxFlex="12">
+            <button class="btn-default btn-grey-gradient radius-5 elevation-z5 btn-filter"
+              (click)="printUserSummary()">{{ 'PRINT' | translate }} </button>
+          </div>
+          <div fxFlex="4"></div>
+          <div fxFlex="12">
+            <div><small data='disabled'>{{ 'DATE_FROM' | translate }}</small></div>
+            <div class="value"><strong>{{operatorSummaryService.dateFrom | date:'mediumDate'}}</strong></div>
+          </div>
+          <div fxFlex="12">
+            <div><small data='disabled'>{{ 'DATE_TO' | translate }}</small></div>
+            <div class="value"><strong>{{operatorSummaryService.dateTo | date:'mediumDate'}}</strong></div>
+          </div>
+          <!-- PAGINATOR -->
+          <div fxFlex="30" fxFlexOffset="43" fxLayoutAlign="center center">
+            <div fxFlex="20">
+              <button class="btn-filter padding-10 radius-5" [disabled]="TotalPages === 1 || currentPage === 1"
+                (click)="previousPage()">&lsaquo;</button>
+            </div>
+            <div fxFlex fxLayoutAlign="center center">
+              {{'PAGE' | translate }} {{currentPage}}
+              {{'PAGE.OF' | translate }} {{TotalPages}}
+            </div>
+            <div fxFlex="20">
+              <button class="btn-filter padding-10 radius-5" [disabled]="TotalPages === currentPage"
+                (click)="nextPage()">&rsaquo;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxFlex="85" class="padding-20 btn-filter radius-5 elevation-z5 " fxLayout="column" fxLayoutAlign="flex-start">
+      <div fxLayout="column">
+        <div fxFlex fxLayout="row" class="border-bottom-overlay-1px">
+          <div fxFlex="2"></div>
+          <div fxFlex="23">
+            <strong data='disabled'>{{ 'USERNAME' | translate }}</strong>
+          </div>
+          <div fxFlex="25">
+            <strong data='disabled'>{{ 'STAKE' | translate }}</strong>
+          </div>
+          <div fxFlex="25">
+            <strong data='disabled'>{{ 'PAID' | translate }}</strong>
+          </div>
+          <div fxFlex="23">
+            <strong data='disabled'>{{ 'PROFIT' | translate }}</strong>
+          </div>
+          <div fxFlex="2"></div>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex fxLayoutAlign="start">
+        <div fxFlex fxLayout="column" fxLayoutAlign="flex-start" fxLayoutAlignGap="grid">
+          <div fxFlex fxLayoutAlign="start center" class="border-bottom-overlay-1px max-height-55"
+            *ngFor="let operatorVolume of currentOperatorVolumes">
+            <div fxFlex="2"></div>
+            <div fxFlex="23">
+              <strong>{{ operatorVolume.Username }}</strong>
+            </div>
+            <div fxFlex="25">
+              <strong>{{ operatorVolume.Stake | currency : userService.userCurrency : 'symbol-narrow' }}</strong>
+            </div>
+            <div fxFlex="25">
+              <strong>{{ operatorVolume.Won | currency : userService.userCurrency : 'symbol-narrow' }}</strong>
+            </div>
+            <div fxFlex="23">
+              <strong>{{ operatorVolume.Stake - operatorVolume.Won | currency : userService.userCurrency : 'symbol-narrow' }}</strong>
+            </div>
+            <div fxFlex="2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxFlex="10" fxLayout="column">
+    <div fxFlex class="btn-filter" fxLayout="column wrap" fxLayoutAlign="stretch">
+      <div fxFlexFill fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <div fxFlex fxLayout="row" fxLayoutAlign="center" fxLayoutGap="grid">
+          <div fxFlex="15">
+            <div class="value">
+              <h2>{{ operatorSummaryService.totalStake | currency : userService.userCurrency : 'symbol-narrow' }} </h2>
+            </div>
+            <div><small data='disabled'>{{ 'TOTAL_STAKE' | translate }}</small></div>
+          </div>
+          <div fxFlex="15">
+            <div class="value">
+              <h2>
+                {{ operatorSummaryService.totalWon | currency : userService.userCurrency : 'symbol-narrow' }}
+              </h2>
+            </div>
+            <div><small data='disabled'>{{ 'TOT_PAID' | translate }}</small></div>
+          </div>
+          <div fxFlex="15">
+            <div class="value">
+              <h2>
+                {{ operatorSummaryService.totalStake - operatorSummaryService.totalWon | currency : userService.userCurrency : 'symbol-narrow' }}
+              </h2>
+            </div>
+            <div><small data='disabled'> {{ 'PROFIT' | translate }}</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

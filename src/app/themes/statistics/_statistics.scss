@@ -1,0 +1,97 @@
+app-product-dialog {
+	.title {
+		text-align: center;
+	}
+}
+
+.statistic-data {
+	height: 45px;
+	.fitness-container {
+		background: #fff;
+		width: 100%;
+		height: 30px;
+		border-radius: 25px;
+		.fitness-content {
+			height: 30px;
+			width: 0%;
+			border-radius: 25px;
+		}
+		&.fitness-race {
+			.fitness-content {
+				@extend %bar-fitness-pecentage;
+			}
+		}
+	}
+
+	.btn-default-dog-play {
+		max-width: 44px;
+		border-width: 2px;
+		&[disabled] {
+			opacity: 1;
+		}
+	}
+}
+.statistic-data-cockfight {
+	height: 100px;
+	.btn-default {
+		opacity: 1;
+	}
+	.btn-default-statistic-cock {
+		margin: 5px;
+		.icon {
+			width: 64px;
+			height: 46px;
+
+			&.icon-cock-red {
+				background: url("~/assets/images/cockfight/cock-red.png") no-repeat center;
+				background-size: contain;
+			}
+			&.icon-cock-blue {
+				background: url("~/assets/images/cockfight/cock-blue.png") no-repeat center;
+				background-size: contain;
+				-webkit-transform: scaleX(-1);
+				transform: scaleX(-1);
+			}
+		}
+		small {
+			display: block;
+			font-size: 11px;
+		}
+	}
+
+	.fitness-container {
+		height: 80%;
+
+		&.fitness-ito-1 {
+			.fitness-content {
+				background: #ff0000;
+			}
+		}
+		&.fitness-ito-2 {
+			.fitness-content {
+				background: #4472c4;
+			}
+		}
+
+		.fitness-content {
+			height: 25px;
+		}
+	}
+}
+
+.statistic-data-soccer {
+	height: 36px;
+	.fitness-container {
+		height: 80%;
+
+		&.fitness {
+			.fitness-content {
+				background: #02a502;
+			}
+		}
+
+		.fitness-content {
+			height: 25px;
+		}
+	}
+}

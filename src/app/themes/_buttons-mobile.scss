@@ -1,0 +1,265 @@
+.button {
+	padding: 0;
+}
+.btn-default-dog-play {
+	border-width: 2;
+	&.actived {
+		background: linear-gradient(-45deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+	}
+	&.btn-dog-play-actived {
+		border-color: #ffca18;
+	}
+	&.disabled {
+		opacity: 0.1;
+	}
+}
+.btn-advance-game {
+	border-width: 2;
+	border-color: #ffffff;
+	&.actived {
+		border-color: #ffca18;
+	}
+	&.inactive {
+		opacity: 0.8;
+	}
+	&.disabled {
+		opacity: 0.5;
+	}
+}
+.btn-default {
+	&.disabled {
+		opacity: 0.4;
+	}
+}
+.playable-row-tile,
+.button-internal {
+	&.disabled {
+		opacity: 0.1;
+	}
+}
+
+.btn-default-keno {
+	font-weight: 700;
+	padding: 0;
+	height: 35;
+	width: 100%;
+	@extend %btn-blue2-gradient;
+	&.selected {
+		@extend %btn-blue-gradient;
+	}
+}
+
+// COLOURS
+.btn-colours {
+	font-weight: 700;
+	padding: 0;
+	height: 35;
+	width: 100%;
+
+	&.btn-total-colours {
+		height: auto;
+		width: auto;
+	}
+
+	&.rainbow {
+		height: 100%;
+	}
+	&.btn-colours-RED {
+		background: #ff0000;
+		border-color: #ff0000;
+	}
+
+	&.btn-colours-BLUE {
+		background: #4171b2;
+		border-color: #4171b2;
+	}
+
+	&.btn-colours-GREEN {
+		background: #11a40f;
+		border-color: #11a40f;
+	}
+
+	&.btn-colours-YELLOW {
+		background: #c2f102;
+		border-color: #c2f102;
+		color: #000;
+	}
+  &.btn-colours-BLACK {
+		background: #000000;
+    border-color: #000000;
+    color: #ffffff;
+	}
+
+	&.selected {
+		border-color: #ffffff;
+		border-width: 3;
+	}
+
+	&.disabled {
+		opacity: 0.3;
+	}
+}
+
+// AMERICAN ROULETTE
+.american-roulette {
+  .red{
+    background-color: red;
+  }
+  .black{
+    background-color: black;
+  }
+  .green {
+    background-color: green;
+  }
+  .mat-border-1{
+    border-width: 0.5;
+    border-color: #fff;
+  }
+  .button-default{
+    vertical-align: center;
+  }
+  .btn-roulette-selected{
+    border-radius: 75;
+    position: absolute;
+    width: 90%;
+    height: 45%;
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.btn-game-selector {
+	background: #273142;
+	border-color: #03030a;
+	&.selected {
+		border-color: #91c8fa;
+		border-width: 1;
+	}
+	&.coupon-selection {
+		border-style: solid;
+	}
+}
+
+.btn-DOG-1,
+.btn-HORSE-1,
+.btn-HORSE-VIRT-1 {
+	background: #ff0000;
+	border-color: #ff0000;
+}
+.btn-DOG-2,
+.btn-HORSE-3,
+.btn-HORSE-VIRT-3 {
+	background: #4472c4;
+	border-color: #4472c4;
+}
+.btn-DOG-3,
+.btn-HORSE-2,
+.btn-HORSE-VIRT-2 {
+	background: #fff;
+	color: #000;
+	border-color: #fff;
+}
+.btn-DOG-4 {
+	background: #000;
+	border-color: #fff;
+}
+.btn-DOG-5 {
+	background: #f25900;
+	border-color: #f25900;
+}
+.btn-DOG-6 {
+	background: linear-gradient(
+		to bottom,
+		#000,
+		#000 15%,
+		#fff 15%,
+		#fff 30%,
+		#000 30%,
+		#000 45%,
+		#fff 45%,
+		#fff 60%,
+		#000 60%,
+		#000 75%,
+		#fff 75%,
+		#fff 90%,
+		#000 90%,
+		#000 100%
+	);
+	color: #ff0000;
+	border-color: #fff;
+	.label {
+		background: #fff;
+
+		border-radius: 50%;
+		width: 50%;
+		height: 50%;
+		text-align: center;
+	}
+}
+
+.btn-HORSE-4,
+.btn-HORSE-VIRT-4 {
+	background: #ffff00;
+	border-color: #ffff00;
+	color: #000;
+}
+.btn-HORSE-5,
+.btn-HORSE-VIRT-5 {
+	background: #008000;
+	border-color: #008000;
+}
+.btn-HORSE-6,
+.btn-HORSE-VIRT-6 {
+	background: #000;
+	border-color: #fff;
+	color: #ffff00;
+}
+
+// BUTTON COCKFIGHT
+.btn-default-cock {
+	border-width: 2;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	&:focus {
+		border: transparent;
+	}
+	&.btn-cock-0 {
+		background: #bebebe;
+		border-color: #bebebe;
+	}
+	&.btn-cock-1 {
+		background: #ff0000;
+		border-color: #ff0000;
+	}
+	&.btn-cock-2 {
+		background: #4472c4;
+		border-color: #4472c4;
+	}
+	&.btn-actived {
+		border-color: #ffca18;
+	}
+}
+.playable-special-bets {
+	.button {
+		border-width: 2;
+		border-color: transparent;
+		&.actived {
+			border-color: #ffca18;
+		}
+	}
+}
+.btn-grey {
+	@extend %btn-gray;
+}
+
+.btn-success-no-gradient {
+	@extend %color-bg-success;
+}
+.btn-danger-no-gradient {
+	@extend %color-bg-allert;
+}
+
+
+.btn-danger {
+	@extend %color-bg-allert;
+}

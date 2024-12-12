@@ -1,0 +1,33 @@
+
+<ng-container *ngIf="(results$|async) | hideLastResult: resultsService?.resultsUtils?.countDownInSeconds as arResults">
+<div class="results-event" *ngIf="arResults?.length > 0">
+  <mat-grid-list  fxFill cols="{{ arResults?.length }}" rowHeight="{{rowHeight + 1}}">
+    <mat-grid-tile colspan="{{ arResults?.length }}">
+      <!--List of draw results -->
+      <mat-grid-list fxFill cols="{{ arResults?.length }}" rowHeight="{{rowHeight + 1}}" class="position">
+        <mat-grid-tile *ngFor="let result of arResults">
+          <div fxLayout="column" fxLayoutAlign="center center" class="padding-bottom-5" fxFill>
+            <span fxFlex fxLayoutAlign="center center" class="radius-5 btn-default btn-americanroulette-result">{{ result?.eventLabel }}</span>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="{{ arResults?.length }}">
+      <!--List of draw results -->
+      <mat-grid-list fxFill cols="{{ arResults?.length }}" rowHeight="{{rowHeight + 1}}" class="position" rowHeight="100px">
+        <mat-grid-tile *ngFor="let result of arResults">
+          <div fxLayout="column" fxLayoutAlign="center center" class="btn-colours radius-5 btn-americanroulette-result" 
+          [ngClass]="{
+            'btn-colours-RED' : result?.americanRouletteResults?.color === 'red',
+            'btn-colours-BLACK' : result?.americanRouletteResults?.color === 'black',
+            'btn-colours-GREEN' : result?.americanRouletteResults?.color === 'green'}" fxFill>
+            <span>{{ result.americanRouletteResults.result }}</span>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+</ng-container>
+
+

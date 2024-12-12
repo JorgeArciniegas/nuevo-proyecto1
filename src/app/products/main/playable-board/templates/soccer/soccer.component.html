@@ -1,0 +1,29 @@
+<ng-container *ngIf="soccerService.tournament">
+  <mat-grid-list cols="10" rowHeight="{{rowHeight * 16/11}}" class="playable-grid-buttons">
+    <mat-grid-tile class="column-matches" colspan="2" rowspan="11">
+      <div [style.width.%]="100">
+        <mat-grid-list cols="1" rowHeight="{{rowHeight * 16/21}}">
+          <mat-grid-tile class="section-identifier">{{ 'EVENTS' | translate }}</mat-grid-tile>
+          <mat-grid-tile *ngFor="let match of soccerService.tournament.matches; let i = index" rowspan="2">
+            <button class="playable-row-tile--soccer display radius-5"
+              [ngClass]="{'playable-row-tile--active': match.isDetailOpened}" (click)="openEventDetails(i)">
+              <div class="badge" [ngClass]="match.hasOddsSelected ? 'badge--on' : 'badge--off'">
+                {{ i + 1 }}</div>
+              <div class="icon" [ngClass]="match.isVideoShown ? 'video-enabled-icon' : 'video-disabled-icon'">
+              </div>
+              <span class="match-label">{{ match.name }}</span>
+            </button>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile class="column-selections" colspan="8" rowspan="11">
+      <div [style.width.%]="100">
+        <!-- TOURNAMENT'S OVERVIEW -->
+        <app-overview [rowHeight]="rowHeight" *ngIf="soccerService.selectedMatch < 0"></app-overview>
+        <!-- EVENT'S DETAIL -->
+        <app-detail [rowHeight]="rowHeight" *ngIf="soccerService.selectedMatch >= 0"></app-detail>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</ng-container>

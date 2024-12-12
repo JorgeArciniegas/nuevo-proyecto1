@@ -1,0 +1,143 @@
+<div fxLayout="column" [style.padding.px]="10" class="bet-list" [style.height.px]="windowSizeService.windowSize.columnHeight">
+  <div class="title" fxFlex="auto">
+    <h1>{{'BETS_LIST' | translate}} </h1>
+  </div>
+  <div fxFlexFill fxFlex="90" class="form" fxLayout="column" fxLayoutGap="5px" fxLayoutALign="flex-start">
+    <div fxFlex="80" fxLayout="column" fxLayoutGap="25px">
+      <!-- ROW 0 -->
+      <div fxFlex="20" fxLayout="row" fxLayoutGap="20px">
+        <!-- DATA SELECTED -->
+        <div fxFlex="70" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" class="display padding-20">
+          <h3 class="label-overlap">{{ 'DATE' | translate }}</h3>
+          
+          <div class="two-column-grid">
+            <button class="btn-filter btn-default radius-5 btn-flex-height" (click)="changeValue('dateHasPlaced', false)"
+              [class.btn-filter-success]="!betsListService.dateHasPlaced && !betsListService.carriedOut">
+              {{'PLACEMENT' | translate}}
+            </button>
+            <button class="btn-filter btn-default radius-5 btn-flex-height" (click)="changeValue('carriedOut', true)"
+              [class.btn-filter-success]="betsListService.carriedOut"
+              [disabled]="betsListService.couponStatus === couponStatus.Cancelled">
+              {{'FILTER_DATE_OF_PAYMENT' | translate}}
+            </button>
+            <button class="btn-filter btn-default radius-5 btn-flex-height" (click)="changeValue('dateHasPlaced', true)"
+              [class.btn-filter-success]="betsListService.dateHasPlaced && !betsListService.carriedOut"
+              [disabled]="betsListService.couponStatus === couponStatus.Cancelled">
+              {{'SETTLEMENT' | translate}}
+            </button>
+          </div>
+
+          <div fxFlex="30" fxLayout="column" fxLayoutGap="5px">
+            <h4 [style.margin-top.px]="0">{{ 'DATE_FROM' | translate }}</h4>
+            <mat-form-field class="btn-filter btn-default radius-5" (click)="pickerDateFrom.open()">
+              <input matInput class="datepicker" [matDatepicker]="pickerDateFrom" disabled
+                [(ngModel)]="betsListService.dateFrom" [matDatepickerFilter]="betsListService.dateFilterFrom">
+              <mat-datepicker-toggle matSuffix [for]="pickerDateFrom"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #pickerDateFrom disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="30" fxLayout="column" fxLayoutGap="5px">
+            <h4 [style.margin-top.px]="0">{{ 'DATE_TO' | translate }}</h4>
+            <mat-form-field class="btn-filter btn-default radius-5" (click)="pickerDateTo.open()">
+              <input matInput class="datepicker" [matDatepicker]="pickerDateTo" disabled
+                [(ngModel)]="betsListService.dateTo" [matDatepickerFilter]="betsListService.dateFilterTo">
+              <mat-datepicker-toggle matSuffix [for]="pickerDateTo"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #pickerDateTo disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+        </div>
+        <!-- BETSLIP CODE -->
+        <div fxFlex="30" fxLayout="row" fxLayoutAlign="center center" class="display padding-20">
+          <h3 class="label-overlap">{{ 'COUPON_CODE' | translate }}</h3>
+          <mat-form-field fxFlex class="btn-filter btn-default padding-10 radius-5" fxLayoutAlign="start center">
+            <input matInput type="text" [(ngModel)]="betsListService.ticketCode">
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- ROW 1 -->
+      <div fxFlex="50" fxLayout="row" fxLayoutGap="20px">
+        <div fxFlex="40" fxLayout="row" fxLayoutGap="20px" class="display padding-20">
+          <h3 class="label-overlap">{{ 'PRODUCT_FILTER' | translate }}</h3>
+          <div class="two-column-grid">
+            <div *ngFor="let type of betsListService.availableSport; trackBy: trackBySportId">
+              <button class="btn-filter btn-default radius-5 btn-flex-height"
+                [class.btn-filter-success]="betsListService.sportIdSelected === type.SportId"
+                (click)="changeValue('sportId', type.SportId)">{{ 'DYNAMIC_KEYS.PRODUCT.NAME.'+ type.SportName | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div fxFlex="30" fxLayout="row" fxLayoutGap="10px" class="display padding-20">
+          <h3 class="label-overlap">{{ 'BET_TYPE' | translate }}</h3>
+          <div fxFlex fxLayout="column" fxLayoutGap="5px">
+            <button *ngFor="let type of couponType.values()" class="btn-filter btn-default radius-5"
+              [class.btn-filter-success]="betsListService.couponType === couponType[type]"
+              (click)="changeValue('couponType', couponType[type])">{{ 'DYNAMIC_KEYS.CouponType.' + type | translate}}</button>
+          </div>
+        </div>
+        <div fxFlex="30" fxLayout="row" fxLayoutGap="10px" class="display padding-20">
+          <h3 class="label-overlap">{{ 'BET_STATUS' | translate }}</h3>
+          <div fxFlex fxLayout="column" fxLayoutGap="5px">
+            <button *ngFor="let type of couponStatus.values()" class="btn-filter btn-default radius-5"
+              [class.btn-filter-success]="betsListService.couponStatus === couponStatus[type]"
+              [disabled]="betsListService.carriedOut"
+              (click)="changeValue('couponStatus', couponStatus[type])">{{ 'DYNAMIC_KEYS.CouponStatusInternal.' + type | translate}}</button>
+          </div>
+        </div>
+      </div>
+      <!-- ROW 2 -->
+      <div fxFlex="30" fxLayout="row">
+        <div fxFlex="100" fxLayout="row" fxLayoutGap="10px" class="display padding-horizontal-20">
+          <h3 class="label-overlap">{{ 'OPERATOR' | translate }} </h3>
+          <div fxFlex="100" fxLayout="column" fxLayoutGap="10px">
+            <div fxFlex="20" fxLayout="row" fxLayoutGap="10px">
+              <button *ngIf="operatorService.listOfOperators.totalPages > 0" class="btn-reset card-odd radius-5 scroll"
+                (click)="previusPage()" [disabled]="operatorService.listOfOperators.actualPages <= 0">
+                <img class="icon" src="/assets/icons/Up.svg">
+              </button>
+            </div>
+            <div fxFlex="40" fxLayout="row wrap" fxLayoutGap="5px">
+
+              <div fxFlex="10" fxLayout="column" fxLayoutGap="5px">
+                <button class="btn-filter btn-default radius-5"
+                  [class.btn-filter-success]="betsListService.operatorSelected === null" (click)="selectOperator()">
+                  <small>{{'ALL' | translate}}</small>
+                </button>
+              </div>
+              <ng-container *ngIf="operatorService.listTempOperators">
+                <div fxFlex="10" fxLayout="column" fxLayoutGap="5px"
+                  *ngFor="let operator of operatorService.listTempOperators">
+                  <button class="btn-filter btn-default radius-5"
+                    [class.btn-filter-success]="betsListService.operatorSelected && betsListService.operatorSelected.IDClient === operator.IDClient"
+                    (click)="selectOperator(operator)">
+                    <small>{{ operator.UserName }}</small>
+                  </button>
+                </div>
+              </ng-container>
+            </div>
+            <div fxFlex="20" fxLayout="row">
+              <button *ngIf="operatorService.listOfOperators.totalPages > 0" class="btn-reset card-odd radius-5 scroll"
+                (click)="nextPage()"
+                [disabled]="operatorService.listOfOperators.actualPages >= operatorService.listOfOperators.totalPages - 1">
+                <img class="icon" src="/assets/icons/Down.svg">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxFlex="10" fxLayout="column" fxLayoutAlign="center">
+      <!-- ROW 3 -->
+      <div fxFlex="5" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="5px">
+        <div fxFlex="33"></div>
+        <div fxFlex>
+          <button class="btn-default btn-grey-gradient radius-5 elevation-z5 btn-filter"
+            (click)="betsListService.getList(true)">{{ 'SEARCH' | translate }} </button>
+        </div>
+        <div fxFlex="33"></div>
+      </div>
+    </div>
+  </div>
+</div>

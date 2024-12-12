@@ -1,0 +1,17 @@
+<div fxLayoutAlign="center center">
+  <div fxFlex="100">
+    <mat-grid-list cols="10" rowHeight="{{ rowHeight * 16/8 }}">
+      <mat-grid-tile *ngFor="let kenoNumber of kenoTable">
+        <div fxLayoutAlign="center center" class="btn-default elevation-z5 btn-default-keno radius-15"
+          [ngClass]="{'selected' : kenoNumber.isSelected}" (click)="onNumberClick(kenoNumber)">
+          <div fxLayout="column" fxLayoutAlign="center center">
+            <div fxFlex="100" fxLayoutAlign="center center" *ngIf="!numberSelectionQueue.includes(kenoNumber)">
+              {{ kenoNumber.number }}
+            </div>
+            <div class="vg-loader-spinner" *ngIf="numberSelectionQueue.includes(kenoNumber)"></div>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div fxFill fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="1vw" class="special-box">
+  <button (click)="placingColourLucky()" class="btn-default btn-lucky btn-grey-gradient radius-5 elevation-z5">
+    {{ 'LUCKY' | translate }} {{'RAINBOW' | translate }}
+  </button>
+  <button (click)="placingColourLucky(Colour.RED)"
+    class="btn-default btn-lucky btn-grey-gradient radius-5 elevation-z5">
+    {{ 'LUCKY' | translate }} {{'RED' | translate }}
+  </button>
+  <button (click)="placingColourLucky(Colour.BLUE)"
+    class="btn-default btn-lucky btn-grey-gradient radius-5 elevation-z5">
+    {{ 'LUCKY' | translate }} {{'BLUE' | translate }}
+  </button>
+  <button (click)="placingColourLucky(Colour.GREEN)"
+    class="btn-default btn-lucky btn-grey-gradient radius-5 elevation-z5">
+    {{ 'LUCKY' | translate }} {{'GREEN' | translate }}
+  </button>
+</div>

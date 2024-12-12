@@ -1,0 +1,32 @@
+<div>
+    <mat-grid-list cols="12" rowHeight="{{ rowHeight * 2.7 }}">
+        <ng-container *ngFor="let coloursNumber of coloursNumbers">
+            <mat-grid-tile *ngIf="coloursNumber.number !== 49" style="margin-top: 10px">
+                <button fxLayoutAlign="center center"
+                    class="btn-colours radius-5 btn-colours-{{Colour[coloursNumber.colour]}}"
+                    [ngClass]="{'selected' : coloursNumber.isSelected, 'disabled' : coloursNumber.isDisabled}"
+                    (click)="onNumberClick(coloursNumber)" [disabled]="coloursNumber.isDisabled">
+                    <div fxFlex="100" fxLayoutAlign="center center"
+                        *ngIf="!numberSelectionQueue.includes(coloursNumber)">
+                        {{ coloursNumber.number }}
+                    </div>
+                    <div class="vg-loader-spinner" *ngIf="numberSelectionQueue.includes(coloursNumber)"></div>
+                </button>
+            </mat-grid-tile>
+            <mat-grid-tile *ngIf="coloursNumber.number === 49" colspan="5"></mat-grid-tile>
+            <mat-grid-tile *ngIf="coloursNumber.number === 49" colspan="2">
+                <button [style.width.%]="100" fxLayoutAlign="center center"
+                    class="btn-colours radius-10 btn-colours-{{Colour[coloursNumber.colour]}}"
+                    [ngClass]="{'selected' : coloursNumber.isSelected, 'disabled' : coloursNumber.isDisabled}"
+                    (click)="onNumberClick(coloursNumber)" [disabled]="coloursNumber.isDisabled">
+                    <div fxFlex="100" fxLayoutAlign="center center"
+                        *ngIf="!numberSelectionQueue.includes(coloursNumber)">
+                        {{ coloursNumber.number }}
+                    </div>
+                    <div class="vg-loader-spinner" *ngIf="numberSelectionQueue.includes(coloursNumber)"></div>
+                </button>
+            </mat-grid-tile>
+            <mat-grid-tile *ngIf="coloursNumber.number === 49" colspan="5"></mat-grid-tile>
+        </ng-container>
+    </mat-grid-list>
+</div>

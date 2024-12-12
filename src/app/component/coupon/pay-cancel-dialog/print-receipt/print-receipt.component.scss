@@ -1,0 +1,50 @@
+@media screen {
+	:host {
+		display: none;
+	}
+}
+
+@media print {
+	.printReceipt {
+		font-weight: 600;
+		size: portrait;
+		width: 100%;
+		-webkit-print-color-adjust: exact;
+
+		.header {
+			.header-content {
+				font-size: 3mm;
+				// border: 1px solid;
+				padding: 0.5mm 1mm;
+        text-align: center;
+        border-bottom: 1px solid;
+			}
+		}
+
+		.content {
+			padding: 0.5mm 1mm;
+			font-size: 3mm;
+      		width: 100%;
+      		text-align: center;
+			.bet-info {
+				display: block;
+			}
+
+			.operation-info {
+				display: block;
+				text-transform: lowercase;
+				padding-left: 1.5mm;
+			}
+		}
+
+		.footer {
+			margin-top: 0.5mm;
+			page-break-after: avoid;
+			text-align: center;
+			span {
+				font-weight: bold;
+				text-align: center;
+			}
+		}
+	}
+}

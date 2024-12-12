@@ -1,0 +1,100 @@
+<div fxFlex fxLayout="row" fxLayoutAlign="center" [style.height.%]="100" class="admin-operators">
+  <div fxFlex fxLayout="column" fxLayoutGap="10px" [style.padding.px]="10">
+    <div class="title">
+      <h1>{{ 'LIST_OF_OPERATORS' | translate  | uppercase }} - <small>{{'EDIT' | translate | uppercase }}</small> </h1>
+    </div>
+    <div fxFlex="10" fxLayoutAlign="start center" class="padding-horizontal-6">
+      <div fxLayout="row nowrap" fxLayoutAlign="start center">
+        <div fxFlex="5">
+          <button class="btn-default radius-5" routerLink="../">
+            <img class="icon icon-24px" src="assets/icons/baseline-arrow_back-24px.png">
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- EDIT OPERATOR -->
+    <div fxFlex="75" class="padding-20 btn-filter radius-5 elevation-z5 " fxLayout="column"
+      fxLayoutAlign="center center">
+      <ng-container *ngIf="!isEdited && operatorService.operatorMarked">
+        <form [formGroup]="form" autocomplete="off" fxLayout="column" fxFlex.xs="90" fxFlex.sm="50" fxFlex="100"
+          fxLayoutAlign="center center">
+          <div class="input-area">
+            <div class="input-item">
+              <div class="input radius-2">
+                <i class="icon-area user-icon"></i>
+                <label>{{operatorService.operatorMarked.UserName}}</label>
+              </div>
+            </div>
+            <div class="input-item">
+              <div class="input radius-2"
+                [ngClass]="{'error': form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched)}">
+                <i class="icon-area pwd-icon"></i>
+                <input placeholder="{{ 'PASSWORD' | translate }}" formControlName="password" type="password"
+                  class="padding-right-10" />
+              </div>
+            </div>
+            <div class="input-item">
+              <div class="input radius-2"
+                [ngClass]="{'error': form.controls.confirmPassword.invalid && (form.controls.confirmPassword.dirty || form.controls.confirmPassword.touched)}">
+                <i class="icon-area pwd-icon"></i>
+                <input placeholder="{{ 'REPEAT_PASSWORD' | translate }}" formControlName="confirmPassword"
+                  type="password" class="padding-right-10" />
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="error-message" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5px">
+          <div fxLayout="row" fxLayoutAlign="center center"
+            *ngIf="form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched)">
+            <ng-container *ngIf="form.controls.password.hasError('required')">
+              <i class="error-icon"></i> {{ 'PASSWORD' | translate }} {{ 'IS_REQUIRED' | translate | lowercase  }}
+            </ng-container>
+            <ng-container *ngIf="form.controls.password.hasError('minlength')">
+              <i class="error-icon"></i> {{ 'PASSWORD_TOO_SHORT' | translate }}
+            </ng-container>
+            <ng-container *ngIf="form.controls.password.hasError('invalidPassword')">
+              <i class="error-icon"></i> {{ 'PASSWORD_IS_NOT_VALID' | translate }}
+            </ng-container>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="center center"
+            *ngIf="form.controls.confirmPassword.invalid && (form.controls.confirmPassword.dirty || form.controls.confirmPassword.touched)">
+            <ng-container *ngIf="form.controls.confirmPassword.hasError('required')">
+              <i class="error-icon"></i> {{ 'REPEAT_PASSWORD' | translate }}
+              {{ 'IS_REQUIRED' | translate | lowercase  }}
+            </ng-container>
+            <ng-container *ngIf="form.controls.confirmPassword.hasError('minlength')">
+              <i class="error-icon"></i> {{ 'PASSWORD_TOO_SHORT' | translate }}
+            </ng-container>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="center center"
+            *ngIf="form.value.confirmPassword !== form.value.password && (form.controls.confirmPassword.dirty || form.controls.confirmPassword.touched)">
+            <i class="error-icon"></i> {{ 'PASSWORD_NOT_SAME' | translate }}
+          </div>
+          <div fxLayout="row" fxLayoutAlign="center center" *ngIf="errorMessage">
+            <i class="error-icon"></i> {{ errorMessage }}
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="isEdited">
+        <div fxLayout="column" fxFlex.xs="90" fxFlex.sm="50" fxFlex="100" fxLayoutAlign="center center">
+          <div fxLayout="row" fxLayoutAlign="center center" fxFill fxLayoutGap="20px">
+            <ng-container *ngIf="errorMessage && !isEdited">
+              <i fxFlex="10" class="error-icon"></i>
+              <p>{{ errorMessage }}</p>
+            </ng-container>
+            <ng-container *ngIf="errorMessage && isEdited">
+              <i fxFlex="10" class="icon-24px success-icon"></i>
+              <p>{{'OPERATOR.UPDATE_SUCCESS_MESSAGE' | translate }}</p>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div fxFlex="5" fxLayoutAlign="end center" class="padding-horizontal-6">
+      <div fxFlex fxLayout="row nowrap" fxLayoutAlign="end center">
+        <button fxFlex="20" *ngIf="!isEdited && operatorService.operatorMarked" (click)="onSubmit(form.value)"
+          class="btn btn-default btn-success radius-5">{{'CONFIRM' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>

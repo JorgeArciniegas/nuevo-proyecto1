@@ -1,0 +1,39 @@
+<mat-grid-list class="results-race" fxFill cols="{{ items }}" rowHeight="{{rowHeight * 2 + 1}}">
+  <ng-container *ngFor="let race of (results$|async) 
+  | hideLastResult: resultsService?.resultsUtils?.countDownInSeconds">
+    <mat-grid-tile>
+      <div fxFill class="card-box-result" fxLayoutAlign="center center">
+         <mat-grid-list fxFill cols="1" rowHeight="{{rowHeight}}">
+          <mat-grid-tile class="header">
+           
+            <div fxFill fxLayoutAlign="center center" class="radius-5 raceNumber">
+              {{race.eventLabel}}
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-grid-list fxFill cols="3" rowHeight="{{rowHeight}}" class="position">
+              <mat-grid-tile>
+                <div fxFill fxLayoutAlign="center center"
+                  class="radius-5 btn-default-dog-play btn-{{codeProduct}}-{{race?.racePodium?.firstPlace}}">
+                  <span>{{race?.racePodium?.firstPlace}}</span>
+                </div>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <div fxFill fxLayoutAlign="center center"
+                  class="radius-5 btn-default-dog-play btn-{{codeProduct}}-{{race?.racePodium?.secondPlace}}">
+                  <span>{{race?.racePodium?.secondPlace}}</span>
+                </div>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <div fxFill fxLayoutAlign="center center"
+                  class="radius-5 btn-default-dog-play btn-{{codeProduct}}-{{race?.racePodium?.thirdPlace}}">
+                  <span>{{race?.racePodium?.thirdPlace}}</span>
+                </div>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </mat-grid-tile>
+        </mat-grid-list> 
+      </div>
+    </mat-grid-tile>
+  </ng-container>
+</mat-grid-list>

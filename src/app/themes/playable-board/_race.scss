@@ -1,0 +1,28 @@
+.playable-grid-buttons{
+  .mat-grid-tile{
+      .mat-grid-tile-content{
+          padding: 5px;
+          .playable-row-tile{
+              padding: 5px;
+              display: flex;
+              min-width: 50px;
+              align-items: center;
+              justify-content: center;
+              height: 100%;
+              font-size: 2.8vh;
+              font-weight: 700;
+          }
+          .btn-default-dog-play{
+              font-weight: 700;
+              font-size: 4.8vh;
+          }
+      }
+  }
+}
+/* .playable-special-bets{
+  .mat-grid-tile{
+      .mat-grid-tile-content{
+        // padding: 0px 10px;
+      }
+  }
+} */

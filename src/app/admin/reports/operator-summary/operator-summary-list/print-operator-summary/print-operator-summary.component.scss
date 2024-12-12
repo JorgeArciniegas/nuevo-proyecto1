@@ -1,0 +1,62 @@
+@media print {
+	.operator-summary {
+		width: 100%;
+		-webkit-print-color-adjust: exact;
+
+		.col {
+			display: inline-block;
+		}
+
+		.font-size-normal {
+			font-size: 2.5mm;
+		}
+
+		.bold-text {
+			font-style: bold;
+		}
+
+		.centered-text {
+			text-align: center;
+			vertical-align: middle;
+		}
+
+		.header {
+			.header-content {
+				font-size: 2mm;
+				border: 1px solid;
+				padding: 0.5mm 1mm;
+				text-align: center;
+			}
+		}
+
+		.content {
+			padding: 0.5mm 1mm;
+			font-size: 2.5mm;
+
+			.bold-background {
+				background-color: black;
+				color: white;
+			}
+
+			.separator {
+				flex: 1;
+				border-top: 1px solid;
+				margin-right: 1mm;
+				align-items: center;
+			}
+
+			.date {
+				padding-top: 0.5mm;
+				padding-bottom: 1.5mm;
+			}
+
+			.text-right {
+				text-align: right;
+			}
+
+			.totals {
+				margin-top: 3mm;
+			}
+		}
+	}
+}

@@ -1,0 +1,59 @@
+<div fxLayout="column" [style.height.px]="rowHeight * 12">
+  <div fxFlex="50" fxLayout="row">
+    <ng-container *ngFor="let totalColourSelection of totalColourSelections">
+      <div fxFlex="33" fxLayoutAlign="center center" *ngIf="totalColourSelection.colour !== Colour.NONE">
+        <button class="btn-colours btn-total-colours radius-5 btn-colours-{{Colour[totalColourSelection.colour]}}"
+          [ngClass]="{'selected' : totalColourSelection.isSelected, 'disabled' : totalColourSelection.isDisabled}"
+          (click)="onNumberClick(totalColourSelection)" [disabled]="totalColourSelection.isDisabled">
+          <div fxLayout="column" fxLayoutAlign="center center">
+            <ng-container *ngIf="!selectionQueue.includes(totalColourSelection)">
+              <div>
+                {{ totalColourSelection.name | translate | uppercase }}
+              </div>
+            </ng-container>
+            <div class="vg-loader-spinner" *ngIf="selectionQueue.includes(totalColourSelection)"></div>
+          </div>
+        </button>
+      </div>
+    </ng-container>
+  </div>
+  <div fxFlex="50" fxLayoutAlign="center center">
+    <button fxLayoutAlign="center center"
+      class="btn-default btn-grey-gradient btn-colours btn-no-winning-selection radius-5"
+      [ngClass]="{'selected' : totalColourSelections[3].isSelected, 'disabled' : totalColourSelections[3].isDisabled}"
+      (click)="onNumberClick(totalColourSelections[3])" [disabled]="totalColourSelections[3].isDisabled">
+      <div fxLayout="column" *ngIf="!selectionQueue.includes(totalColourSelections[3])">
+        <div fxLayoutAlign="center center">
+          {{ totalColourSelections[3].name | translate | uppercase }}
+        </div>
+      </div>
+      <div fxLayoutAlign="center center" class="vg-loader-spinner"
+        *ngIf="selectionQueue.includes(totalColourSelections[3])"></div>
+    </button>
+  </div>
+</div>
+
+<!-- <div>
+  <div fxLayout="column" [style.height.px]="rowHeight * 12" fxLayoutAlign="space-around stretch">
+    <div fxLayout="row" fxLayoutAlign="center center" *ngFor="let totalColourSelection of totalColourSelections"
+      fxFlex="33">
+      <ng-container *ngIf="totalColourSelection.colour !== undefined">
+        <button class="btn-default btn-hilo radius-15" fxFlex="50"
+          [ngClass]="{'btn-selected': totalColourSelection.isSelected, 'btn-grey-gradient': !totalColourSelection.isSelected }">
+          <div fxLayout="column" fxLayoutAlign="center center">
+            <div>
+              <div fxFlex="100" fxLayoutAlign="center center" *ngIf="!selectionQueue.includes(totalColourSelection)">
+                {{ Colour[totalColourSelection.colour] }}
+              </div>
+              <div>3.80</div>
+            </div>
+            <div class="vg-loader-spinner" *ngIf="selectionQueue.includes(totalColourSelection)"></div>
+          </div>
+        </button>
+      </ng-container>
+    </div>
+  </div>
+  <div>
+
+  </div>
+</div> -->

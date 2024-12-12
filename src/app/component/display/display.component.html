@@ -1,0 +1,127 @@
+<div fxFlexFill fxLayout="column">
+  <div fxFlex="70" fxLayout="row" class="display" [style.height.px]="((rowHeight/2))">
+    <ng-container *ngIf="polyfunctionalValue?.selection &&
+        (productService.product?.layoutProducts?.type !== typeProductCoupon.KENO && productService.product?.layoutProducts?.type !== typeProductCoupon.COLOURS) &&
+        productService.product?.typeCoupon?.acceptMultiStake">
+      <!--MULTISTAKE ACCEPTED -->
+      <div fxLayout="column" fxFlex="88" fxLayoutAlign="center flex-start">
+        <div fxFlex="100" fxLayout="row wrap" class="first-row" [style.height.px]="(rowHeight - 20) / 2"
+          [style.min-height.px]="(rowHeight - 20) / 2">
+          <ng-container *ngIf="productService.product?.layoutProducts?.type !== typeProductCoupon.AMERICANROULETTE">
+            <div fxLayout="column"
+              fxFlex="{{productService.product?.layoutProducts?.type !== typeProductCoupon.COCK_FIGHT ? 70 : 25}}"
+              fxLayoutAlign="center flex-start" *ngIf="polyfunctionalValue.selection">
+              {{"DYNAMIC_KEYS.SMARTCODE."+polyfunctionalValue.selection | translate | uppercase}}
+            </div>
+            <div fxLayout="column nowrap"
+              fxFlex="{{productService.product?.layoutProducts?.type !== typeProductCoupon.COCK_FIGHT ?  25 : 70}}"
+              fxLayoutAlign="center flex-end">
+              <span
+                [ngClass]="{'display-selection' : productService.product?.layoutProducts?.type === typeProductCoupon.COCK_FIGHT}">
+                {{polyfunctionalValue.value}}
+              </span>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="productService.product?.layoutProducts?.type === typeProductCoupon.AMERICANROULETTE">
+            <div fxLayout="column nowrap" fxFlex="90">
+              <div fxFill class="display-selection-roulette">
+                {{getRouletteValue()}}
+              </div>
+            </div>
+          </ng-container>
+        </div>
+
+        <div fxLayout="row" class="second-row" [style.height.px]="(rowHeight - 20) / 2"
+          [style.min-height.px]="(rowHeight - 20) / 2"
+          *ngIf="polyfunctionalValue?.odds && polyfunctionalValue?.odds.length === 1 ">
+          <div fxLayout="column" fxFlex="45" fxLayoutAlign="center flex-start">
+            <span>(
+              {{ polyfunctionalValue?.odds[0].odd | number:'1.2-2'}} )</span>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex="10" fxLayoutAlign="center center"
+        *ngIf="polyfunctionalValue  && polyfunctionalValue?.selection ">
+        <button class="btn-reset btn-display" (click)="detailOdds()">
+          <img class="icon" src="assets/icons/baseline-open_in_new-24-white.png">
+        </button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="polyfunctionalValue?.grouping &&
+      productService.product?.layoutProducts?.type !== typeProductCoupon.KENO && productService.product?.layoutProducts?.type !== typeProductCoupon.COLOURS &&
+      !productService.product.typeCoupon?.acceptMultiStake">
+      <div fxLayout="column" fxFlex="88" fxLayoutAlign="center flex-start">
+        <div fxFlex="100" fxLayout="row" class="first-row" fxFill [style.height.px]="(rowHeight - 20) / 2"
+          [style.min-height.px]="(rowHeight - 20) / 2">
+          <ng-container *ngFor="let group of polyfunctionalValue.grouping">
+            <span *ngIf="group.Selected" class="group-title"
+              [ngClass]="{'selected' : group.Selected}">{{group.Combinations +'-' + group.Grouping }}</span>
+          </ng-container>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex="10" fxLayoutAlign="center center"
+        *ngIf="polyfunctionalValue?.grouping.length > 0 ">
+        <button class="btn-reset btn-display" (click)="detailOdds('true')">
+          <img class="icon" src="assets/icons/baseline-open_in_new-24-white.png">
+        </button>
+      </div>
+    </ng-container>
+    <!-- SHOWING DISPLAY ALL FOR KENO AND COLOURS -->
+    <ng-container *ngIf="polyfunctionalValue?.grouping &&
+    (productService.product?.layoutProducts?.type === typeProductCoupon.KENO ||
+    productService.product?.layoutProducts?.type === typeProductCoupon.COLOURS) &&
+      !productService.product?.typeCoupon?.acceptMultiStake">
+      <div fxLayout="column" fxFlex="88" fxLayoutAlign="center flex-start">
+        <div fxLayout="row" class="first-row" fxFill [style.height.px]="(rowHeight - 20) / 2"
+          [style.min-height.px]="(rowHeight - 20) / 2">
+          <ng-container *ngIf="polyfunctionalValue.oddsCounter === 1 &&
+            (polyfunctionalValue.selection === colourGameId[colourGameId.hilo] ||
+            polyfunctionalValue.selection === colourGameId[colourGameId.rainbow]) ||
+            polyfunctionalValue.selection === colourGameId[colourGameId.totalcolour];
+            else elseTemplate">
+            <span class="group-title">
+              {{ getDisplaySelection() | uppercase }}
+            </span>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <span *ngIf="polyfunctionalValue.oddsCounter > 0" class="group-title">{{ polyfunctionalValue.oddsCounter }}
+              {{ 'DISPLAY_SELECTION_LENGTH' | translate }}</span>
+          </ng-template>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex="10" fxLayoutAlign="center center"
+        *ngIf="polyfunctionalValue && polyfunctionalValue.grouping.length > 0 && productService.product?.layoutProducts?.type === typeProductCoupon.KENO">
+        <button class="btn-reset btn-display" (click)="kenoPaytable()">
+          <img class="icon" src="assets/icons/baseline-open_in_new-24-white.png">
+        </button>
+      </div>
+      <div fxLayout="column" fxFlex="10" fxLayoutAlign="center center"
+        *ngIf="polyfunctionalValue && polyfunctionalValue.grouping.length > 0 && productService.product?.layoutProducts?.type === typeProductCoupon.COLOURS">
+        <button class="btn-reset btn-display paytable" (click)="coloursPaytable()"
+          [disabled]="!isColoursPaytableAvailable()" [ngClass]="{'disabled': !isColoursPaytableAvailable()}">
+          <img class="icon" src="assets/icons/baseline-open_in_new-24-white.png">
+        </button>
+      </div>
+    </ng-container>
+  </div>
+  <div fxFill fxFlex="30" fxLayout="row" class="display" [style.height.px]="((rowHeight/2)-5)">
+    <div fxLayout="column" fxFlex="20" fxLayoutAlign="center flex-srtart">
+      <ng-container *ngIf="amountPresetPlayer">
+        <!-- SHOWING TYPE BETSLIP AMOUNT TOT OR COL -->
+        <span *ngIf="amountPresetPlayer.typeSlipCol !== typeBetSlipColTot.GROUP">
+          {{ typeBetSlipColTot[amountPresetPlayer.typeSlipCol]}}
+        </span>
+        <!-- SHOWING GROUPING GROUPS X -->
+        <span
+          *ngIf="polyfunctionalValue.grouping && amountPresetPlayer.typeSlipCol === typeBetSlipColTot.GROUP && productService.product?.layoutProducts?.type !== typeProductCoupon.COLOURS">
+          {{polyfunctionalValue.grouping.length +'X' }}
+        </span>
+      </ng-container>
+    </div>
+    <div fxFill fxLayout="column" fxFlex="80" fxLayoutAlign="center flex-end">
+      <span
+        *ngIf="amountPresetPlayer">{{ amountPresetPlayer.amount | currency : userService.userCurrency : 'symbol-narrow' }}</span>
+    </div>
+
+  </div>
+</div>

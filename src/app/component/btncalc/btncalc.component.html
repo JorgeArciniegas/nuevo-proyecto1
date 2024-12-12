@@ -1,0 +1,84 @@
+<!-- Btn amount default avalaible-->
+<mat-grid-list *ngIf="productService.product && appSetting.defaultAmount" cols="4" class="grid-row-amount"
+  rowHeight="{{rowHeight}}">
+  <mat-grid-tile>
+    <button *ngIf="appSetting.defaultAmount.PresetOne > 0" [style.width.px]="rowHeight-12"
+      [style.height.px]="rowHeight-12" class="btn-default elevation-z5 btn-amount-1 radius-50"
+      (click)="btnDefaultAmountsPreset(appSetting.defaultAmount.PresetOne)">{{ appSetting.defaultAmount.PresetOne | digitslimit }}</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button *ngIf="appSetting.defaultAmount.PresetTwo > 0" [style.width.px]="rowHeight-12"
+      [style.height.px]="rowHeight-12" class="btn-default elevation-z5 btn-amount-2 radius-50"
+      (click)="btnDefaultAmountsPreset(appSetting.defaultAmount.PresetTwo)">{{ appSetting.defaultAmount.PresetTwo | digitslimit }}</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button *ngIf="appSetting.defaultAmount.PresetThree > 0" [style.width.px]="rowHeight-12"
+      [style.height.px]="rowHeight-12" class="btn-default elevation-z5 btn-amount-3 radius-50"
+      (click)="btnDefaultAmountsPreset(appSetting.defaultAmount.PresetThree)">{{ appSetting.defaultAmount.PresetThree | digitslimit }}</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button *ngIf="appSetting.defaultAmount.PresetFour > 0" [style.width.px]="rowHeight-12"
+      [style.height.px]="rowHeight-12" class="btn-default elevation-z5 btn-amount-4 radius-50"
+      (click)="btnDefaultAmountsPreset(appSetting.defaultAmount.PresetFour)">{{ appSetting.defaultAmount.PresetFour | digitslimit }}</button>
+  </mat-grid-tile>
+</mat-grid-list>
+<!-- BTN calculator -->
+<mat-grid-list cols="4" class="grid-keyboard-number" rowHeight="{{rowHeight}}">
+  <mat-grid-tile>
+    <button class="btn-default btn-keyboard radius-5 elevation-z5" (click)="btnKeyboardAmount('1')">1</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button class="btn-default btn-keyboard radius-5 elevation-z5" (click)="btnKeyboardAmount('2')">2</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button class="btn-default btn-keyboard radius-5 elevation-z5" (click)="btnKeyboardAmount('3')">3</button>
+  </mat-grid-tile>
+  <mat-grid-tile rowspan="2">
+    <button class="btn-default btn-keyboard btn-success radius-5 elevation-z5" (click)="plus()">+</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button class="btn-default btn-keyboard radius-5 elevation-z5" (click)="btnKeyboardAmount('4')">4</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button class="btn-default btn-keyboard radius-5 elevation-z5" (click)="btnKeyboardAmount('5')">5</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button class="btn-default btn-keyboard radius-5 elevation-z5" (click)="btnKeyboardAmount('6')">6</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button class="btn-default btn-keyboard radius-5 elevation-z5" (click)="btnKeyboardAmount('7')">7</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button class="btn-default btn-keyboard radius-5 elevation-z5" (click)="btnKeyboardAmount('8')">8</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button class="btn-default btn-keyboard radius-5 elevation-z5" (click)="btnKeyboardAmount('9')">9</button>
+  </mat-grid-tile>
+  <mat-grid-tile [rowspan]="btncalcService.decimalSeparator ? 1 : 2">
+    <button class="btn-default btn-keyboard btn-warning radius-5 elevation-z5"
+      (click)='onClickCancelButton()'>{{ 'C' | translate }}</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button class="btn-default btn-keyboard radius-5 elevation-z5" (click)="btnKeyboardAmount('0')">0</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button class="btn-default btn-keyboard radius-5 elevation-z5" (click)="btnKeyboardAmount('00')">00</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button class="btn-default btn-keyboard radius-5 elevation-z5" (click)="btnKeyboardAmount('000')">000</button>
+  </mat-grid-tile>
+  <mat-grid-tile *ngIf="btncalcService.decimalSeparator">
+    <button class="btn-default btn-keyboard radius-5 elevation-z5"
+      (click)="btnSeparatorSet()">{{btncalcService.decimalSeparator}}</button>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2">
+    <button class="btn-default btn-keyboard radius-5 elevation-z5" (click)="btnTotColSet(typeBetSlipColTot.TOT)"
+      [ngClass]="btncalcService.polyfunctionStakePresetPlayer && btncalcService.polyfunctionStakePresetPlayer.typeSlipCol === typeBetSlipColTot.TOT  ? 'btn-selected' : 'btn-grey-gradient'"
+      [disabled]="productService.product?.layoutProducts.type === typeLayoutProdct.KENO || productService.product?.layoutProducts.type === typeLayoutProdct.COLOURS ? 'disabled' : ''">{{ 'BTNCALC.TOT' | translate }}</button>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2">
+    <button class="btn-default btn-keyboard radius-5 elevation-z5" (click)="btnTotColSet(typeBetSlipColTot.COL)"
+      [disabled]="productService.product?.layoutProducts.type === typeLayoutProdct.KENO || productService.product?.layoutProducts.type === typeLayoutProdct.COLOURS ? 'disabled' : ''"
+      [ngClass]="btncalcService.polyfunctionStakePresetPlayer && btncalcService.polyfunctionStakePresetPlayer.typeSlipCol === typeBetSlipColTot.COL  ? 'btn-selected' : 'btn-grey-gradient'">{{ 'BTNCALC.COL' | translate }}</button>
+  </mat-grid-tile>
+</mat-grid-list>

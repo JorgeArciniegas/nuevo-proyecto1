@@ -1,0 +1,61 @@
+app-playable-board-cock-fight {
+	.tile-market-name {
+		width: 100%;
+		word-break: break-word;
+		text-align: center;
+
+		span {
+			width: 100%;
+		}
+	}
+
+	.btn-default {
+		.icon {
+			width: 40%;
+			height: 100%;
+
+			&.icon-cock-red {
+				@extend %ICON-COCK-RED;
+			}
+			&.icon-cock-blue {
+				@extend %ICON-COCK-BLUE;
+			}
+		}
+
+		&.btn-default-cock {
+			.icon {
+				&.icon-cock-red {
+					float: left;
+				}
+				&.icon-cock-blue {
+					float: right;
+				}
+			}
+
+      &[disabled] {
+        opacity: 0.5;
+        cursor: auto;
+
+        :focus {
+          background: inherit;
+        }
+      }
+		}
+
+		.selection-details {
+			display: block;
+			height: 100%;
+			word-break: break-word;
+		}
+
+		.selection-name {
+			font-weight: bold;
+			font-size: 1.4vh;
+		}
+
+		.selection-value {
+			font-weight: bold;
+			font-size: 1.8vh;
+		}
+	}
+}

@@ -1,0 +1,27 @@
+<div fxLayout="column" fxLayoutAlign="space-between" class="colours-paytable">
+  <div fxLayout="row">
+    <div fxFlex="50" class="font-weight-bold" fxLayoutAlign="center center">
+      <ng-container *ngIf="data.paytable.selectionString; else elseTemplate">
+        {{ 'SELECTIONS' | translate }}
+      </ng-container>
+      <ng-template #elseTemplate>
+        {{ 'EXTRACTED_NUMBERS' | translate }}
+      </ng-template>
+    </div>
+    <div fxFlex="50" class="font-weight-bold" fxLayoutAlign="center center">
+      {{ 'PAYOUT' | translate }}
+    </div>
+  </div>
+  <div *ngFor="let selection of gameSelections">
+    <hr class="divider">
+    <div fxLayout="row"
+      [ngClass]="{'disabled' : selection.Value === 0 || (data.paytable.selectionString && selection.SelectionTypeName.toUpperCase() !== data.paytable.selectionString.toUpperCase())}">
+      <div fxFlex="50" class="font-weight-bold" fxLayoutAlign="center center">
+        {{ getSelectionName(selection.SelectionTypeName) | uppercase }}
+      </div>
+      <div fxFlex="50" class="font-weight-bold" fxLayoutAlign="center center">
+        X {{ selection.Value }}
+      </div>
+    </div>
+  </div>
+</div>

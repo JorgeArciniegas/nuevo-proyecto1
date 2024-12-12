@@ -1,0 +1,71 @@
+#login {
+	.login-panel {
+		.logo-with-text {
+			height: 60px;
+			width: 100%;
+			margin: 15px;
+		}
+
+		.input-area {
+			margin-top: 15px;
+
+			.input-item {
+				margin: 15px 0;
+
+				.input {
+					display: block;
+					.icon-area {
+						width: 24px;
+						height: 20px;
+						margin: 10px 10px;
+						display: inline-block;
+						vertical-align: middle;
+					}
+
+					input {
+						border: none;
+						font-size: 14px;
+						font-weight: bold;
+						display: inline-block;
+						width: calc(100% - 44px);
+					}
+				}
+			}
+		}
+
+		button {
+			font-size: 14px;
+			padding: 10px;
+			margin-bottom: 15px;
+		}
+
+		.error-message {
+			text-align: center;
+			font-size: 14px;
+
+			div {
+				flex-wrap: wrap;
+			}
+		}
+	}
+	mat-slide-toggle {
+		height: auto;
+	}
+	.display {
+		position: relative;
+		background-color: transparent !important;
+
+		.label-overlap {
+			position: absolute;
+			top: -30px;
+			left: 10px;
+			padding: 0px 10px;
+		}
+	}
+	.version-software {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		font-size: 9px;
+	}
+}

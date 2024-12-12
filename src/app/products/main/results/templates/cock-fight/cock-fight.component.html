@@ -1,0 +1,42 @@
+<mat-grid-list class="results-event" fxFill cols="{{ items }}" rowHeight="{{rowHeight * 2 + 1}}">
+  <ng-container *ngFor="let event of (results$|async) | hideLastResult: resultsService?.resultsUtils?.countDownInSeconds">
+    <mat-grid-tile>
+      <div fxFill class="card-box-result">
+        <mat-grid-list fxFill cols="1" rowHeight="{{rowHeight}}">
+          <mat-grid-tile class="header">
+            <!-- header -->
+            <div fxFill fxLayoutAlign="center center" class="radius-5 eventNumber">
+              {{event.eventLabel}}
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-grid-list fxFill cols="3" rowHeight="{{rowHeight}}" class="position">
+              <mat-grid-tile>
+                <div fxFill fxLayoutAlign="center center"
+                  class="radius-5 btn-default-cock btn-cock-{{event.cockResult.winner}}">
+                  <ng-container [ngSwitch]="event.cockResult.winner">
+                    <span *ngSwitchCase="1" class="icon icon-cock-red"></span>
+                    <span *ngSwitchCase="2" class="icon icon-cock-blue"></span>
+                    <span *ngSwitchDefault>X</span>
+                  </ng-container>
+                </div>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <div fxFill fxLayoutAlign="center center"
+                  class="radius-5 btn-default-cock  btn-cock-{{event.cockResult.winner}} btn-{{codeProduct}}-{{event.cockResult.ou}}">
+                  <span>{{'DYNAMIC_KEYS.OVER_UNDER_COCKFIGHT.'+ event.cockResult.ou | translate | lowercase }}</span>
+                </div>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <div fxFill fxLayoutAlign="center center"
+                  class="radius-5 btn-default-cock  btn-cock-{{event.cockResult.winner}} btn-{{codeProduct}}-{{event.cockResult.sector}}">
+                  <span>{{(event.cockResult.sector === 0) ? '-' : 's' + event.cockResult.sector}}</span>
+                </div>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </mat-grid-tile>
+  </ng-container>
+</mat-grid-list>

@@ -1,0 +1,21 @@
+<div fxLayout="column" fxLayoutAlign="space-between" class="keno-paytable">
+  <div fxLayout="row">
+    <div fxFlex="50" class="font-weight-bold" fxLayoutAlign="center center">
+      {{ 'EXTRACTED_NUMBERS' | translate }}
+    </div>
+    <div fxFlex="50" class="font-weight-bold" fxLayoutAlign="center center">
+      {{ 'PAYOUT' | translate }}
+    </div>
+  </div>
+  <div *ngFor="let selection of data.paytable.payouts[data.paytable.selectionNumber-1].Selections">
+    <hr class="divider">
+    <div fxLayout="row" [ngClass]="{'disabled' : selection.Value === 0}">
+      <div fxFlex="50" class="font-weight-bold" fxLayoutAlign="center center">
+        {{ selection.SelectionTypeName }}
+      </div>
+      <div fxFlex="50" class="font-weight-bold" fxLayoutAlign="center center">
+        X {{ selection.Value }}
+      </div>
+    </div>
+  </div>
+</div>

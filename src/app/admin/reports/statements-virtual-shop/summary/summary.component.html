@@ -1,0 +1,167 @@
+<div fxFlex="100" fxLayout="row" fxLayoutAlign="center stretch" class="statement-virutal-shop" [style.height.%]="100"
+  *ngIf="service.aggregatesData">
+  <div fxFlex="100" fxLayout="column" fxLayoutAlign="flex-start" fxLayoutGap="10px" [style.padding.px]="10">
+    <div fxFlex="7" class="title">
+      <h1>{{ 'STATEMENT_VIRTUAL_SHOP' | translate | uppercase }} </h1>
+    </div>
+    <div fxFlex="10">
+      <div fxLayout="row nowrap" fxLayoutAlign="start center" fxLayoutGap="20px">
+        <div fxFlex="5">
+          <button class="btn-default radius-5" routerLink="../">
+            <img class="icon icon-24px" src="assets/icons/baseline-arrow_back-24px.png">
+          </button>
+        </div>
+        <div fxFlex="20">
+          <button class="btn btn-default btn-grey radius-5"
+            (click)="exportData()">{{ 'EXPORT_EXCEL' | translate }}</button>
+        </div>
+        <div fxFlex="10">
+          <div><small data='disabled'>{{ 'DATE_FROM' | translate }}</small></div>
+          <div class="value">
+            <strong>{{ service.request?.FromDate | date:'d MMM yyyy'}}</strong>
+          </div>
+        </div>
+        <div fxFlex="10">
+          <div><small data='disabled'>{{ 'DATE_TO' | translate }}</small></div>
+          <div class="value">
+            <strong>{{ service.request?.ToDate | date:'d MMM yyyy'}}</strong>
+          </div>
+        </div>
+        <div fxFlex="19"></div>
+        <!-- PAGINATOR -->
+        <div fxFlex="30" fxLayoutAlign="center center">
+          <div fxFlex="19">
+            <button (click)="previusPage()" class="btn-filter padding-10 radius-5">&lsaquo;</button>
+          </div>
+          <div fxFlex="60" fxLayoutAlign="center center">
+            {{'PAGE' | translate }} {{service.aggregatesData?.actualPages}}
+            {{'PAGE.OF' | translate }} {{service.aggregatesData?.totalPages}}
+          </div>
+          <div fxFlex="19">
+            <button (click)="nextPage()" class="btn-filter padding-10 radius-5">&rsaquo;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- RESULT  -->
+    <div fxFlex="75" class="btn-filter radius-5 elevation-z5" fxLayout="column" fxLayoutGap="grid"
+      fxLayoutAlign="flex-start">
+      <!-- HEADER -->
+      <div fxLayout="column" fxFlex="8">
+        <div fxFlex fxLayout="row" fxLayoutAlign="center center" class="table-report-header border-bottom-overlay-1px">
+          <div fxFlex="5"></div>
+          <div fxFlex="15" class="table-report-tile">
+            <strong data='disabled'>{{ 'DATE_OF_REFERENCE' | translate }}</strong>
+          </div>
+          <div fxFlex="10" class="table-report-tile">
+            <strong data='disabled'>{{ 'COUPON_NUMBER' | translate }}</strong>
+          </div>
+          <div fxFlex="10" class="table-report-tile">
+            <strong data='disabled'>{{ 'TOT_BET' | translate }}</strong>
+          </div>
+          <div fxFlex="10" class="table-report-tile">
+            <strong data='disabled'>{{ 'TOT_WON' | translate }}</strong>
+          </div>
+          <div fxFlex="15" class="table-report-tile">
+            <strong data='disabled'>{{ 'JACKPOT_SHOP' | translate }}</strong>
+          </div>
+          <div fxFlex="15" class="table-report-tile">
+            <strong data='disabled'>{{ 'JACKPOT_MEGA' | translate }}</strong>
+          </div>
+          <div fxFlex="10" class="table-report-tile">
+            <strong data='disabled'>{{ 'TOT_PROFIT' | translate  }}</strong>
+          </div>
+          <div fxFlex></div>
+        </div>
+      </div>
+      <!-- ROWS -->
+      <div fxLayout="column" fxFlex="100" fxLayoutAlign="start stretch">
+        <div fxFlex="100" fxLayout="column" fxLayoutAlign="flex-start stretch" fxLayoutGap="grid">
+          <div fxFlex="8" fxLayoutAlign="start center" class="table-report-result-row border-bottom-overlay-1px"
+            *ngFor="let rowItem of service.aggregatesTempData; let i = index">
+            <div fxFlex="5"></div>
+            <div fxFlex="15">
+              {{ rowItem.ReferenceDate | date:'d MMM yyyy' }}
+            </div>
+            <div fxFlex="10">
+              {{ rowItem.NumberOfCoupons }}
+            </div>
+            <div fxFlex="10">
+              {{ rowItem.Stake  |  currency : rowItem.CurrencyCode : 'symbol-narrow'}}
+            </div>
+            <div fxFlex="10">
+              {{ rowItem.Won |  currency : rowItem.CurrencyCode : 'symbol-narrow'}}
+            </div>
+            <div fxFlex="15">
+              {{ rowItem.ShopJackpot |  currency : rowItem.CurrencyCode : 'symbol-narrow' }}
+            </div>
+            <div fxFlex="15">
+              {{ rowItem.MegaJackpot |  currency : rowItem.CurrencyCode : 'symbol-narrow'}}
+            </div>
+            <div fxFlex="10">
+              {{ rowItem.Profit |  currency : rowItem.CurrencyCode : 'symbol-narrow'}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--TOTALS PAGE -->
+    <div fxFlex="8" fxLayout="column wrap">
+      <div fxFlex class="btn-filter" fxLayout="column wrap" fxLayoutAlign="stretch">
+        <div fxFlexFill fxLayout="row" fxLayoutAlign="flex-start">
+          <div fxFlex fxLayout=" row wrap" fxLayoutGap="grid">
+            <div fxFlex="5"></div>
+            <div fxFlex="15">
+              <div class="value">
+                <h2>{{ service.aggregatesData.totals.NumberOfCoupons | number }} </h2>
+              </div>
+              <div><small data='disabled'>{{ 'COUPON_NUMBER' | translate }}</small></div>
+            </div>
+            <div fxFlex="15">
+              <div class="value">
+                <h2>
+                  {{ service.aggregatesData.totals.Stake |  currency : userService.userCurrency : 'symbol-narrow' }}
+                </h2>
+              </div>
+              <div><small data='disabled'>{{ 'TOT_BET' | translate }}</small>
+              </div>
+            </div>
+            <div fxFlex="15">
+              <div class="value">
+                <h2>
+                  {{ service.aggregatesData.totals.Won |  currency : userService.userCurrency : 'symbol-narrow' }}
+                </h2>
+              </div>
+              <div><small data='disabled'>{{ 'TOT_WON' | translate}}</small>
+              </div>
+            </div>
+            <div fxFlex="15">
+              <div class="value">
+                <h2>
+                  {{ service.aggregatesData.totals.ShopJackpot |  currency : userService.userCurrency : 'symbol-narrow' }}
+                </h2>
+              </div>
+              <div><small data='disabled'>{{ 'JACKPOT_SHOP' | translate }}</small></div>
+            </div>
+            <div fxFlex="15">
+              <div class="value">
+                <h2>
+                  {{ service.aggregatesData.totals.MegaJackpot |  currency : userService.userCurrency : 'symbol-narrow' }}
+                </h2>
+              </div>
+              <div><small data='disabled'>{{ 'JACKPOT_MEGA' | translate }}</small></div>
+            </div>
+            <div fxFlex="15">
+              <div class="value">
+                <h2>
+                  {{ service.aggregatesData.totals.TotalProfit |  currency : userService.userCurrency : 'symbol-narrow' }}
+                </h2>
+              </div>
+              <div><small data='disabled'>{{ 'TOT_PROFIT' | translate }}</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

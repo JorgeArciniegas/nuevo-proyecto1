@@ -1,0 +1,84 @@
+.playable-board-soccer {
+	.playable-grid-buttons {
+		.column-matches,
+		.column-selections {
+			.section-identifier {
+				text-transform: uppercase;
+				font-weight: bold;
+				font-size: 1.3vh;
+			}
+		}
+
+		.column-selections {
+			.btn-soccer-odd {
+				&[disabled] {
+					opacity: 0.5;
+					cursor: auto;
+
+					:focus {
+						background: inherit;
+					}
+				}
+			}
+
+			.btn-soccer-odd,
+			.btn-soccer-area {
+				padding: 5px 10px;
+				border: 0;
+				font-size: 1.3vh;
+
+				.btn-soccer-odd__details,
+				.btn-soccer-area__details {
+					&--name {
+						font-weight: bold;
+						text-transform: uppercase;
+						width: 100%;
+						font-size: 0.6vw;
+						white-space: nowrap;
+					}
+				}
+
+				.btn-soccer-area__details {
+					&--name {
+						display: block;
+						text-align: left;
+					}
+
+					&--icon {
+						height: 30px;
+						width: 30px;
+					}
+				}
+
+				.btn-soccer-odd__details {
+					&--value {
+						line-height: 2.3vh;
+					}
+				}
+
+				.btn-soccer-odd__details--second_line {
+					display: flex;
+
+					.btn-soccer-odd__details--icon {
+						height: 30px;
+						width: 30px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.detail-section {
+	.areas-column {
+		> .mat-grid-tile-content {
+			align-items: flex-start;
+			padding: 0;
+		}
+		.section-identifier {
+			.mat-grid-tile-content {
+				padding: 0;
+			}
+		}
+	}
+}

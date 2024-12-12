@@ -1,0 +1,40 @@
+<div fxFlex="100" fxLayout="column" fxLayoutGap="grid" fxLayoutAlign="space-between stretch">
+  <div fxFlex="20" fxLayout="row" fxLayoutGap="grid" fxLayoutAlign="space-between bottom" class="border-bottom-overlay-1px">
+    <div fxFlex="25" fxLayoutAlign="center">#</div>
+    <div fxFlex="25" fxLayoutAlign="center">{{'STRENGTH' | translate | uppercase}}</div>
+    <div fxFlex="25" fxLayoutAlign="center">{{'ENDURANCE' | translate | uppercase}}</div>
+    <div fxFlex="25" fxLayoutAlign="center">{{'AGILITY' | translate | uppercase}}</div>
+  </div>
+
+  <div fxFlex="80" *ngIf="data.statistics">
+    <div fxLayout="row" fxLayoutGap="25px" fxLayoutAlign="space-between center" *ngFor="let stat of data.statistics.virtualBetCompetitor"
+      class="statistic-data statistic-data-cockfight">
+      <div fxFlex="25" fxLayoutAlign="center">
+        <button class="btn btn-default btn-default-statistic-cock btn-cock-{{stat.ito}} radius-5" disabled>
+          <ng-container [ngSwitch]="stat.ito">
+            <div *ngSwitchCase="1" class="icon icon-cock-red"></div>
+            <div *ngSwitchCase="2" class="icon icon-cock-blue"></div>
+          </ng-container>
+          <small>{{stat.nm}}</small>
+        </button>
+      </div>
+      <div fxFlex="25" fxLayoutAlign="center">
+        <div class="fitness-container fitness-ito-{{stat.ito}}">
+          <div class="fitness-content" [style.width.%]="(( stat.ac[0] / dataStaticsChart.STRENGTH) * 100)"></div>
+        </div>
+      </div>
+      <div fxFlex="25">
+        <div class="fitness-container fitness-ito-{{stat.ito}}">
+          <div class="fitness-content" [style.width.%]="(( stat.ac[1] / dataStaticsChart.ENDURANCE) * 100)"></div>
+        </div>
+      </div>
+      <div fxFlex="25">
+        <div class="fitness-container fitness-ito-{{stat.ito}}">
+          <div class="fitness-content" [style.width.%]="(( stat.ac[2] / dataStaticsChart.AGILITY) * 100)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

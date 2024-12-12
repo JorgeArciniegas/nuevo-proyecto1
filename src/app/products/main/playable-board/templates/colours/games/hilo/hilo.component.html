@@ -1,0 +1,15 @@
+<div fxLayout="column" [style.height.px]="rowHeight * 14" fxLayoutAlign="space-around stretch">
+    <div fxLayout="row" fxLayoutAlign="center center" *ngFor="let band of selections" fxFlex="25">
+        <button class="btn-default btn-hilo radius-15" (click)="selectBand(band)" fxFlex="50"
+            [disabled]="isDisabled(band)"
+            [ngClass]="{'btn-selected': band.isSelected, 'btn-grey-gradient': !band.isSelected }">
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <ng-container *ngIf="waitingSelection?.name !== band.name">
+                    <div class="btn-hilo-name">{{ band.name | translate }}</div>
+                    <div class="btn-hilo-interval">{{band.interval}}</div>
+                </ng-container>
+                <div class="vg-loader-spinner" *ngIf="waitingSelection?.name === band.name"></div>
+            </div>
+        </button>
+    </div>
+</div>

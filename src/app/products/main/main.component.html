@@ -1,0 +1,30 @@
+<div fxFlexFill fxLayout="column" class="product-class padding-horizontal-6">
+  <mat-grid-list cols="1" rowHeight="{{rowHeight}}">
+    <!-- Event control -->
+    <mat-grid-tile rowspan="2">
+      <app-event-control fxFill *ngIf="mainService.eventDetails"></app-event-control>
+    </mat-grid-tile>
+    <!-- List events -->
+    <mat-grid-tile rowspan="2">
+      <app-events-list fxFill [rowHeight]="rowHeight" *ngIf="mainService.eventDetails"></app-events-list>
+    </mat-grid-tile>
+    <!-- Playable board -->
+    <mat-grid-tile rowspan="16" fxLayoutAlign="center">
+      <app-playable-board fxFill rowHeight="{{rowHeight}}"></app-playable-board>
+    </mat-grid-tile>
+    <!-- Special event -->
+    <mat-grid-tile rowspan="2" fxLayout="column">
+      <app-lucky fxFill></app-lucky>
+    </mat-grid-tile>
+
+    <!-- List of result -->
+    <mat-grid-tile rowspan="2">
+      <app-results fxFill [rowHeight]="rowHeight"></app-results>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<div *ngIf="mainService.placingEvent.timeBlocked" id="overlayArea1"
+  [style.top.px]="(windowSizeService.windowSize.height - windowSizeService.windowSize.columnHeight) + 12 + (rowHeight * 4)"
+  [style.left.px]="0" [style.width]="'calc(59% - 2px)'" [style.height.px]="rowHeight * 18 + 20"
+  class="overlay radius-5">
+</div>

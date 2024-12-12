@@ -1,0 +1,79 @@
+<section id='login' fxLayout="row" fxLayoutAlign="center center">
+  <div class="login-panel radius-15 padding-25" fxLayout="column" fxLayoutAlign="center center" fxFlex.xs="100"
+    fxFlex.sm="80" fxFlex.lg="35" fxFlex.xl="25" fxFlex="50">
+    <div class="logo-with-text"></div>
+    <div fxLayout="column" fxLayoutAlign="center center" fxFill>
+      <div fxLayout="row" fxLayoutAlign="center center" fxFill>
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" fxLayout="column" fxFlex.xs="90" fxFlex.sm="50"
+          fxFlex="60">
+          <div class="input-area">
+            <!-- Business Name SHOW AFTER CED IS LOGGED-->
+            <ng-container *ngIf="showOperatorLogin">
+              <div class="display padding-10">
+                <h5 class="label-overlap">{{ 'DYNAMIC_KEYS.LOGIN.' + typeLogin[typeLoginSelected] | translate }}</h5>
+                <div class="input-item">
+                  <div class="input radius-5" fxLayout="row">
+                    <i fxFlex="10" class="icon-area users-icon"></i>
+                    <span fxFlex="65"
+                      fxLayoutAlign="flex-start center">{{userService.getOperatorData('BusinessName')}}</span>
+                    <div fxFlex="25" fxLayoutAlign="center center">
+                      <mat-slide-toggle (change)="changeConnectType($event)" class="slide-toggle tp-margin"
+                        [checked]="connectByOperator"></mat-slide-toggle>
+                    </div>
+                    <!--  <i fxFlex="10" (click)="removeAdmin()"
+                    class="btn-icon icon-area remove-data-or-close-24px text-right"></i> -->
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            <div class="input-item">
+              <div class="input radius-5"
+                [ngClass]="{'error': form.controls.username.invalid && (form.controls.username.dirty || form.controls.username.touched)}">
+                <i class="icon-area user-icon"></i>
+                <input placeholder="{{'USERNAME'|translate}}" formControlName="username" class="padding-right-10"
+                  (input)="valueChange()" />
+              </div>
+            </div>
+            <div class="input-item">
+              <div class="input radius-2"
+                [ngClass]="{'error': form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched)}">
+                <i class="icon-area pwd-icon"></i>
+                <input placeholder="{{ 'PASSWORD' | translate }}" formControlName="password" type="password"
+                  class="padding-right-10" autocomplete="new-password" (input)="valueChange()" />
+              </div>
+            </div>
+          </div>
+          <button class="btn-default btn-success radius-2" type="submit" [disabled]="form.invalid">
+            {{ 'LOGIN' | translate }}
+          </button>
+        </form>
+      </div>
+      <div class="error-message" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5px">
+        <div fxLayout="row" fxLayoutAlign="center center"
+          *ngIf="form.controls.username.invalid && (form.controls.username.dirty || form.controls.username.touched)">
+          <ng-container *ngIf="form.controls.username.hasError('required')">
+            <i class="error-icon"></i> {{ 'USERNAME' | translate }} {{ 'IS_REQUIRED' | translate | lowercase }}
+          </ng-container>
+          <ng-container *ngIf="form.controls.username.hasError('minlength')">
+            <i class="error-icon"></i> {{ 'USERNAME_TOO_SHORT' | translate }}
+          </ng-container>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center"
+          *ngIf="form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched)">
+          <ng-container *ngIf="form.controls.password.hasError('required')">
+            <i class="error-icon"></i> {{ 'PASSWORD' | translate }} {{ 'IS_REQUIRED' | translate | lowercase  }}
+          </ng-container>
+          <ng-container *ngIf="form.controls.password.hasError('minlength')">
+            <i class="error-icon"></i> {{ 'PASSWORD_TOO_SHORT' | translate }}
+          </ng-container>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" *ngIf="errorMessage">
+          <i class="error-icon"></i> {{ errorMessage | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="version-software">
+    <strong>Version {{versionSoftware.version}}</strong>
+  </div>
+</section>

@@ -1,0 +1,108 @@
+<!-- <div fxFlex fxLayout="column" fxLayoutAlign="center space-between" [style.height.%]="100" class="admin-operators"> -->
+<div fxFlex="100" fxLayout="row" fxLayoutAlign="center" [style.height.%]="100" class="admin-operators">
+  <div fxFlex="100" fxLayout="column" fxLayoutGap="10px" [style.padding.px]="10">
+    <div class="title">
+      <h1>{{ 'LIST_OF_OPERATORS' | translate  | uppercase }} - <small>{{'NEW' | translate | uppercase }}</small> </h1>
+    </div>
+    <div fxFlex="10" fxLayoutAlign="start center">
+      <div fxLayout="row nowrap" fxLayoutAlign="start center">
+        <div fxFlex="5">
+          <button class="btn-default radius-5" routerLink="../">
+            <img class="icon icon-24px" src="assets/icons/baseline-arrow_back-24px.png">
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- FORM NEW OPERATOR -->
+    <div fxFlex="75" class="padding-20 btn-filter radius-5 elevation-z5 " fxLayout="column"
+      fxLayoutAlign="center center">
+      <ng-container *ngIf="!isCreated">
+        <div fxLayout="row" fxLayoutAlign="center center" fxFill>
+          <form [formGroup]="form" autocomplete="off" fxLayout="column" fxFlex.xs="90" fxFlex.sm="50" fxFlex="100"
+            fxLayoutAlign="center center">
+            <div class="input-area">
+              <div class="input-item">
+                <div class="input radius-2"
+                  [ngClass]="{'error': form.controls.username.invalid && (form.controls.username.dirty || form.controls.username.touched)}">
+                  <i class="icon-area user-icon"></i>
+                  <input placeholder="{{'USERNAME'|translate}}" formControlName="username" class="padding-right-10"
+                    autocomplete="false" />
+                </div>
+              </div>
+              <div class="input-item">
+                <div class="input radius-2"
+                  [ngClass]="{'error': form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched)}">
+                  <i class="icon-area pwd-icon"></i>
+                  <input placeholder="{{ 'PASSWORD' | translate }}" formControlName="password" type="password"
+                    autocomplete="new-password" class="padding-right-10" />
+                </div>
+              </div>
+              <div class="input-item">
+                <div class="input radius-2"
+                  [ngClass]="{'error': form.controls.confirmPassword.invalid && (form.controls.confirmPassword.dirty || form.controls.confirmPassword.touched)}">
+                  <i class="icon-area pwd-icon"></i>
+                  <input placeholder="{{ 'REPEAT_PASSWORD' | translate }}" formControlName="confirmPassword"
+                    autocomplete="new-password" type="password" class="padding-right-10" />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="error-message" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5px">
+          <div fxLayout="row" fxLayoutAlign="center center"
+            *ngIf="form.controls.username.invalid && (form.controls.username.dirty || form.controls.username.touched)">
+            <ng-container *ngIf="form.controls.username.hasError('required')">
+              <i class="error-icon"></i> {{ 'USERNAME' | translate }} {{ 'IS_REQUIRED' | translate | lowercase }}
+            </ng-container>
+            <ng-container *ngIf="form.controls.username.hasError('minlength')">
+              <i class="error-icon"></i> {{ 'USERNAME_TOO_SHORT' | translate }}
+            </ng-container>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="center center"
+            *ngIf="form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched)">
+            <ng-container *ngIf="form.controls.password.hasError('required')">
+              <i class="error-icon"></i> {{ 'PASSWORD' | translate }} {{ 'IS_REQUIRED' | translate | lowercase  }}
+            </ng-container>
+            <ng-container *ngIf="form.controls.password.hasError('minlength')">
+              <i class="error-icon"></i> {{ 'PASSWORD_TOO_SHORT' | translate }}
+            </ng-container>
+            <ng-container *ngIf="form.controls.password.hasError('invalidPassword')">
+              <i class="error-icon"></i> {{ 'PASSWORD_IS_NOT_VALID' | translate }}
+            </ng-container>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="center center"
+            *ngIf="form.controls.confirmPassword.invalid && (form.controls.confirmPassword.dirty || form.controls.confirmPassword.touched)">
+            <ng-container *ngIf="form.controls.confirmPassword.hasError('required')">
+              <i class="error-icon"></i> {{ 'REPEAT_PASSWORD' | translate }}
+              {{ 'IS_REQUIRED' | translate | lowercase  }}
+            </ng-container>
+            <ng-container *ngIf="form.controls.confirmPassword.hasError('minlength')">
+              <i class="error-icon"></i> {{ 'PASSWORD_TOO_SHORT' | translate }}
+            </ng-container>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="center center"
+            *ngIf="form.value.confirmPassword !== form.value.password && (form.controls.confirmPassword.dirty || form.controls.confirmPassword.touched)">
+            <i class="error-icon"></i> {{ 'PASSWORD_NOT_SAME' | translate }}
+          </div>
+          <div fxLayout="row" fxLayoutAlign="center center" *ngIf="errorMessage">
+            <i class="error-icon"></i> {{ errorMessage }}
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="isCreated">
+        <div fxLayout="column" fxFlex.xs="90" fxFlex.sm="50" fxFlex="100" fxLayoutAlign="center center">
+          <div fxLayout="row" fxLayoutAlign="center center" fxFill fxLayoutGap="20px">
+            <i fxFlex="10" class="icon-24px success-icon"></i>
+            <p>{{'OPERATOR.CREATE_SUCCESS_MESSAGE' | translate }}</p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div fxFlex="5" fxLayoutAlign="end center" class="padding-horizontal-6">
+      <div fxFlex fxLayout="row nowrap" fxLayoutAlign="end center">
+        <button fxFlex="20" *ngIf="!isCreated" (click)="onSubmit(form.value)"
+          class="btn btn-default btn-success radius-5">{{'CONFIRM' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>

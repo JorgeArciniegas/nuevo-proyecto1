@@ -1,0 +1,346 @@
+:focus {
+	outline: none;
+}
+button {
+	width: 100%;
+	height: 100%;
+	background: none;
+	cursor: pointer;
+	color: currentColor;
+	-webkit-transition: all 0.4s ease; /* Safari */
+	transition: all 0.4s ease;
+}
+
+.btn-reset {
+	padding: 0;
+	margin: 0;
+	background: transparent;
+	border: none;
+}
+
+.btn-default {
+	font-weight: 700;
+	font-size: 1.25em;
+	border: 0;
+	/* border: 2px solid currentColor; */
+	&[disabled] {
+		opacity: 0.1;
+	}
+}
+
+button:active:not([disabled]) {
+	box-shadow: inset 0px 1px 4px 3px rgba(0, 0, 0, 0.5);
+}
+.btn-default-dog-play {
+	border: 4px solid;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	&:focus {
+		border: transparent;
+	}
+	&.btn-dog-4:focus,
+	&.btn-dog-6:focus {
+		border: 4px solid white;
+	}
+	&.actived {
+		background: -moz-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+		background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+		background: radial-gradient(ellipse at center, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 );
+	}
+	&.btn-dog-play-actived {
+		// box-shadow: 0px 0px 5px 3px #10d661;
+		box-shadow: 0px 0px 3px 3px #91c8fa;
+		border: 2px solid rgba(0, 0, 0, 0.65);
+		border-radius: 75px;
+  }
+
+	&[disabled] {
+		opacity: 0.1;
+	}
+}
+
+// KENO
+.btn-default-keno {
+	cursor: pointer;
+	height: 60px;
+	@media screen and (max-width: 1441px) {
+		height: 45px;
+	}
+	width: 85%;
+	@extend %btn-blue2-gradient;
+	&.selected {
+		@extend %btn-blue-gradient;
+	}
+}
+// AMERICAN ROULETTE
+
+.american-roulette {
+
+  .btn-default {
+    cursor: pointer;
+  }
+  .red{
+    background-color: red;
+  }
+  .black{
+    background-color: black;
+  }
+  .green {
+    background-color: green;
+  }
+
+  .btn-roulette-selected{
+    border-radius: 75px;
+    position: absolute;
+    width: 90%;
+    height: 45%;
+    background: rgba(255, 255, 255, 0.4);
+  }
+}
+.odds-grid{
+  .btn-american-default{
+    clear: both;
+    max-width: 34px !important;
+    max-height: 34px;
+  }
+}
+// COLOURS
+.btn-colours {
+	font-weight: 700;
+	height: 80px;
+	width: 80px;
+	border-style: solid;
+	font-size: 24px;
+	&.rainbow {
+		height: unset;
+	}
+	@media screen and (max-width: 1441px) {
+		height: 55px;
+		width: 55px;
+		font-size: 18px;
+	}
+
+	&.btn-total-colours {
+		height: 110px;
+		width: 150px;
+	}
+
+	&.btn-no-winning-selection {
+		height: 110px;
+		width: 400px;
+	}
+
+	&.btn-colours-RED {
+		background: #ff0000;
+		border-color: #ff0000;
+	}
+
+	&.btn-colours-BLUE {
+		background: #4171b2;
+		border-color: #4171b2;
+	}
+
+	&.btn-colours-GREEN {
+		background: #11a40f;
+		border-color: #11a40f;
+	}
+
+	&.btn-colours-YELLOW {
+		background: #c2f102;
+		border-color: #c2f102;
+		color: #000;
+	}
+  &.btn-colours-BLACK {
+		background: #000;
+    border-color: #000;
+    color: #fff;
+	}
+
+	&.selected {
+		border-color: #ffffff;
+		border-width: 3px;
+	}
+
+	&.disabled {
+		opacity: 0.3;
+	}
+}
+
+.btn-game-selector {
+	background: #273142;
+	border-width: 0px;
+	&.selected {
+		border-color: #91c8fa;
+		border-width: 2px;
+	}
+	&.coupon-selection {
+		border-style: solid;
+	}
+}
+
+// BUTTON COCKFIGHT
+.btn-default-cock {
+	border: 2px solid;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	&:focus {
+		border: 2px solid transparent;
+	}
+	&.btn-cock-0 {
+		background: #bebebe;
+		border-color: #bebebe;
+		color: #182844;
+	}
+	&.btn-cock-1 {
+		background: #ff0000;
+		border-color: #ff0000;
+	}
+	&.btn-cock-2 {
+		background: #4472c4;
+		border-color: #4472c4;
+	}
+	&.btn-actived {
+		// box-shadow: 0px 0px 5px 3px #10d661;
+		box-shadow: 0px 0px 3px 3px #91c8fa;
+		border: 2px solid rgba(0, 0, 0, 0.65);
+	}
+}
+
+.btn-advance-game {
+	&.inactive {
+		opacity: 0.8;
+	}
+	&.disabled {
+		opacity: 0.1;
+	}
+}
+
+.playable-row-tile {
+	&.disabled {
+		opacity: 0.1;
+	}
+}
+
+/**
+* HORSE, DOG BUTTON
+**/
+
+.btn-DOG-1,
+.btn-HORSE-1,
+.btn-HORSE-VIRT-1 {
+	background: #ff0000;
+	border-color: #ff0000;
+}
+.btn-DOG-2,
+.btn-HORSE-3,
+.btn-HORSE-VIRT-3 {
+	background: #4472c4;
+	border-color: #4472c4;
+}
+.btn-DOG-3,
+.btn-HORSE-2,
+.btn-HORSE-VIRT-2 {
+	background: #fff;
+	color: #000;
+	border-color: #fff;
+}
+.btn-DOG-4 {
+	background: #000;
+	border-color: #fff;
+}
+.btn-DOG-5 {
+	background: #f25900;
+	border-color: #f25900;
+}
+.btn-DOG-6 {
+	background: repeating-linear-gradient(0deg, #000, #000 20%, #fff 10%, #fff 35%);
+	color: #ff0000;
+	border-color: #fff;
+	span {
+		background: #fff;
+		border-radius: 50%;
+		width: 50%;
+
+		display: flex;
+		align-content: center;
+		justify-content: center;
+		margin: 0 auto;
+	}
+}
+
+.btn-HORSE-4,
+.btn-HORSE-VIRT-4 {
+	background: #ffff00;
+	border-color: #ffff00;
+	color: #000;
+}
+.btn-HORSE-5,
+.btn-HORSE-VIRT-5 {
+	background: #008000;
+	border-color: #008000;
+}
+.btn-HORSE-6,
+.btn-HORSE-VIRT-6 {
+	background: #000;
+	border-color: #fff;
+	color: #ffff00;
+}
+
+.playable-special-bets {
+	button {
+		&[disabled] {
+			opacity: 0.4;
+		}
+		&.actived {
+			// box-shadow: 0px 0px 5px 3px #ffca18;
+			box-shadow: 0px 0px 3px 3px #00ff29;
+			border: 2px solid rgba(0, 0, 0, 0.65);
+		}
+	}
+}
+
+app-playable-board-race {
+	.playable-special-bets {
+		button {
+			&.actived {
+				border-radius: 50px;
+			}
+		}
+	}
+}
+
+.playable-grid-repeat,
+.advance-game {
+	button {
+		font-size: 2.8vh;
+		border: 1px solid rgba(0, 0, 0, 0);
+		&.actived {
+			box-shadow: 0px 0px 2px 2px #91c8fa;
+			border: 1px solid rgba(0, 0, 0, 0.65) !important;
+			border-radius: 25px;
+		}
+	}
+}
+.btn-grey {
+	@extend %btn-gray;
+}
+
+.btn-success-no-gradient {
+	@extend %color-bg-success;
+}
+.btn-danger-no-gradient {
+	@extend %color-bg-allert;
+}
+
+// BUTTON ADMIN AND ICONS
+#admin {
+	.btn-default {
+		img {
+			max-width: 24px;
+			margin-right: 5px;
+		}
+	}
+}

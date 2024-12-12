@@ -1,0 +1,106 @@
+<div fxFlex fxLayout="column" fxFill>
+  <!--PRODUCT CONTAINER-->
+  <div class="product" fxFlex="93" fxLayout="row">
+    <!-- Gameboard area -->
+    <div class="product-container" fxLayout="column" fxFlex *ngIf="service.product">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="product-calc" fxLayout="column" fxFlex="21">
+      <mat-grid-list cols="1" rowHeight="{{rowHeight}}">
+        <!-- Widget area [Variable] -->
+        <mat-grid-tile rowspan="1">
+          <app-widget fxFlexFill [rowHeight]="rowHeight" *ngIf="service.product" class="padding-horizontal-6">
+          </app-widget>
+        </mat-grid-tile>
+        <!-- Coupon message area -->
+        <mat-grid-tile rowspan="1">
+          <div fxFlexFill>
+            <div fxLayout="row" fxLayoutAlign="center center" class="display display-message radius-5"
+              [ngClass]="{'display-error': couponService.error && !couponService.isASuccess && !couponService.warningMessage, 'display-warning': (couponService.warningMessage && !couponService.isASuccess)  || (couponService.isWaitingConclusionOperation && !couponService.isASuccess && !couponService.error), 'display-success': couponService.isASuccess }">
+              <ng-container
+                *ngIf="couponService.isWaitingConclusionOperation && !couponService.isASuccess && !couponService.error && !couponService.warningMessage">
+                <img fxFlex="40px" class="icon-24px" src="assets/icons/progress-alert.svg">
+                <label fxLayout="column" fxFlex>
+                  <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+                    {{'BET_UNDER_EVALUATION' | translate}}
+                  </div>
+                </label>
+              </ng-container>
+              <ng-container *ngIf="couponService.isASuccess">
+                <img fxFlex="40px" class="icon-24px" src="assets/icons/baseline-check_circle_white-24px.svg">
+                <label fxLayout="column" fxFlex>
+                  <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+                    {{'COUPON_SUCCESS_PLACEMENT_MESSAGE.INTRODUCTION' | translate}}
+                    <br>
+                    {{'COUPON_SUCCESS_PLACEMENT_MESSAGE.MESSAGE' | translate}}
+                  </div>
+                </label>
+              </ng-container>
+              <ng-container *ngIf="couponService.error && !couponService.isASuccess && !couponService.warningMessage">
+                <img fxFlex="40px" class="icon-24px" src="assets/icons/baseline-error-24px.svg">
+                <label fxLayout="column" fxFlex>
+                  <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+                    {{'DYNAMIC_KEYS.COUPON_ERROR_INTRODUCTION.MessageSource.' + messageSource[couponService.error.source] | translate}}
+                    <br>
+                    {{"DYNAMIC_KEYS.COUPON_ERROR." + couponService.error.message  | translate}}
+                    <ng-container *ngIf="couponService.error.detail">
+                      ({{ 'LIMIT' | translate }}:
+                      {{couponService.error.detail | currency : userService.userCurrency : 'symbol-narrow'}})
+                    </ng-container>
+                  </div>
+                </label>
+              </ng-container>
+              <ng-container *ngIf="couponService.warningMessage && !couponService.isASuccess">
+                <img fxFlex="40px" class="icon-24px" src="assets/icons/baseline-warning-24px.svg">
+                <label fxLayout="column" fxLayoutAlign="center center" fxFlex>
+                  <span>{{'WARNING' | translate | uppercase}}</span>
+                  <div>
+                    {{"DYNAMIC_KEYS.COUPON_WARNING." + couponService.warningMessage | translate}}
+                  </div>
+                </label>
+              </ng-container>
+            </div>
+          </div>
+        </mat-grid-tile>
+        <!-- Polyfunctional area / Smartcode -->
+        <mat-grid-tile rowspan="2">
+          <app-display fxFlexFill [rowHeight]="rowHeight"></app-display>
+        </mat-grid-tile>
+        <!-- Advanced game area [Variable] -->
+        <mat-grid-tile rowspan="1">
+          <app-advance-game fxFlexFill [rowHeight]="rowHeight" class="padding-horizontal-6"></app-advance-game>
+        </mat-grid-tile>
+        <!-- Keyboard -->
+        <mat-grid-tile rowspan="6"
+          [ngClass]="{'bypass-overlay': !mainService.placingEvent.timeBlocked  && (userService.isBtnCalcEditable && userService.isModalOpen)}">
+          <app-btncalc [rowHeight]="rowHeight"></app-btncalc>
+        </mat-grid-tile>
+        <!-- Payment/cancellation coupon area -->
+        <mat-grid-tile rowspan="1" class="polifuctional-area">
+          <div fxFlexFill fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
+            <button class="btn-default btn-success radius-5 padding-10"
+              (click)="payCancelCoupon(dialogTypeCoupon.PAY)">{{'PAY' | translate | uppercase}}</button>
+            <button class="btn-default btn-warning radius-5 padding-10"
+              (click)="payCancelCoupon(dialogTypeCoupon.DELETE)">{{'DELETE' | translate | uppercase}}</button>
+          </div>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+    </div>
+    <!-- Coupon area -->
+    <div class="product-coupon" fxFlexFill fxLayout="column" fxFlex="20">
+      <app-coupon fxFlexFill [rowHeight]="rowHeight" class="padding-horizontal-6"></app-coupon>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="mainService.placingEvent.timeBlocked || (userService.isModalOpen && !userService.isBtnCalcEditable)"
+  id="overlayArea2" [style.top.px]="windowSizeService.windowSize.height - windowSizeService.windowSize.columnHeight + 4"
+  [style.left.%]="59" [style.width]="'calc(21% - 2px)'"
+  [style.height.px]="windowSizeService.windowSize.columnHeight - 10" class="overlay radius-5">
+</div>
+<div *ngIf="mainService.placingEvent.timeBlocked || (userService.isModalOpen)" id="overlayArea3"
+  [style.top.px]="windowSizeService.windowSize.height - windowSizeService.windowSize.columnHeight + 4 "
+  [style.left.%]="80" [style.width]="'calc(20% - 2px)'"
+  [style.height.px]="windowSizeService.windowSize.columnHeight - 10" class="overlay radius-5">
+</div>

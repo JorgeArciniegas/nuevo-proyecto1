@@ -1,0 +1,117 @@
+<div fxFlex="100" fxLayout="row" fxLayoutAlign="center stretch" class="vboxs" [style.height.%]="100"
+  *ngIf="vboxService.vBoxSelected">
+  <div fxFlex="100" fxLayout="column" fxLayoutAlign="flex-start" fxLayoutGap="10px" [style.padding.px]="10">
+    <div class="title">
+      <h1>{{ 'VBOX.MANAGEMENT' | translate | uppercase }} </h1>
+    </div>
+    <div fxFlex="10">
+      <div fxLayout="row nowrap" fxLayoutAlign="start center">
+        <div fxFlex="69">
+          <div fxLayout="row nowrap" fxLayoutAlign="start center">
+            <div fxFlex="10">
+              <button class="btn-default radius-5" routerLink="../">
+                <img class="icon icon-24px" src="assets/icons/baseline-arrow_back-24px.png">
+              </button>
+            </div>
+            <div fxFlex="40">
+              <div><small data='disabled'>{{ 'V-Box' | translate }}</small></div>
+              <div class="value">
+                <strong>{{ vboxService.vBoxSelected.VBoxMachineId }}</strong>
+              </div>
+            </div>
+            <div fxFlex="20">
+              <div><small data='disabled'>{{ 'TV' | translate }}</small></div>
+              <div class="value">
+                <strong>{{ vboxService.vBoxSelected.MonitorConfigurations.length }}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- EDIT VOBX -->
+    <div fxFlex="75" class="padding-5 radius-5" fxLayout="row" fxLayoutAlign="flex-start" fxLayoutGap="10px">
+      <div fxLayout="column" fxFlex="75" fxLayoutGap="20px">
+        <!-- LANGUAGE SELECTION -->
+        <div fxFlex="20" fxLayoutGap="20px">
+          <div fxLayoutGap="20px" class="display language-list">
+            <h3 class="label-overlap">{{ 'LANGUAGE'  | translate  }}</h3>
+            <div fxFlex="100" fxLayout="row" fxLayoutGap="10px" [ngClass.lt-md]="'small'" [ngClass.gt-md]="'medium'"
+              [ngClass.md]="'medium'">
+              <button class="btn-filter btn-default radius-5 padding-5" *ngFor="let language of languages"
+                [ngClass]="{'btn-filter-success': vboxService.vBoxSelected.language === language}"
+                (click)="changeLanguage(language)">{{ languageEnum[language] }}</button>
+            </div>
+          </div>
+        </div>
+        <!-- TV SELECTION -->
+        <div fxFlex="80" fxLayout="column" fxLayoutGap="20px" class="tvs">
+          <div fxFlex fxLayoutGap="20px" class="display tv-list">
+            <h3 class="label-overlap">{{ 'TV'  | translate  }}</h3>
+            <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="start center" [ngClass.lt-md]="'small'"
+              [ngClass.gt-md]="'medium'" [ngClass.md]="'medium'">
+              <button fxLayout="column wrap" fxLayoutAlign="center center"
+                class="btn-filter btn-default radius-5 padding-10"
+                *ngFor="let tv of vboxService.vBoxSelected.MonitorConfigurations; let i = index;"
+                [ngClass]="{'btn-filter-success': vboxService.vBoxSelected.vBoxMonitorSelectedIdx === i}"
+                (click)="selectTVConfiguration(i, tv)">
+                <span>{{ 'TV' | translate | uppercase }} {{ i+1 }}</span>
+                <small>{{  (tv.CategoryType ? 'DYNAMIC_KEYS.VBOX.CATEGORIES_SPORT.'+tv.CategoryType  : 'NOBODY' ) |
+                  translate | uppercase}}</small>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex="25" fxLayoutAlign="flex-start stretch">
+        <div fxFlex="100" fxLayoutGap="20px" class="display product-list" fxLayoutAlign="start">
+          <h3 class="label-overlap">{{ 'SPORT'  | translate  }}</h3>
+          <div fxFlex="100" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="start stretch">
+            <ng-container *ngIf="vboxService.vBoxSelected.AvailableCategoryTypes && configSelected">
+              <button class="btn-filter btn-default radius-5" [fxFlexOrder]="i+1"
+                [ngClass]="{'btn-filter-success': configSelected.CategoryType === category.CategoryType}"
+                *ngFor="let category of vboxService.vBoxSelected.AvailableCategoryTypes; let i = index;"
+                (click)="onChangeSportToTv(category)">
+                {{'DYNAMIC_KEYS.VBOX.CATEGORIES_SPORT.'+category.CategoryType | translate }}
+
+              </button>
+              <button (click)="onChangeSportToTv()"
+                [ngClass]="{'btn-filter-success': configSelected.CategoryType === null}"
+                class="btn-filter btn-default radius-5" [fxFlexOrder]="0"> {{'NOBODY' | translate }}
+              </button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div fxFlex="5" fxLayoutAlign="end center" class="padding-horizontal-6">
+      <div fxFlex="50" fxLayoutAlign="start center">
+        <ng-container *ngIf="changeDataOngoing">
+          <div class="icon icon-24px warning-icon padding-5"></div>
+          <span *ngIf="changeDataOngoing" class="msg-warning">
+            {{'VBOX.EDIT_ONGOING'  | translate }}
+          </span>
+        </ng-container>
+        <ng-container *ngIf="saveDataStatus === status.Success">
+          <div class="icon icon-24px baseline-check_circle-24px"></div>
+          <span class="msg-success">
+            {{'VBOX.SUCCESS_MESSAGE_EDIT_TV'  | translate }}
+          </span>
+        </ng-container>
+        <ng-container *ngIf="saveDataOngoing && saveDataStatus !== status.Success">
+          <div class="icon icon-24px alert"></div>
+          <span class="msg-danger">
+            {{'VBOX.ERROR_MESSAGE_EDIT_TV'  | translate }}
+          </span>
+        </ng-container>
+      </div>
+      <div fxFlex fxLayout="row nowrap" fxLayoutAlign="end center">
+        <button fxFlex="20" (click)="onSaveData()"
+          [ngClass]="{'disabled' : !changeDataOngoing || !vboxService.vBoxSelected }"
+          class="btn btn-default btn-save-data btn-success-no-gradient radius-5"
+          [disabled]="!changeDataOngoing || !vboxService.vBoxSelected">{{'SAVE' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>

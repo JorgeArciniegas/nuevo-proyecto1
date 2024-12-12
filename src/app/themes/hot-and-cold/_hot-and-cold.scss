@@ -1,0 +1,31 @@
+.hot-and-cold-numbers {
+	.hot-number {
+		height: 60px;
+		width: 60px;
+		@extend %btn-warning;
+	}
+	.cold-number {
+		height: 60px;
+		width: 60px;
+		@extend %btn-success-gradient;
+	}
+	.hot-and-cold-border {
+		@extend %card-title;
+    position: relative;
+		&.display-trasparent {
+			@extend %bg-transparent;
+		}
+
+		.label-overlap {
+			@extend %card-title-label;
+			position: absolute;
+			top: -15px;
+			left: 10px;
+			font-weight: bold;
+      padding: 0px 5px;
+      width: 50%;
+      text-align: center;
+			font-size: larger;
+		}
+	}
+}

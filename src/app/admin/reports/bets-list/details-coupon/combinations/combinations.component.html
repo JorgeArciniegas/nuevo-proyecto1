@@ -1,0 +1,31 @@
+<div fxFlex="100" fxLayout="column" fxLayoutGap="grid" fxLayoutAlign="space-between" class="padding-vertical-10">
+  <ng-container *ngFor="let group of data.groupings; let i = index;">
+    <!-- ROW -->
+    <div fxLayout="column" fxLayoutGap="20px">
+      <!-- GROUPING TITLE-->
+      <div fxFlex="30" class="padding-vertical-10" fxLayoutAlign="center center">
+        <h4>{{'GROUP' | translate }} {{ group.Grouping }}</h4>
+      </div>
+      <!-- DATA -->
+      <div fxFlex="40" class="padding-vertical-10 border-bottom-overlay-1px" fxLayout="row nowrap" fxLayoutGap="grid"
+        fxLayoutAlign="center center">
+        <div fxFlex="10"></div>
+        <div fxFlex="30">
+          <div>
+            <h4>{{group.Combinations }}</h4>
+            <div data="disabled">{{ (group.Combinations === 1 ? 'COMBINATION' : 'COMBINATIONS' )| translate }}</div>
+          </div>
+        </div>
+        <div fxFlex="50">
+          <div>
+            <h4>
+              {{ (!group.IsMultiStake ? group.Stake : data.couponStake ) | currency : userService.userCurrency : 'symbol-narrow'}}
+            </h4>
+            <div data="disabled">{{ 'STAKE' | translate }}</div>
+          </div>
+        </div>
+        <div fxFlex="40"></div>
+      </div>
+    </div>
+  </ng-container>
+</div>

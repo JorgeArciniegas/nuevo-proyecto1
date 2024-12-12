@@ -1,0 +1,43 @@
+<div fxFlex="100" fxLayout="column" fxLayoutGap="grid" fxLayoutAlign="space-between stretch">
+  <div fxLayout="row" fxLayoutGap="5px" fxLayoutGap="grid" fxLayoutAlign="space-between center"
+    class="border-bottom-overlay-1px">
+    <div fxFlex="25" fxLayoutAlign="center">{{'TEAM' | translate | uppercase}}</div>
+    <div fxFlex="25" fxLayoutAlign="center">{{'COND' | translate | uppercase}}</div>
+    <div fxFlex="25" fxLayoutAlign="center">{{'ATT' | translate | uppercase}}</div>
+    <div fxFlex="25" fxLayoutAlign="center">{{'DEF' | translate | uppercase}}</div>
+  </div>
+
+  <button *ngIf="pageNumber > 1" class="btn-reset card-odd radius-5 scroll" (click)="previousPage()"
+    [disabled]="currentPage <= 1">
+    <img class="icon" src="assets/icons/Up.svg">
+  </button>
+
+  <div *ngIf="data.statistics">
+    <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="space-between center" *ngFor="let stat of showingCompetitors"
+      class="statistic-data statistic-data-soccer">
+      <div fxFlex="25" fxLayoutAlign="center">
+        <span>{{stat.nm}}</span>
+      </div>
+      <div fxFlex="25" fxLayoutAlign="center">
+        <div class="fitness-container fitness">
+          <div class="fitness-content" [style.width.%]="(( stat.ff / 10) * 100)"></div>
+        </div>
+      </div>
+      <div fxFlex="25">
+        <div class="fitness-container fitness">
+          <div class="fitness-content" [style.width.%]="(( stat.ac[0] / 10) * 100)"></div>
+        </div>
+      </div>
+      <div fxFlex="25">
+        <div class="fitness-container fitness">
+          <div class="fitness-content" [style.width.%]="(( stat.ac[1] / 10) * 100)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button *ngIf="pageNumber > 1" class="btn-reset card-odd radius-5 scroll" (click)="nextPage()"
+    [disabled]="currentPage === pageNumber">
+    <img class="icon" src="assets/icons/Down.svg">
+  </button>
+</div>

@@ -1,0 +1,6 @@
+<div fxFill fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="1vw" class="special-box lucky-soccer">
+  <button *ngFor="let i of [0,1,2,3,4,5,6,7,8,9]" (click)="placeLucky(lucky[lucky[i+1]])"
+    class="btn-default btn-lucky btn-grey-gradient radius-5 elevation-z5">
+    {{'L' + (i+1)}}
+  </button>
+</div>

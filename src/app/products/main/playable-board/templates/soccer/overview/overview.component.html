@@ -1,0 +1,27 @@
+<mat-grid-list cols="7" rowHeight="{{rowHeight * 16/21}}">
+  <mat-grid-tile class="section-identifier" colspan='7'>{{ 'MARKETS' | translate }}</mat-grid-tile>
+</mat-grid-list>
+<ng-container *ngFor="let row of soccerService.tournament.overviewArea; let i = index">
+  <mat-grid-list cols="7" rowHeight="{{rowHeight * 16/21}}">
+    <ng-container *ngFor="let market of row.markets">
+      <mat-grid-tile *ngFor="let odd of market.selections" rowspan="2">
+        <button class="btn-soccer-odd radius-5"
+          [ngClass]="(soccerService.tournament.matches[i].selectedOdds.includes(odd.id)) ? 'btn-selected' : 'btn-grey-gradient'"
+          [disabled]="!odd.isValid" (click)="selectOdd(market.id, odd)">
+          <div class="btn-soccer-odd__details" fxLayout="column" fxLayoutAlign="center center">
+            <div *ngIf="!soccerService.oddsInProcessing.includes(odd.id)">
+              <div class="btn-soccer-odd__details--name">
+                <span *ngIf="market.id !== 10">{{ 'DYNAMIC_KEYS.SOCCER.MARKETS.' + odd.nm | translate }}</span>
+                <span *ngIf="market.id === 10">{{ odd.nm }}</span>
+                <span *ngIf="market.hasSpecialValue"> {{ market.specialValueOrSpread }}</span>
+              </div>
+              <span class="btn-soccer-odd__details--value" *ngIf="odd.isValid">{{ odd.ods[0].vl }}</span>
+              <span class="btn-soccer-odd__details--value" *ngIf="!odd.isValid">-</span>
+            </div>
+            <div class="vg-loader-spinner" *ngIf="soccerService.oddsInProcessing.includes(odd.id)"></div>
+          </div>
+        </button>
+      </mat-grid-tile>
+    </ng-container>
+  </mat-grid-list>
+</ng-container>

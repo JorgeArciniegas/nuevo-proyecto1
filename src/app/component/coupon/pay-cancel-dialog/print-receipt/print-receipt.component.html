@@ -1,0 +1,22 @@
+<div class="printReceipt">
+  <div class="header">
+    <img *ngIf="appSettings.printSettings.enabledPrintReceipt.printLogoPayCancel" class="logo-print-coupon padding-10">
+    <div class="header-content">
+      <!-- {{ appSettings.bookmakerDetails }} -->
+      <span *ngIf="appSettings.printSettings.enabledPrintReceipt.printHeaderMessage">
+        {{'DYNAMIC_KEYS.PRINT_COUPON.HEADER_MESSAGE.' + licenseType[appSettings.license] | translate}}
+      </span>
+    </div>
+  </div>
+  <div class="content">
+    <span class="bet-info">{{ "BET" | translate}} {{receipt.couponCode}}</span>
+    <span class="operation-info" *ngIf="!receipt.isPayment">{{ "DELETED_ON" | translate}}
+      {{date | date: 'dd/MM/yyyy HH:mm'}}</span>
+    <span class="operation-info" *ngIf="receipt.isPayment">{{ "PAID_ON" | translate}}
+      {{date | date: 'dd/MM/yyyy HH:mm'}}</span>
+  </div>
+  <div class="footer">
+    <span>{{ "PAID_AMOUNT" | translate}}:
+      {{receipt.amount  | currency : userService.userCurrency : 'symbol-narrow'}}</span>
+  </div>
+</div>

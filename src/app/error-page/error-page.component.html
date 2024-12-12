@@ -1,0 +1,13 @@
+<section id='error-page' fxLayout="row" fxLayoutAlign="center center">
+  <div class="error-page-panel radius-15 padding-25" fxLayout="column" fxLayoutAlign="center center" fxFlex.xs="100"
+    fxFlex.sm="80" fxFlex.lg="35" fxFlex.xl="25" fxFlex="50">
+    <div class="logo-with-text"></div>
+    <div class="error-message" fxLayout="column" fxLayoutAlign="center center">
+      <i class="error-icon"></i>
+      {{'SECTION_NOT_AVAILABLE' | translate}}
+    </div>
+    <button class="btn-default btn-success radius-2" (click)="gotoHome()">
+      {{ 'GO_TO_HOME' | translate }}
+    </button>
+  </div>
+</section>

@@ -1,0 +1,7 @@
+.current-race {
+  @extend %current-event;
+  .number {
+    @extend %current-event-id;
+
+  }
+}

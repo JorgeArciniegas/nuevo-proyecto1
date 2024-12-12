@@ -1,0 +1,72 @@
+<div fxFlex="100" fxLayout="row" fxLayoutAlign="center stretch" class="admin-operators" [style.height.%]="100"
+  *ngIf="operatorService.listOfOperators">
+  <div fxFlex="100" fxLayout="column" fxLayoutAlign="flex-start" fxLayoutGap="10px" [style.padding.px]="10">
+    <div class="title">
+      <h1>{{ 'LIST_OF_OPERATORS' | translate | uppercase }} </h1>
+    </div>
+    <div fxFlex="10">
+      <div fxLayout="row nowrap" fxLayoutAlign="start center">
+        <div fxFlex="30">
+          <button class="btn btn-default btn-grey radius-5"
+            [routerLink]="'./create'">{{ 'OPERATOR.CREATE_NEW' | translate }}</button>
+        </div>
+        <div fxFlex="39"></div>
+        <!-- PAGINATOR -->
+        <div fxFlex="30" fxLayoutAlign="center center">
+          <div fxFlex="19">
+            <button (click)="previusPage()" class="btn-filter padding-10 radius-5">&lsaquo;</button>
+          </div>
+          <div fxFlex="60" fxLayoutAlign="center center">
+            {{'PAGE' | translate }} {{operatorService.listOfOperators?.actualPages + 1}}
+            {{'PAGE.OF' | translate }} {{operatorService.listOfOperators?.totalPages}}
+          </div>
+          <div fxFlex="19">
+            <button (click)="nextPage()" class="btn-filter padding-10 radius-5">&rsaquo;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- RESULT  -->
+    <div fxFlex="75" class="padding-20 btn-filter radius-5 elevation-z5" fxLayout="column" fxLayoutAlign="flex-start">
+      <!-- HEADER -->
+      <div fxLayout="column" fxFlex="5">
+        <div fxFlex fxLayout="row" class="border-bottom-overlay-1px">
+          <div fxFlex="5"></div>
+          <div fxFlex="30">
+            <strong data='disabled'>{{ 'USERNAME' | translate }}</strong>
+          </div>
+          <div fxFlex="20">
+            <strong data='disabled'>{{ 'DATE_OF_CREATION' | translate }}</strong>
+          </div>
+          <div fxFlex></div>
+        </div>
+      </div>
+      <!-- ROWS -->
+      <div fxLayout="column" fxFlex="100" fxLayoutAlign="start stretch">
+        <div fxFlex="100" fxLayout="column" fxLayoutAlign="flex-start stretch" fxLayoutAlignGap="grid">
+          <div fxFlex="5" fxLayoutAlign="start center" class="border-bottom-overlay-1px  max-height-55" [style.min-height.px]="44" fxFlex="1 1 0"
+            *ngFor="let rowItem of operatorService.listTempOperators; let i = index">
+            <div fxFlex="5"></div>
+            <!-- USERNAME -->
+            <div fxFlex="30">
+              {{ rowItem.UserName }}
+            </div>
+            <!-- DATE OF CREATED -->
+            <div fxFlex="20">
+              {{ rowItem.SubscriptionDate | date: 'd MMMM y' }}
+            </div>
+            <!-- ACTIONS -->
+            <div fxFlex="50">
+              <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="flex-end center">
+                <button class="btn btn-default btn-danger-no-gradient button-small radius-5"
+                  (click)="deleting(i)">{{'DELETE' | translate | uppercase }}</button>
+                <button class="btn btn-default btn-success-no-gradient button-small radius-5"
+                  (click)="editing(i)">{{'EDIT' | translate| uppercase }}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

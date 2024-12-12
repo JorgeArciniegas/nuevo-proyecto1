@@ -1,0 +1,58 @@
+app-summary-coupons,
+app-details-coupon,
+app-summary,
+app-events,
+app-combinations,
+app-summary-transactions,
+app-details-transaction,
+app-statement-virtual-shop-search {
+	height: 100%;
+}
+
+//statement-virtual-shop
+.statement-virutal-shop {
+	height: 100%;
+	.title {
+		text-transform: uppercase;
+		font-size: 14px;
+	}
+
+	.form {
+		.btn-filter {
+			height: 50px;
+		}
+
+		.display {
+			position: relative;
+			background-color: transparent !important;
+
+			.filter-input {
+				h4 {
+					margin-top: 5px;
+				}
+			}
+
+			.label-overlap {
+				position: absolute;
+				top: -30px;
+				left: 10px;
+				padding: 0px 10px;
+			}
+		}
+	}
+	.value {
+		h2 {
+			margin: 0;
+		}
+	}
+
+	.table-report-result-row {
+		min-height: 55px;
+	}
+
+	@media screen and (max-width: 1280px) {
+		.table-report-result-row {
+			min-height: 40px;
+		}
+	}
+}

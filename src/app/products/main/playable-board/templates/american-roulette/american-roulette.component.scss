@@ -1,0 +1,26 @@
+.american-roulette {
+
+  .btn-tile{
+    cursor: pointer;
+  }
+
+  .mat-boder-1{
+    border: 1px solid currentColor;
+  }
+  .vertical-text{
+    display: block;
+    transform:rotate(90deg);
+  }
+
+  .dozen-selected,
+  .column-selectd {
+    .opacity{
+      background-color: rgba(255, 255, 255, 0.2);
+      height: 100%;
+      width: 100%;
+      position: absolute;
+    }
+  }
+
+  
+}

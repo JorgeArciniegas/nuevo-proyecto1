@@ -1,0 +1,6 @@
+locations:
+- build:
+    directory: ./vdesk
+  code_source:
+    module_name: vdesk.definitions
+  location_name: vdesk

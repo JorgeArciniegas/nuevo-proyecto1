@@ -1,0 +1,111 @@
+.card-box-result {
+	padding: 0.3vh 0.8vw;
+}
+
+.card-box-result {
+	.header .mat-grid-tile-content,
+	.position .mat-grid-tile-content {
+		padding: 0.4vh;
+	}
+
+	.position .mat-grid-tile-content {
+		font-size: 1.2em;
+		font-weight: 700;
+	}
+
+	.btn-default-dog-play,
+	.btn-default-cock {
+		border-width: 2px;
+		overflow: hidden;
+	}
+	.btn-default-cock {
+		.icon {
+			width: 36px;
+			height: 36px;
+
+			&.icon-cock-red {
+				background: url("~/assets/images/cockfight/cock-red.png") no-repeat center;
+				background-size: contain;
+			}
+			&.icon-cock-blue {
+				background: url("~/assets/images/cockfight/cock-blue.png") no-repeat center;
+				background-size: contain;
+			}
+		}
+	}
+}
+// SOCCER
+.results-event {
+	margin-left: 0.5vw;
+	width: calc(100% - 0.5vw);
+	max-width: calc(100% - 0.5vw);
+}
+.card-box-result-soccer {
+	padding: 2px;
+	.header {
+		@extend %card-title-noborder;
+	}
+}
+
+.btn-soccer-result {
+	font-size: 1.3vh !important;
+	width: calc(100% - 5px) !important;
+	min-width: calc(100% - 5px) !important;
+	@extend %card-title-noborder;
+}
+
+// KENO
+.btn-keno-result {
+	font-size: 2vh !important;
+	width: calc(100% - 5px) !important;
+	min-width: calc(100% - 5px) !important;
+	@extend %card-title-noborder;
+}
+
+.btn-americanroulette-result {
+	font-size: 1.5vh !important;
+	width: calc(100% - 5px) !important;
+	min-width: calc(100% - 5px) !important;
+	@extend %card-title-noborder;
+}
+
+.card-box-result-keno {
+	padding: 2px;
+	.header {
+		@extend %card-title-noborder;
+	}
+}
+
+// COLOURS
+.btn-colours-result {
+	font-size: 2vh !important;
+	width: calc(100% - 5px) !important;
+	min-width: calc(100% - 5px) !important;
+	@extend %card-title-noborder;
+	&.btn-colours-RED {
+		background: #ff0000;
+		border-color: #ff0000;
+	}
+
+	&.btn-colours-BLUE {
+		background: #4171b2;
+		border-color: #4171b2;
+	}
+
+	&.btn-colours-GREEN {
+		background: #11a40f;
+		border-color: #11a40f;
+	}
+
+	&.btn-colours-YELLOW {
+		background: #c2f102;
+		border-color: #c2f102;
+		color: #000;
+	}
+}
+.card-box-result-colours {
+	padding: 2px;
+	.header {
+		@extend %card-title-noborder;
+	}
+}

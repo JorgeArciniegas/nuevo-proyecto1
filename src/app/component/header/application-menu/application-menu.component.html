@@ -1,0 +1,20 @@
+<div fxFlexFill fxLayout="row" fxLayoutAlign="start center">
+  <!-- MENU -->
+  <button *ngIf="menuIcon" [style.width.px]="menuIcon.width" [style.height.px]="menuIcon.height"
+    class="btn-reset toolbar menu" routerLink="/admin">
+    <img class="icon" src="assets/icons/baseline-menu-24px.svg">
+  </button>
+  <!-- LOGO -->
+  <img *ngIf="logoIcon" class="toolbar logo" [style.height.px]="logoIcon.height"
+    src="assets/theme/image/Logo-header.png">
+  <!-- BUTTONS -->
+  <ng-container *ngIf="buttonIcon && productsIsLoaded">
+    <ng-container *ngFor="let prod of settings.products ">
+      <button *ngIf="prod.isPlayable" [style.width.px]="buttonIcon.width" [style.height.px]="buttonIcon.height"
+        class="btn-reset toolbar btn icon" [ngClass]="{'selected': prod.productSelected}"
+        (click)="productSelecting(prod)">
+        <img class="icon radius-5 elevation-z5" src="assets/icons/{{prod.toolbarButton.icon}}.png">
+      </button>
+    </ng-container>
+  </ng-container>
+</div>

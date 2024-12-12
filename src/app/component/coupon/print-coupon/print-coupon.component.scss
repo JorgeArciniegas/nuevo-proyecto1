@@ -1,0 +1,257 @@
+/* @page {
+  margin: 2mm
+}
+ */
+@media screen {
+	:host {
+		display: none;
+	}
+}
+
+// @media print {
+	.printCoupon {
+		font-weight: 600;
+		size: portrait;
+		width: 100%;
+		padding: 0mm 3mm;
+		-webkit-print-color-adjust: exact;
+		.col {
+			display: inline-block;
+		}
+		.font-size-normal {
+			font-size: 3mm;
+		}
+		.text-right {
+			text-align: right;
+		}
+		.header {
+			border-bottom: 1px solid;
+			.header-content {
+				display: flex;
+				flex-direction: row;
+				div {
+					flex: 1;
+				}
+				.qr-code {
+					align-content: center;
+					align-items: flex-end;
+					justify-content: flex-end;
+					width: 25%;
+					max-width: 25%;
+					qr-code {
+						display: block;
+						float: right;
+					}
+				}
+			}
+		}
+		.content {
+			.betslip-info {
+				border-bottom: 1px solid;
+			}
+			.betslip-odds {
+				padding-top: 0.5mm;
+				padding-bottom: 1.5mm;
+				border-bottom: 1px solid;
+				.category-label {
+					margin-bottom: 0.5mm;
+					font-size: 3mm;
+				}
+				.row-event {
+					width: 100%;
+					display: flex;
+					flex-direction: row;
+					margin-bottom: 0.5mm;
+					.match-selection,
+					.match-win,
+					.match-label,
+					.separator {
+						display: flex;
+					}
+					.match-label {
+						flex: 1;
+						align-items: center;
+						justify-content: left;
+						font-size: 2.8mm;
+						.content {
+							margin-right: 2mm;
+						}
+					}
+					.separator {
+						flex: 1;
+						border-top: 1px solid;
+						margin-right: 1mm;
+						align-items: center;
+					}
+					.match-win {
+						border: 1px solid;
+						border-radius: 3px;
+						flex: 1;
+						align-items: center;
+						justify-content: center;
+						order: 3;
+						max-width: 20%;
+					}
+					.match-selection {
+						order: 2;
+						align-items: center;
+						justify-content: flex-end;
+						margin-right: 1.5mm;
+					}
+					.match-selection-large {
+						margin: 0;
+					}
+				}
+			}
+
+			.betslip-stake {
+				display: flex;
+				width: 100%;
+				align-items: center;
+				flex-direction: row;
+				margin-bottom: 0.5mm;
+				border-bottom: 1px solid;
+				.label {
+					flex: 1;
+					order: 1;
+					width: 25%;
+					align-items: center;
+					justify-content: left;
+				}
+				.value {
+					order: 2;
+					align-items: center;
+					justify-content: flex-end;
+				}
+			}
+			.groupings {
+				.container-grouping {
+					display: flex;
+					width: 100%;
+					align-items: center;
+					flex-direction: row;
+					margin-bottom: 1.5mm;
+					border-bottom: 1px solid;
+					.label {
+						flex: 1;
+						order: 1;
+						width: 25%;
+						align-items: center;
+						justify-content: left;
+					}
+					.comb {
+						order: 2;
+						align-items: center;
+						justify-content: flex-end;
+					}
+				}
+			}
+			.betslip-other-info {
+				display: flex;
+				width: 100%;
+				align-items: center;
+				flex-direction: column;
+				div {
+					flex: 1 100%;
+					align-items: center;
+					justify-content: left;
+					margin-bottom: 0.5mm;
+				}
+				.message-company-trasmitted {
+					margin-bottom: 1.5mm;
+					border-bottom: 1px solid;
+				}
+				.message-company-legal {
+					text-align: center;
+				}
+			}
+			.betslip-payout {
+				.min-row,
+				.max-row {
+					margin-bottom: 2mm;
+					border-bottom: 1px solid;
+				}
+				.min,
+				.max {
+					display: flex;
+					width: 100%;
+					align-items: center;
+					flex-direction: row;
+					.decoration-title {
+						flex: 1;
+						border-top: 5px solid;
+						margin-right: 1mm;
+						align-items: center;
+					}
+					.title {
+						align-items: center;
+						justify-content: center;
+						margin-left: 2mm;
+						margin-right: 2mm;
+					}
+				}
+				.amount {
+					display: flex;
+					background: url("/assets/images/separator-coupon.jpg") repeat-x center top;
+					-webkit-print-color-adjust: exact;
+					height: 40px;
+					span {
+						background-color: white;
+						padding-right: 20px;
+						padding-left: 20px;
+						margin: auto;
+						height: 40px;
+						line-height: 40px;
+					}
+				}
+			}
+
+			.row-group-keno {
+				.category-label {
+					padding: 0.1mm;
+					background: rgba(192, 192, 192, 0.2);
+					font-size: 2.8mm;
+				}
+			}
+			// KENO DATA
+			&.content-keno {
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				.selection-row {
+					margin: 0.5mm;
+					font-size: 3mm;
+					span {
+						display: block;
+					}
+					&:last-child {
+						span:after {
+							content: "* ";
+						}
+					}
+					&:first-child {
+						align-self: flex-start;
+						span::before {
+							content: "* ";
+						}
+					}
+					span:after {
+						content: " - ";
+					}
+				}
+			}
+		}
+		.footer {
+			page-break-after: avoid;
+			width: 100%;
+			margin: 0;
+			.barcode-container {
+				text-align: center;
+			}
+		}
+	}
+	.text-align-center {
+		text-align: center;
+	}
+//}

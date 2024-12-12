@@ -1,0 +1,48 @@
+<mat-grid-list cols="{{column}}" class="odds-grid" rowHeight="25px" [gutterSize]="'10px'">
+  <!-- PREVIOUS PAGE-->
+  <mat-grid-tile colspan="{{column}}">
+    <button *ngIf="maxPage > 1" class="btn-reset card-odd radius-5 scroll" (click)="previusOdds()"
+      [disabled]="page <= 0">
+      <img class="icon" src="assets/icons/Up.svg">
+    </button>
+  </mat-grid-tile>
+  <ng-container>
+    <mat-grid-tile rowspan="3" class="card-odd radius-5" *ngFor="let grouping of groupings">
+      <div fxFill fxLayout="column" fxLayoutAlign="space-between stretch">
+        <div fxFlex="35" class="top-window" fxLayoutAlign="flex-start center">
+          <span class="typography-size-11 typography-weight-700">{{ grouping.Combinations }}
+            {{ 'DYNAMIC_KEYS.GROUPINGS.' | labelByGrouping : grouping.Grouping : grouping.Combinations | translate }}</span>
+        </div>
+        <div fxFlex="65" class="first-row" fxLayout="row">
+          <div fxFlex="70" fxLayoutAlign="center flex-start" fxLayout="column">
+            <button class="btn-stake-grouping btn-reset btn-default color radius-5" [disabled]="!grouping.Selected"
+              [ngClass]="{'btn-success' : !couponService.oddStakeEdit || couponService.oddStakeEdit.grouping.Grouping !== grouping.Grouping,
+                      'btn-selected ' : couponService.oddStakeEdit && couponService.oddStakeEdit.grouping.Grouping === grouping.Grouping }"
+              (click)="changeStakeToGrouping(grouping)">
+              <span
+                *ngIf="!couponService.oddStakeEdit || couponService.oddStakeEdit.grouping.Grouping !== grouping.Grouping">
+                {{ grouping.Stake | number: '1.2-2'}}
+              </span>
+              <span
+                *ngIf="couponService.oddStakeEdit && couponService.oddStakeEdit.grouping.Grouping === grouping.Grouping">
+                {{couponService.oddStakeEdit.tempStake | number: '1.2-3'}}
+              </span>
+            </button>
+          </div>
+          <div fxFlex="30" fxLayoutAlign="center center">
+            <mat-slide-toggle (change)="checkedGrouping($event, grouping)" class="slide-toggle tp-margin"
+              [checked]="grouping.Selected"></mat-slide-toggle>
+          </div>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </ng-container>
+  <!-- NEXT PAGE-->
+  <mat-grid-tile colspan="{{column}}">
+    <button *ngIf="maxPage > 1" class="btn-reset card-odd radius-5 scroll" (click)="nextOdds()"
+      [disabled]="page >= maxPage - 1">
+      <img class="icon" src="assets/icons/Down.svg">
+    </button>
+  </mat-grid-tile>
+
+</mat-grid-list>

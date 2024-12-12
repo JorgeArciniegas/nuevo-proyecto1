@@ -1,0 +1,19 @@
+.app-ranking-soccer {
+	.last-result {
+		width: 24px;
+		border-radius: 5px;
+		text-align: center;
+
+		&.last-result-V {
+			@extend %color-bg-success;
+		}
+
+		&.last-result-N {
+			@extend %btn-yellow-gradient;
+		}
+
+		&.last-result-P {
+			@extend %btn-danger;
+		}
+	}
+}

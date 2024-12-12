@@ -1,0 +1,3 @@
+dbt-core
+dagster
+# Agrega cualquier otra dependencia aquí según sea necesario

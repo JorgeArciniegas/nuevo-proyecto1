@@ -1,0 +1,56 @@
+.dialog-pay-cancel-coupon {
+	.mat-dialog-title {
+		margin: 0 0 15px;
+		position: relative;
+
+		.title {
+			font-size: 1em;
+			font-weight: bold;
+			color: #dcdcdc;
+		}
+	}
+
+	.pay-cancel-input {
+		// line-height: 38px;
+		background-color: transparent;
+		border-radius: 10px;
+		border: 2px solid #313d4f;
+		padding: 0 0.75em 0 0.75em;
+		width: 250px;
+	}
+
+	.input-field {
+		line-height: 45px;
+		background-color: transparent;
+		border: 0;
+		padding: 0 0.75em 0 0.75em;
+		width: 250px;
+		color: #dcdcdc;
+	}
+
+	.input-container {
+		/*	display: flex;
+		width: 100%;
+	 margin-bottom: 50px; */
+	}
+
+	.icon {
+		padding: 0 10px;
+		min-width: 40px;
+		text-align: center;
+		margin-bottom: 5px;
+	}
+
+	.input .icon {
+		min-width: 50px;
+	}
+
+	.mat-dialog-actions {
+		margin-top: 20px;
+	}
+
+	.error-message {
+		color: #ff0000;
+		font-size: 14px;
+	}
+}

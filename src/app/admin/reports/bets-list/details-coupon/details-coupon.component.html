@@ -1,0 +1,95 @@
+<div fxFlex fxLayout="column" fxLayoutAlign="center space-between" *ngIf="couponDetail">
+  <div fxFlex="100" fxLayout="column" [style.padding.px]="20" fxLayoutGap="10px">
+    <div class="title">
+      <h3>{{'BETS_LIST' | translate | uppercase }} - {{'DETAIL' | translate | uppercase }}</h3>
+    </div>
+    <div fxFill fxFlex="6" class="padding-horizontal-6" fxLayoutAlign="start" fxLayoutGap="20px">
+      <div fxFlex="20" fxLayoutAlign="start">
+        <button fxFlex="5" class="btn-default radius-5" routerLink="../../summaryCoupons">
+          <img class="icon icon-24px" src="assets/icons/baseline-arrow_back-24px.png">
+        </button>
+      </div>
+      <div fxFlex="20">
+        <button class="btn-default  radius-5"
+          [class.btn-grey-gradient]="showDataViewSelected === showBetDetailView.SUMMARY"
+          [class.btn-success]="showDataViewSelected !== showBetDetailView.SUMMARY"
+          (click)="changeView(showBetDetailView.SUMMARY)">
+          {{ 'SUMMARY' | translate }}
+        </button>
+      </div>
+      <div fxFlex="20">
+        <button class="btn-default btn-grey-gradient radius-5"
+          [class.btn-grey-gradient]="showDataViewSelected === showBetDetailView.EVENTS"
+          [class.btn-success]="showDataViewSelected !== showBetDetailView.EVENTS"
+          (click)="changeView(showBetDetailView.EVENTS)">
+          {{ 'EVENTS' | translate }}
+        </button>
+      </div>
+      <div fxFlex="20">
+        <button class="btn-default btn-grey-gradient radius-5"
+          [class.btn-grey-gradient]="showDataViewSelected === showBetDetailView.COMBINATIONS"
+          [class.btn-success]="showDataViewSelected !== showBetDetailView.COMBINATIONS"
+          (click)="changeView(showBetDetailView.COMBINATIONS)">
+          {{ 'COMBINATIONS' | translate }}
+        </button>
+      </div>
+      <!-- PAGINATOR -->
+      <div fxFlex="20">
+        <!-- EVENTS PAGS -->
+        <ng-container *ngIf="showDataViewSelected === showBetDetailView.EVENTS">
+          <div fxFlex fxLayoutAlign="center center">
+            <div fxFlex="20">
+              <button class="btn-filter padding-10 radius-5" [disabled]="couponOddEvent.pageOdd <= 1"
+                (click)="changePage(false)">&lsaquo;</button>
+            </div>
+
+            <div fxFlex fxLayoutAlign="center center">
+              {{'PAGE' | translate }} {{ couponOddEvent.pageOdd }} {{'PAGE.OF' | translate }}
+              {{  couponOddEvent.maxPage }}
+            </div>
+            <div fxFlex="20">
+              <button class="btn-filter padding-10 radius-5"
+                [disabled]="couponOddEvent.pageOdd >=  couponOddEvent.maxPage"
+                (click)="changePage(true)">&rsaquo;</button>
+            </div>
+          </div>
+        </ng-container>
+        <!-- /EVENTS PAGS -->
+        <!-- GROUPINGS PAGS -->
+        <ng-container *ngIf="showDataViewSelected === showBetDetailView.COMBINATIONS">
+          <div fxFlex fxLayoutAlign="center center">
+            <div fxFlex="20">
+              <button class="btn-filter padding-10 radius-5" [disabled]="couponGroupingsRow.pageGrouping <= 1"
+                (click)="changePage(false)">&lsaquo;</button>
+            </div>
+
+            <div fxFlex fxLayoutAlign="center center">
+              {{'PAGE' | translate }} {{ couponGroupingsRow.pageGrouping }}
+              {{'PAGE.OF' | translate }} {{ couponGroupingsRow.maxPage }}
+            </div>
+            <div fxFlex="20">
+              <button class="btn-filter padding-10 radius-5"
+                [disabled]="couponGroupingsRow.pageGrouping >= (couponDetail.Groupings.length / couponGroupingsRow.pageGroupingRows) "
+                (click)="changePage(true)">&rsaquo;</button>
+            </div>
+          </div>
+        </ng-container>
+        <!-- /GROUPINGS PAGS -->
+      </div>
+      <!-- /PAGINATOR -->
+    </div>
+    <div fxFlex class="btn-filter radius-5 elevation-z5" fxLayout="column" fxLayoutAlign="flex-start">
+      <app-summary [data]="couponDetail" *ngIf="showDataViewSelected === showBetDetailView.SUMMARY"></app-summary>
+      <app-events [data]="couponOddEvent" *ngIf="showDataViewSelected === showBetDetailView.EVENTS"></app-events>
+      <app-combinations [data]="couponGroupingsRow" *ngIf="showDataViewSelected === showBetDetailView.COMBINATIONS">
+      </app-combinations>
+    </div>
+    <div fxFill fxFlex="10" class="padding-vertical-10" fxLayoutAlign="flex-start center">
+      <div fxFill fxFlex="20" fxLayoutAlign="start stretch" *ngIf="settings.printSettings.enabledPrintCoupon.isEnabledReprintCoupon">
+        <button fxFlex="100" class="btn-default btn-success radius-5" (click)="printAgainCoupon()">
+          {{ 'REPRINT' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

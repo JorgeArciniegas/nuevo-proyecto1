@@ -1,0 +1,20 @@
+<div *ngIf="currentEventDetail" [ngClass]="productImageClass" fxFill fxLayout="row" class="race-control"
+  fxLayoutAlign="start center" fxLayoutGap="0.2vw">
+  <div fxFlex="15"></div>
+  <div fxFlex>
+    <div fxLayout="column" fxLayoutAlign="center flex-end">
+      <span class="game-name">{{ 'DYNAMIC_KEYS.PRODUCT.LABEL.'+ product?.label | translate | uppercase}}</span>
+      <div class="current-race">{{ currentEventDetail?.label }}
+        <span *ngIf="showEventId" class="number">#{{
+          currentEventDetail?.number }}</span>
+      </div>
+    </div>
+  </div>
+  <div fxFlex="23" *ngIf="currentEventDetail != null" fxLayout="column" fxLayoutAlign="space-around end">
+    <div class="time elevation-z5" fxLayout="row" fxLayoutAlign="center center">
+      <div class="icon-baseline-timer-24px"></div>
+      {{ (mainService.eventDetails?.eventTime?.minute !== undefined) ? (mainService.eventDetails?.eventTime?.minute | number: '2.0-0') : '00' }}:{{
+        (mainService.eventDetails?.eventTime?.second !== undefined) ? (mainService.eventDetails?.eventTime?.second | number: '2.0-0') : '00' }}
+    </div>
+  </div>
+</div>

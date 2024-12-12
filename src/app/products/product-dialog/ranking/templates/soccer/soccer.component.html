@@ -1,0 +1,47 @@
+<div fxFlex="100" fxLayout="column" fxLayoutGap="7px grid" fxLayoutAlign="space-between stretch">
+  <div fxFlex="10" fxLayout="row" fxLayoutAlign="space-between center" class="border-bottom-overlay-1px">
+    <div fxFlex="10" fxLayoutAlign="center">#</div>
+    <div fxFlex="20" fxLayoutAlign="left">{{'TEAM' | translate}}</div>
+    <div fxFlex="10" fxLayoutAlign="center">{{'POINTS' | translate}}</div>
+    <div fxFlex="10" fxLayoutAlign="center">{{'GF' | translate}}</div>
+    <div fxFlex="10" fxLayoutAlign="center">{{'GA' | translate}}</div>
+    <div fxFlex="35" fxLayoutAlign="center">{{'RANKING.CONDITION' | translate}}</div>
+    <div fxFlex="5" fxLayoutAlign="center">{{'RANKING.WEEK' | translate}}</div>
+  </div>
+
+  <button class="btn-reset card-odd radius-5 scroll" (click)="previusTeams()" [disabled]="page <= 0">
+    <img class="icon" src="assets/icons/Up.svg">
+  </button>
+  <ng-container *ngFor="let ranking of teamsData">
+    <div fxFlex="90" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="teamsData">
+      <div fxFlex="10" fxLayoutAlign="center">
+        <div fxFlex.lt-lg="70" fxFlex.gt-lg="50" fxLayoutAlign="center">
+          <span fxFlex="40" class="ranking-label">{{ranking.Competitor.ito}}.</span>
+          <div fxFlex="60" class="rank-icon"
+            [ngClass]="{'rank-up-icon': (ranking.RankColumns[4].RankColumnValue | number) > 0, 'rank-same-icon': (ranking.RankColumns[4].RankColumnValue | number) == 0, 'rank-down-icon': (ranking.RankColumns[4].RankColumnValue | number) < 0}">
+          </div>
+        </div>
+      </div>
+      <div fxFlex="20">{{ranking.Competitor.nm }}</div>
+      <ng-container *ngFor="let colData of ranking.RankColumns">
+        <div fxFlexOrder="1" fxFlex="10" fxLayoutAlign="center" *ngIf="colData.RankColumnKey ==='POINTS'">
+          {{ colData.RankColumnValue}}</div>
+        <div fxFlexOrder="2" fxFlex="10" fxLayoutAlign="center" *ngIf="colData.RankColumnKey ==='GOALS'">
+          {{ colData.RankColumnValue }}</div>
+        <div fxFlexOrder="3" fxFlex="10" fxLayoutAlign="center" *ngIf="colData.RankColumnKey ==='GOALSCON'">
+          {{ colData.RankColumnValue }}</div>
+        <div fxFlexOrder="4" fxFlex="35" fxLayoutAlign="center" fxLayoutGap="5px"
+          *ngIf="colData.RankColumnKey ==='LASTRESULTS'">
+          <div *ngFor="let result of colData.RankColumnValue | splitString : ','" fxLayoutAlign="center">
+            <div *ngIf="result" class="last-result last-result-{{result}}">{{result}}</div>
+          </div>
+        </div>
+        <div fxFlexOrder="5" fxFlex="5" fxLayoutAlign="center" *ngIf="colData.RankColumnKey ==='ROUND'">
+          {{ colData.RankColumnValue }}</div>
+      </ng-container>
+    </div>
+  </ng-container>
+  <button class="btn-reset card-odd radius-5 scroll" (click)="nextTeams()" [disabled]="page >= maxPage - 1">
+    <img class="icon" src="assets/icons/Down.svg">
+  </button>
+</div>

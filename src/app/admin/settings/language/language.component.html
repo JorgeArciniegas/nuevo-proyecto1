@@ -1,0 +1,16 @@
+<div id="language-setting" fxLayout="column" fxLayoutGap="20px" [style.padding.px]="10">
+  <div class="title">
+    <h1>{{ 'LANGUAGE' | translate | uppercase}}</h1>
+  </div>
+  <div class="language-list" fxLayout="row">
+    <div fxFlex.sm="100" fxFlex.md="45" fxFlex.md="60" fxLayout="row" class="display display-trasparent">
+      <div fxFlex.xs="100" fxLayout="row wrap" fxLayoutAlign="left" fxLayoutGap="20px grid">
+        <div fxFlex="50" fxFlex.xs="100" fxLayout="column" *ngFor="let language of languages">
+          <button class="btn-filter btn-default radius-5"
+            [ngClass]="{'btn-filter-success': translateService.currentLanguage === language}"
+            (click)="changeLanguage(language)">{{ languageEnum[language] }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

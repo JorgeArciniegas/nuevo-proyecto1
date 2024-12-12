@@ -1,0 +1,79 @@
+app-create,
+app-delete,
+app-edit,
+app-operators,
+app-operator-summary-list {
+	height: 100%;
+	.title {
+		h1 {
+			margin: 0;
+		}
+	}
+	.input-area {
+		margin-top: 15px;
+
+		.input-item {
+			margin: 15px 0;
+			.input {
+				display: block;
+				@extend %border-input-area;
+
+				input {
+					border: none;
+					font-size: 14px;
+					font-weight: bold;
+					display: inline-block;
+					width: calc(100% - 44px);
+					@extend %login-input;
+
+					&:-webkit-autofill,
+					&:-webkit-autofill:hover,
+					&:-webkit-autofill:focus {
+						background: transparent !important ;
+					}
+				}
+
+				&.error {
+					@extend %border-input-area-error;
+				}
+
+				.icon-area {
+					width: 24px;
+					height: 20px;
+					margin: 10px 10px;
+					display: inline-block;
+					vertical-align: middle;
+					&.user-icon {
+						@extend %user-icon;
+					}
+
+					&.pwd-icon {
+						@extend %pwd-icon;
+					}
+				}
+			}
+		}
+	}
+
+	button {
+		font-size: 14px;
+		padding: 10px;
+		margin: 15px 0;
+	}
+	.error-message {
+		text-align: center;
+		font-size: 14px;
+		div {
+			flex-wrap: wrap;
+		}
+		.error-icon {
+			width: 18px;
+			height: 18px;
+			margin: 0 5px;
+		}
+	}
+
+	.button-small {
+		padding: 5px;
+	}
+}

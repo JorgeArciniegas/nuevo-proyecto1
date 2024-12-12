@@ -1,0 +1,50 @@
+<div fxLayout="column" fxLayoutGap="20px" [style.padding.px]="10" class="operator-summary">
+  <div class="title">
+    <h1>{{'OPERATOR_SUMMARY' | translate}} </h1>
+  </div>
+  <div fxFlexFill class="form" fxLayout="column" fxLayoutGap="20px">
+    <!-- ROW 0 -->
+    <div fxLayout="row" fxLayoutGap="20px">
+      <!-- DATA SELECTED -->
+      <div fxFlex="70" fxLayout="row" fxLayoutGap="20px" class="display padding-20">
+        <h3 class="label-overlap">{{ 'DATE' | translate }}</h3>
+        <div fxFlex="50" class="row" fxLayoutGap="20px">
+          <div fxFlex class="row" fxLayoutGap="20px">
+            <div fxLayout="column" fxLayoutGap="5px">
+              <h4>{{ 'DATE_FROM' | translate }}</h4>
+              <mat-form-field class="btn-filter btn-default padding-5 radius-5" (click)="pickerDateFrom.open()">
+                <input matInput class="datepicker" [matDatepicker]="pickerDateFrom" disabled
+                  [(ngModel)]="operatorSummaryService.dateFrom"
+                  [matDatepickerFilter]="operatorSummaryService.dateFilterFrom">
+                <mat-datepicker-toggle matSuffix [for]="pickerDateFrom"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #pickerDateFrom disabled="false"></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div fxFlex="50" class="row" fxLayoutGap="20px">
+          <div fxFlex class="row" fxLayoutGap="20px">
+            <div fxLayout="column" fxLayoutGap="5px">
+              <h4>{{ 'DATE_TO' | translate }}</h4>
+              <mat-form-field class="btn-filter btn-default padding-5 radius-5" (click)="pickerDateTo.open()">
+                <input matInput class="datepicker" [matDatepicker]="pickerDateTo" disabled
+                  [(ngModel)]="operatorSummaryService.dateTo"
+                  [matDatepickerFilter]="operatorSummaryService.dateFilterTo">
+                <mat-datepicker-toggle matSuffix [for]="pickerDateTo"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #pickerDateTo disabled="false"></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
+      <div fxFlex="33"></div>
+      <div fxFlex>
+        <button class="btn-default btn-grey-gradient radius-5 elevation-z5 btn-filter"
+          (click)="operatorSummaryService.getList()">{{ 'SEARCH' | translate }} </button>
+      </div>
+      <div fxFlex="33"></div>
+    </div>
+  </div>
+</div>

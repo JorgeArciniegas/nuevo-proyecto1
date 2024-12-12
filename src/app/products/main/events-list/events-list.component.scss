@@ -1,0 +1,15 @@
+::ng-deep {
+  .card-box .mat-grid-tile-content {
+    padding: 0.4vh 0.4vw;
+
+    button {
+      &.number {
+        font-size: 2.2vh;
+      }
+      &.date {
+        font-size: 2.6vh;
+      }
+      font-weight: 600;
+    }
+  }
+}

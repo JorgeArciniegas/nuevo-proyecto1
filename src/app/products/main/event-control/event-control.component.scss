@@ -1,0 +1,27 @@
+.game-name {
+	font-size: 2vw;
+	font-weight: 900;
+	line-height: 1.4vw;
+}
+
+.current-race {
+	font-size: 1.6vw;
+	font-weight: 900;
+	.number {
+		font-size: 1vw;
+		font-weight: 600;
+	}
+}
+
+.time {
+	font-size: 2vw;
+	font-weight: 900;
+	padding: 4px 14px;
+	margin: 6px;
+
+	.icon-baseline-timer-24px {
+		width: 3vw;
+		height: 3vw;
+		margin-right: 10px;
+	}
+}

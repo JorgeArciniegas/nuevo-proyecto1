@@ -1,0 +1,94 @@
+<div fxLayout="column" fxLayoutGap="20px" [style.padding.px]="10">
+  <div class="title">
+    <h1>{{'TRANSACTIONS_LIST' | translate}} </h1>
+  </div>
+  <div fxFlexFill class="form" fxLayout="column" fxLayoutGap="20px">
+    <!-- ROW 0 -->
+    <div fxLayout="row" fxLayoutGap="20px">
+      <!-- DATA SELECTION -->
+      <div fxFlex="50" fxLayout="row" fxLayoutGap="20px" class="display padding-20">
+        <h3 class="label-overlap">{{ 'DATE' | translate }}</h3>
+        <div fxFlex="50" class="row filter-input" fxLayoutGap="20px">
+          <div fxFlex class="row" fxLayoutGap="20px">
+            <div fxLayout="column" fxLayoutGap="5px">
+              <h4>{{ 'DATE_FROM' | translate }}</h4>
+              <mat-form-field class="btn-filter btn-default padding-5 radius-5" (click)="pickerDateFrom.open()">
+                <input matInput class="datepicker" [matDatepicker]="pickerDateFrom" disabled
+                  [(ngModel)]="transactionsListService.dateFrom"
+                  [matDatepickerFilter]="transactionsListService.dateFilterFrom">
+                <mat-datepicker-toggle matSuffix [for]="pickerDateFrom"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #pickerDateFrom disabled="false"></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div fxFlex="50" class="row filter-input" fxLayoutGap="20px">
+          <div fxFlex class="row" fxLayoutGap="20px">
+            <div fxLayout="column" fxLayoutGap="5px">
+              <h4>{{ 'DATE_TO' | translate }}</h4>
+              <mat-form-field class="btn-filter btn-default padding-5 radius-5" (click)="pickerDateTo.open()">
+                <input matInput class="datepicker" [matDatepicker]="pickerDateTo" disabled
+                  [(ngModel)]="transactionsListService.dateTo"
+                  [matDatepickerFilter]="transactionsListService.dateFilterTo">
+                <mat-datepicker-toggle matSuffix [for]="pickerDateTo"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #pickerDateTo disabled="false"></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- AMOUNT SELECTION -->
+      <div fxFlex="50" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" class="display padding-20">
+        <h3 class="label-overlap">{{ 'AMOUNT' | translate }}</h3>
+        <div fxFlex="50" class="row filter-input" fxLayoutGap="20px">
+          <div fxFlex class="row" fxLayoutGap="20px">
+            <div fxLayout="column" fxLayoutGap="5px">
+              <h4>{{ 'AMOUNT_FROM' | translate }}</h4>
+              <mat-form-field fxFlex="50" class="row" fxLayoutGap="20px"
+                class="btn-filter btn-default padding-10 radius-5" fxLayoutAlign="start center" floatLabel="never">
+                <input matInput type="number" [(ngModel)]="transactionsListService.amountFrom"
+                  placeholder="{{ '0' | currency : userService.userCurrency : 'symbol-narrow'}}">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div fxFlex="50" class="row filter-input" fxLayoutGap="20px">
+          <div fxFlex class="row" fxLayoutGap="20px">
+            <div fxLayout="column" fxLayoutGap="5px">
+              <h4>{{ 'AMOUNT_TO' | translate }}</h4>
+              <mat-form-field fxFlex="50" class="row" fxLayoutGap="20px"
+                class="btn-filter btn-default padding-10 radius-5" fxLayoutAlign="start center" floatLabel="never">
+                <input matInput type="number" [(ngModel)]="transactionsListService.amountTo"
+                  placeholder="{{'0' | currency : userService.userCurrency : 'symbol-narrow'}}">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ROW 1 -->
+    <!-- TRANSACTION TYPE SELECTION -->
+    <div fxLayout="row" fxLayoutGap="20px">
+      <div fxFlex="100" fxLayout="row" fxLayoutGap="20px" class="display padding-left-20 padding-top-30">
+        <h3 class="label-overlap">{{ 'TRANSACTION_TYPE' | translate }}</h3>
+        <div fxFlex fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="20px grid">
+          <div fxFlex="25" fxLayout="column" *ngFor="let type of object.keys(transactionCategory)">
+            <button class="btn-filter btn-default radius-5"
+              [ngClass]="{'btn-filter-success': (transactionsListService.transactionTypesCsv | getTransactionCategoryKeyByEnumValue) == type}"
+              (click)="changeValue('transactionTypesCsv', transactionCategory[type])">{{ 'DYNAMIC_KEYS.TransactionCategory.'+ type | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ROW 2 -->
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
+      <div fxFlex="33"></div>
+      <div fxFlex>
+        <button class="btn-default btn-grey-gradient radius-5 elevation-z5 btn-filter"
+          (click)="transactionsListService.getList(true)">{{ 'SEARCH' | translate }} </button>
+      </div>
+      <div fxFlex="33"></div>
+    </div>
+  </div>
+</div>

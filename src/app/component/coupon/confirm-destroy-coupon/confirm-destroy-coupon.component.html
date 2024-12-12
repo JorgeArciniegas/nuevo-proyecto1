@@ -1,0 +1,15 @@
+<div fxFlex="100" fxFlexFill fxLayout="column" fxLayoutAlign="center center">
+  <div mat-dialog-title>
+    <div class="title">{{'COUPON_RESET' | translate }}</div>
+  </div>
+  <div mat-dialog-content fxLayoutAlign="start center">
+    <p>{{'CONFIRM_DESTROY_COUPON.MESSAGE' | translate }}</p>
+  </div>
+  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
+
+    <button fxFlex="50" class="btn-default btn-success radius-10 padding-10"
+      (click)="selectedOperation(true)">{{'CONFIRM' | translate | uppercase}} </button>
+    <button fxFlex="50" class="btn-default btn-warning radius-10 padding-10"
+      (click)="selectedOperation(false)">{{'DELETE' | translate | uppercase}} </button>
+  </div>
+</div>

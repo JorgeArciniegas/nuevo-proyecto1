@@ -1,0 +1,59 @@
+<div class="operator-summary">
+  <div class="header">
+    <img class="logo-print-coupon padding-10">
+    <div class="header-content" *ngIf="appSettings.printSettings.enabledPrintCoupon.printHeaderMessage">
+      <div class="padding-5 font-size-normal">
+        <span>
+          {{'DYNAMIC_KEYS.PRINT_COUPON.HEADER_MESSAGE.' + licenseType[appSettings.license] | translate}}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="separator"></div>
+    <div class="date">
+      <div class="col bold-text padding-5 text-left" [style.width.%]="50">
+        {{'OPERATOR_SUMMARY' | translate }}:
+      </div>
+      <div class="col" [style.width.%]="50">
+        <div class="font-size-normal text-right padding-5">
+          {{ operatorSummary.dateStamp | date:'medium' }}
+        </div>
+        <div class="font-size-normal text-right padding-5">
+          {{ operatorSummary.dateFrom | date:'mediumDate' }} - {{ operatorSummary.dateTo | date:'mediumDate' }}
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="bold-background">
+        <div class="col font-size-normal centered-text" [style.width.%]="25"> {{ 'USERNAME' | translate }} </div>
+        <div class="col font-size-normal centered-text" [style.width.%]="25"> {{ 'STAKE' | translate }} </div>
+        <div class="col font-size-normal centered-text" [style.width.%]="25"> {{ 'PAID' | translate }} </div>
+        <div class="col font-size-normal centered-text" [style.width.%]="25"> {{ 'PROFIT ' | translate }} </div>
+      </div>
+      <div *ngFor="let operatorVolume of operatorSummary.operatorVolumes">
+        <div class="col font-size-normal centered-text" [style.width.%]="25">
+          {{ operatorVolume.Username }} </div>
+        <div class="col font-size-normal centered-text" [style.width.%]="25">
+          {{ operatorVolume.Stake | currency : userService.userCurrency : 'symbol-narrow' }} </div>
+        <div class="col font-size-normal centered-text" [style.width.%]="25">
+          {{ operatorVolume.Won | currency : userService.userCurrency : 'symbol-narrow' }} </div>
+        <div class="col font-size-normal centered-text" [style.width.%]="25">
+          {{ operatorVolume.Stake - operatorVolume.Won | currency : userService.userCurrency : 'symbol-narrow' }} </div>
+        <div class="separator"></div>
+      </div>
+    </div>
+
+    <div class="bold-background totals">
+      <div class="col bold-text centered-text" [style.width.%]="25"> {{ 'TOTALS' | translate }}: </div>
+      <div class="col font-size-normal centered-text" [style.width.%]="25">
+        {{ operatorSummary.totalStake | currency : userService.userCurrency : 'symbol-narrow' }} </div>
+      <div class="col font-size-normal centered-text" [style.width.%]="25">
+        {{ operatorSummary.totalWon | currency : userService.userCurrency : 'symbol-narrow' }} </div>
+      <div class="col font-size-normal centered-text" [style.width.%]="25">
+        {{ operatorSummary.totalStake - operatorSummary.totalWon | currency : userService.userCurrency : 'symbol-narrow' }} </div>
+    </div>
+  </div>
+</div>

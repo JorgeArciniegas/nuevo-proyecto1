@@ -1,0 +1,22 @@
+<div mat-dialog-title>
+  <div class="title">{{ 'DYNAMIC_KEYS.PRODUCT_DIALOG.' + title | translate }}</div>
+  <div *ngIf="maxPage > 1" class="indicator">{{page + 1}}/{{maxPage}}
+  </div>
+</div>
+<!-- BETODD OBJECTS-->
+<div mat-dialog-content #content [style.padding-top.px]="containerPaddingTop">
+  <app-betodds *ngIf="!dataDialog.groupings && dataDialog.betCoupon || !dataDialog.groupings && dataDialog.betOdds"
+    [columnNumber]="column" [rowNumber]="rowNumber" [maxPage]="maxPage" [maxItems]="maxItems" [data]="dataDialog">
+  </app-betodds>
+  <app-statistics *ngIf="dataDialog.statistics" [data]="dataDialog"></app-statistics>
+  <app-groupings *ngIf="dataDialog.groupings" [column]="column" [rowNumber]="rowNumber" [maxPage]="maxPage"
+    [maxItems]="maxItems" [data]="dataDialog"></app-groupings>
+  <app-ranking *ngIf="dataDialog.tournamentRanking" [data]="dataDialog"></app-ranking>
+  <app-paytable *ngIf="dataDialog.paytable" [data]="dataDialog"></app-paytable>
+  <app-hot-and-cold *ngIf="dataDialog.hotAndCold" [data]="dataDialog"></app-hot-and-cold>
+</div>
+
+<div mat-dialog-actions fxLayoutAlign="center center">
+  <button class="btn-reset btn-default btn-danger btn-close radius-5" (click)="close()"
+    cdkFocusInitial>{{ 'CLOSE' | translate }}</button>
+</div>

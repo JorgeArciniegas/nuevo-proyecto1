@@ -1,0 +1,24 @@
+<div>
+  <mat-grid-list cols="6" class="grid-keyboard-number" rowHeight="2:1">
+    <mat-grid-tile *ngFor="let colourGame of colourGames">
+      <button (click)="changeGame(colourGame.id)" class="btn-game-selector radius-5 elevation-z5"
+        [ngClass]="{ 'selected': selectedColourGameId === colourGame.id }">
+        {{ colourGame.name | translate }}
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div>
+    <app-playable-board-bet49 *ngIf="selectedColourGameId === ColourGameId.bet49" [rowHeight]="rowHeight">
+    </app-playable-board-bet49>
+    <app-playable-board-hilo *ngIf="selectedColourGameId === ColourGameId.hilo" [rowHeight]="rowHeight">
+    </app-playable-board-hilo>
+    <app-playable-board-total-colour *ngIf="selectedColourGameId === ColourGameId.totalcolour" [rowHeight]="rowHeight">
+    </app-playable-board-total-colour>
+    <app-playable-board-bet0 *ngIf="selectedColourGameId === ColourGameId.betzero" [rowHeight]="rowHeight">
+    </app-playable-board-bet0>
+    <app-playable-board-dragon *ngIf="selectedColourGameId === ColourGameId.dragon" [rowHeight]="rowHeight">
+    </app-playable-board-dragon>
+    <app-playable-board-rainbow *ngIf="selectedColourGameId === ColourGameId.rainbow" [rowHeight]="rowHeight">
+    </app-playable-board-rainbow>
+  </div>
+</div>

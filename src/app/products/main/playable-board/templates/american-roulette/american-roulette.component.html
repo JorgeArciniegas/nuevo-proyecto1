@@ -1,0 +1,202 @@
+<div class="american-roulette">
+  <mat-grid-list cols="14" rowHeight="{{rowHeight * (10 / 6)+ (rowHeight/3) }}">
+    <!-- ROW 0 and 00 out of COLUMN and DOZEN-->
+    <mat-grid-tile rowspan="6" col="1" colspan="1">
+      <div fxFlex>
+        <mat-grid-list cols="1" rowHeight="{{(rowHeight * (10 / 6) + (rowHeight/3) ) }}">
+          <mat-grid-tile col="1" rowspan="3">
+            <div fxFill fxLayoutAlign="center center" class="green mat-boder-1" (click)="onSelectedNumber('0')">
+              <button class="btn-default" [ngClass]="{'btn-roulette-selected' : getNumberSelected('0')}">
+                0
+              </button>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile col="1" rowspan="3">
+            <div fxFill fxLayoutAlign="center center" class="green mat-boder-1" (click)="onSelectedNumber('00')">
+              <button class="btn-default" [ngClass]="{'btn-roulette-selected' : getNumberSelected('00')}">
+                00
+              </button>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile rowspan="6" colspan="13" col="2">
+      <div fxFlex>
+        <mat-grid-list cols="13" rowHeight="{{(rowHeight * (10 / 6) + (rowHeight/3) ) }}">
+          <!-- RUG -->
+          <ng-container *ngFor="let n of americanRouletteRug.NumberOfRoulette | selectColumn:0; let i = index;">
+            <mat-grid-tile col="{{i+1}}" rowspan="2">
+              <div fxFill fxLayoutAlign="center center" [ngClass]="{'red' : n.color === color.RED, 'black' : n.color === color.BLACK,
+                'dozen-selected' : dozenSelected?.length >0, 'column-selectd' :columnSelected?.length > 0}"
+                class="btn-default mat-boder-1" (click)="onSelectedNumber(n.number)">
+                <div class="opacity" *ngIf="((n.number  < 13) && getDozen(1))
+                  || ((n.number  > 12 && n.number < 25) && getDozen(2))
+                  || ((n.number  > 24) && getDozen(3))
+                  || getNumberSelectedByColumn(3, n.number)">
+                </div>
+                <button class="btn-default" [ngClass]="{'btn-roulette-selected' : getNumberSelected(n.number)}">
+                  {{n.number}}
+                </button>
+              </div>
+            </mat-grid-tile>
+          </ng-container>
+          <!-- COLUMN 3 -->
+          <mat-grid-tile col="14" rowspan="2">
+            <div fxFill fxLayoutAlign="center center" (click)="onSelectedColumn(3)" class="btn-tile green mat-boder-1">
+              <button class="btn-default" [ngClass]="{'btn-roulette-selected' : getColumn(3)}">
+                <span class="vertical-text">
+                  {{'AMERICANROULETTE.COLUMN' | translate }}
+                </span>
+              </button>
+            </div>
+          </mat-grid-tile>
+          <!-- /COLUMN 3 -->
+          <mat-grid-tile col="{{i+1}}" rowspan="2"
+            *ngFor="let n of americanRouletteRug.NumberOfRoulette | selectColumn:2; let i = index;">
+            <div fxFill fxLayoutAlign="center center" [ngClass]="{'red' : n.color === color.RED, 'black' : n.color === color.BLACK,
+              'dozen-selected' : dozenSelected?.length > 0, 'column-selectd' :columnSelected?.length > 0}"
+              class="mat-boder-1" (click)="onSelectedNumber(n.number)">
+              <div class="opacity" *ngIf="((n.number  < 13) && getDozen(1))
+                || ((n.number  > 12 && n.number < 25) && getDozen(2))
+                || ((n.number  > 24) && getDozen(3)) || getNumberSelectedByColumn(2, n.number)">
+              </div>
+              <button class="btn-default" [ngClass]="{'btn-roulette-selected' : getNumberSelected(n.number)}">
+                {{n.number}}
+              </button>
+            </div>
+            <!-- COLUMN 2 -->
+          </mat-grid-tile>
+          <mat-grid-tile col="14" rowspan="2">
+            <div fxFill fxLayoutAlign="center center" (click)="onSelectedColumn(2)" class="btn-tile green mat-boder-1">
+              <button class="btn-default" [ngClass]="{'btn-roulette-selected' : getColumn(2)}">
+                <span class="vertical-text">
+                  {{'AMERICANROULETTE.COLUMN' | translate }}
+                </span>
+              </button>
+            </div>
+          </mat-grid-tile>
+          <!-- /COLUMN 2 -->
+          <mat-grid-tile col="{{i+1}}" rowspan="2"
+            *ngFor="let n of americanRouletteRug.NumberOfRoulette | selectColumn:1; let i = index">
+            <div fxFill fxLayoutAlign="center center" [ngClass]="{'red' : n.color === color.RED, 'black' : n.color === color.BLACK,
+              'dozen-selected' : dozenSelected?.length > 0, 'column-selectd' :columnSelected?.length > 0  }"
+              class="mat-boder-1" (click)="onSelectedNumber(n.number)">
+              <div class="opacity" *ngIf="
+                ((n.number  < 13) && getDozen(1))
+                || ((n.number  > 12 && n.number < 25) && getDozen(2))
+                || ((n.number  > 24) && getDozen(3))
+                || getNumberSelectedByColumn(1, n.number)">
+              </div>
+              <button class="btn-default" [ngClass]="{'btn-roulette-selected' : getNumberSelected(n.number)}">
+                {{n.number}}
+              </button>
+            </div>
+          </mat-grid-tile>
+          <!-- COLUMN 1 -->
+          <mat-grid-tile col="14" rowspan="2">
+            <div fxFill fxLayoutAlign="center center" (click)="onSelectedColumn(1)" class="btn-tile green mat-boder-1">
+              <button class="btn-default" [ngClass]="{'btn-roulette-selected' : getColumn(1)}">
+                <span class="vertical-text">
+                  {{'AMERICANROULETTE.COLUMN' | translate }}
+                </span>
+              </button>
+            </div>
+          </mat-grid-tile>
+          <!-- /COLUMN 1 -->
+        </mat-grid-list>
+      </div>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+  <mat-grid-list cols="14" rowHeight="{{rowHeight * (10 / 6) + (rowHeight/3) }}">
+    <div fxFlex>
+      <mat-grid-tile col="1"></mat-grid-tile>
+      <!-- OTHER PLAY BUTTONS -->
+      <mat-grid-tile col="2" colspan="4" class="mat-boder-1">
+        <div fxFill fxLayoutAlign="center center" class="green" (click)="onSelectedDozen(1)">
+          <button class="btn-default" [ngClass]="{'btn-roulette-selected' : getDozen(1)}">
+            <span>
+              {{'AMERICANROULETTE.1DOZEN' | translate }}
+            </span>
+          </button>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile col="6" colspan="4" class="mat-boder-1">
+        <div fxFill fxLayoutAlign="center center" class="green" (click)="onSelectedDozen(2)">
+          <button class="btn-default" [ngClass]="{'btn-roulette-selected' : getDozen(2)}">
+            <span>
+              {{'AMERICANROULETTE.2DOZEN' | translate }}
+            </span>
+          </button>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile col="10" colspan="4" class="mat-boder-1">
+        <div fxFill fxLayoutAlign="center center" class="green" (click)="onSelectedDozen(3)">
+          <button class="btn-default" [ngClass]="{'btn-roulette-selected' : getDozen(3)}">
+            <span>
+              {{'AMERICANROULETTE.3DOZEN' | translate }}
+            </span>
+          </button>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile col="1"></mat-grid-tile>
+      <mat-grid-tile col="1"></mat-grid-tile>
+      <mat-grid-tile col="2" colspan="2" class="mat-boder-1">
+        <div fxFill fxLayoutAlign="center center" class="green" (click)="onSelected('Low',marketSelection.HighLow)">
+          <button class="btn-default" [ngClass]="{'btn-roulette-selected' : getOtherPointSelected('Low')}">
+            <span>
+              1-18
+            </span>
+          </button>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile col="4" colspan="2" class="mat-boder-1">
+        <div fxFill fxLayoutAlign="center center" class="green" (click)="onSelected('Even',marketSelection.OddEven)">
+          <button class="btn-default" [ngClass]="{'btn-roulette-selected' : getOtherPointSelected('Even')}">
+            <span>
+              {{'EVEN' | translate }}
+            </span>
+          </button>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile col="6" colspan="2" class="mat-boder-1">
+        <div fxFill fxLayoutAlign="center center" class="green" (click)="onSelected('Red',marketSelection.RedBlack)">
+          <button class="btn-default" [ngClass]="{'btn-roulette-selected' : getOtherPointSelected('Red')}">
+            <span>
+              {{'RED' | translate | uppercase }}
+            </span>
+          </button>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile col="8" colspan="2" class="mat-boder-1">
+        <div fxFill fxLayoutAlign="center center" class="green" (click)="onSelected('Black',marketSelection.RedBlack)">
+          <button class="btn-default" [ngClass]="{'btn-roulette-selected' : getOtherPointSelected('Black')}">
+            <span>
+              {{'BLACK' | translate | uppercase }}
+            </span>
+          </button>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile col="10" colspan="2" class="mat-boder-1">
+        <div fxFill fxLayoutAlign="center center" class="green" (click)="onSelected('Odd',marketSelection.OddEven)">
+          <button class="btn-default" [ngClass]="{'btn-roulette-selected' : getOtherPointSelected('Odd')}">
+            <span>
+              {{'ODD' | translate | uppercase }}
+            </span>
+          </button>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile col="12" colspan="2" class="mat-boder-1">
+        <div fxFill fxLayoutAlign="center center" class="green" (click)="onSelected('High',marketSelection.HighLow)">
+          <button class="btn-default" [ngClass]="{'btn-roulette-selected' : getOtherPointSelected('High')}">
+            <span>
+              19-36
+            </span>
+          </button>
+        </div>
+
+      </mat-grid-tile>
+    </div>
+  </mat-grid-list>
+</div>

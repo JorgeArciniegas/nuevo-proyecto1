@@ -1,0 +1,39 @@
+<div fxLayout="row" class="hot-and-cold-numbers">
+
+  <div fxFlex="10"></div>
+  <div fxFlex="35" fxLayout="column" class="hot-and-cold-border display-trasparent">
+    <div class="label-overlap">
+      {{ 'HOT' | translate | uppercase }}
+    </div>
+    <mat-grid-list cols="2" rowHeight="75px" style="margin-top: 10px">
+      <mat-grid-tile *ngFor="let hotNumber of data.hotAndCold.hotAndColdNumbers.HotNumbers">
+        <div fxLayoutAlign="center center"
+          class="btn-colours btn-colours-{{Colour[checkNumberColour(hotNumber)]}} radius-50">
+          <div fxLayout="column" fxLayoutAlign="center center">
+            {{ hotNumber }}
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+  <div fxFlex="10"></div>
+
+  <div fxFlex="35" fxLayout="column" class="hot-and-cold-border display-trasparent">
+    <div class="label-overlap">
+      {{ 'COLD' | translate | uppercase }}
+    </div>
+    <mat-grid-list cols="2" rowHeight="75px" style="margin-top: 10px">
+      <mat-grid-tile *ngFor="let coldNumber of data.hotAndCold.hotAndColdNumbers.ColdNumbers">
+        <div fxLayoutAlign="center center"
+          class="btn-colours btn-colours-{{Colour[checkNumberColour(coldNumber)]}} radius-50">
+          <div fxLayout="column" fxLayoutAlign="center center">
+            {{ coldNumber }}
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div fxFlex="10"></div>
+
+</div>

@@ -1,0 +1,46 @@
+<mat-grid-list class="playable-grid-buttons" cols="13" rowHeight="{{(rowHeight * (16 / 4)  + (rowHeight/3)) }}">
+  <ng-container *ngFor="let row of ['I','II','III']; let i = index">
+    <mat-grid-tile>
+      <span *ngIf="i === 0" class="playable-row-tile display radius-5">
+        {{ service.placingEvent.typePlace === TypePlacingRace.ACCG || service.placingEvent.typePlace === TypePlacingRace.ST ? ('BASE' | translate) : row}}
+      </span>
+      <span *ngIf="i === 1" class="playable-row-tile display radius-5"
+        [ngClass]="{'disabled': service.placingEvent.secondRowDisabled }">
+        {{ service.placingEvent.typePlace === TypePlacingRace.ACCG || service.placingEvent.typePlace === TypePlacingRace.ST ? ('CODA' | translate) : row}}
+      </span>
+      <span *ngIf="i === 2" class="playable-row-tile display radius-5"
+        [ngClass]="{'disabled': service.placingEvent.thirdRowDisabled }">
+        {{row}}
+      </span>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let player of service.playersList | filterByPosition: i+1" colspan="2">
+      <button (click)="runnerplaced(player)" [ngClass]="{'btn-dog-play-actived': player.actived}"
+        class="btn btn-default btn-default-dog-play radius-5 btn-{{codeProduct}}-{{player.number}}"
+        [disabled]="!player.selectable || ((i === 1 && service.placingEvent.secondRowDisabled) || (i === 2 && service.placingEvent.thirdRowDisabled))">
+        <span>{{player.number}}</span>
+      </button>
+    </mat-grid-tile>
+  </ng-container>
+</mat-grid-list>
+<mat-grid-list class="playable-grid-buttons playable-special-bets" cols="4" rowHeight="{{rowHeight * 3 }}">
+  <mat-grid-tile>
+    <button (click)="specialBets('EVEN')"
+      [ngClass]="{'actived' : (service.placingEvent.isSpecialBets && service.placingEvent.specialBetValue === specialBet['EVEN']) }"
+      class="btn-reset btn-default btn-success radius-5 elevation-z5">{{'EVEN' | translate}}</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button (click)="specialBets('ODD')"
+      [ngClass]="{'actived' : (service.placingEvent.isSpecialBets && service.placingEvent.specialBetValue === specialBet['ODD']) }"
+      class="btn-reset btn-default btn-success radius-5 elevation-z5">{{'ODD' | translate}}</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button (click)="specialBets('UNDER')"
+      [ngClass]="{'actived' : (service.placingEvent.isSpecialBets && service.placingEvent.specialBetValue === specialBet['UNDER']) }"
+      class="btn-reset btn-default  btn-success radius-5 elevation-z5">{{'UNDER' | translate}}</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button (click)="specialBets('OVER')"
+      [ngClass]="{'actived' : (service.placingEvent.isSpecialBets && service.placingEvent.specialBetValue === specialBet['OVER']) }"
+      class="btn-reset btn-default btn-success radius-5 elevation-z5">{{'OVER' | translate}}</button>
+  </mat-grid-tile>
+</mat-grid-list>

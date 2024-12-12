@@ -1,0 +1,40 @@
+<div>
+  <!-- RACING LAST RESULTS -->
+  <app-results-race
+    *ngIf="productService.product.layoutProducts.type === service.typeLayout.RACING"
+    [items]="productService.product.layoutProducts.resultItems" rowHeight="{{rowHeight}}"
+    [codeProduct]="productService.product.codeProduct">
+  </app-results-race>
+
+  <!-- COCK FIGHTING LAST RESULTS -->
+  <app-results-cock-fight
+    *ngIf="productService.product.layoutProducts.type === service.typeLayout.COCK_FIGHT"
+    [items]="productService.product.layoutProducts.resultItems" rowHeight="{{rowHeight}}"
+    [codeProduct]="productService.product.codeProduct">
+  </app-results-cock-fight>
+
+  <!-- SOCCER LAST RESULTS -->
+  <app-results-soccer
+    *ngIf="productService.product.layoutProducts.type === service.typeLayout.SOCCER"
+    [items]="productService.product.layoutProducts.resultItems" rowHeight="{{rowHeight}}"
+    [codeProduct]="productService.product.codeProduct">
+  </app-results-soccer>
+
+  <!-- KENO LAST RESULTS -->
+  <app-results-keno
+    *ngIf="productService.product.layoutProducts.type === service.typeLayout.KENO"
+    rowHeight="{{rowHeight}}">
+  </app-results-keno>
+
+  <!-- COLOURS LAST RESULTS -->
+  <app-results-colours
+    *ngIf="productService.product.layoutProducts.type === service.typeLayout.COLOURS"
+    rowHeight="{{rowHeight}}">
+  </app-results-colours>
+
+  <!-- ROULET LAST RESULTS -->
+  <app-results-americanroulette
+    *ngIf="productService.product.layoutProducts.type === service.typeLayout.AMERICANROULETTE"
+    rowHeight="{{rowHeight}}">
+  </app-results-americanroulette>
+</div>

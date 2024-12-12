@@ -1,0 +1,6 @@
+<div fxFill fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="1vw" class="special-box">
+  <button *ngFor="let l of [6,7,8,9,10,15]" (click)="placingColourLucky(lucky[lucky[l]])"
+    class="btn-default btn-lucky btn-grey-gradient radius-5 elevation-z5">
+    {{ 'LUCKY' | translate }} {{l}}
+  </button>
+</div>

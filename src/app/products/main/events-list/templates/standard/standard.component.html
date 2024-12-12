@@ -1,0 +1,9 @@
+<mat-grid-list class="list-race" fxFill cols="5" rowHeight="{{rowHeight * 2 + 1}}">
+  <mat-grid-tile class="card-box" *ngFor="let race of eventsList?.events  | slice:0:webColumnDefinition; let i = index">
+    <div *ngIf="race != null" fxLayout="column" fxFill fxLayoutAlign="center center" class="btn-reset btn-tournament-name radius-5"
+      [ngClass]="{ 'selected' : eventsList.currentEvent == i }" (click)="eventSelecting(i)">
+      <span>{{race.eventLabel | uppercase}}</span>
+      <span>{{ race.eventStart | date:'HH:mm' }}</span>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

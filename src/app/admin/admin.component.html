@@ -1,0 +1,55 @@
+<div fxLayout="row" id="admin" fxLayoutAlign="start start">
+  <div fxFlex="33.3">
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+      <div class="admin-panel-container radius-15">
+        <div class="title-container">
+          <img class="img-title" src="assets/icons/baseline-history-24px.svg" alt=""><span
+            class="txt-title">{{'REPORTS' | translate }}</span>
+        </div>
+        <button class="btn-default btn-success btn-admin radius-5" routerLink="reports/betsList"><img
+            src="assets/icons/baseline-list-24px.svg" alt="" /> <span
+            class="-btn-admin-txt">{{'BETS_LIST' | translate }}</span> </button>
+        <button class="btn-default btn-success btn-admin radius-5" routerLink="reports/operatorSummary"
+          *ngIf="isAdminLogged"><img src="assets/icons/baseline-list-24px.svg" alt="" /> <span
+            class="-btn-admin-txt">{{'OPERATOR_SUMMARY' | translate }}</span> </button>
+        <button class="btn-default btn-success btn-admin radius-5" routerLink="reports/transactionsList"
+          *ngIf="isAdminLogged"><img src="assets/icons/baseline-list-24px.svg" alt="" /> <span
+            class="-btn-admin-txt">{{'TRANSACTIONS_LIST' | translate }}</span> </button>
+        <button class="btn-default btn-success btn-admin radius-5" routerLink="reports/statement-vitual-shop"
+          *ngIf="isAdminLogged"><img src="assets/icons/baseline-list-24px.svg" alt="" /> <span
+            class="-btn-admin-txt">{{'STATEMENT_VIRTUAL_SHOP' | translate }}</span> </button>
+      </div>
+      <div fxFlex="100" class="admin-panel-container radius-15">
+        <div class="title-container">
+          <img class="img-title" src="assets/icons/baseline-settings-20px.svg" alt=""><span
+            class="txt-title">{{'SETTINGS' | translate }}</span>
+        </div>
+        <button class="btn-default btn-success btn-admin radius-5" routerLink="./operators"
+          *ngIf="isAdminLogged && appSettings.loginInteractive">
+          <img src="assets/icons/baseline_supervised_user_circle_white_24px.png" alt="" />
+          <span class="-btn-admin-txt">{{'OPERATORS' | translate }}</span>
+        </button>
+        <div class="padding-5"></div>
+        <button class="btn-default btn-success btn-admin radius-5" routerLink="./vbox">
+          <img src="assets/icons/baseline_tv_white_18px.png" alt="" />
+          <span class="-btn-admin-txt">{{'VBOX.MANAGEMENT' | translate }}</span>
+        </button>
+        <div class="padding-5"></div>
+        <button class="btn-default btn-success btn-admin radius-5" routerLink="settings/languages"><img
+            src="assets/icons/baseline-language-24px.svg" alt="" /> <span
+            class="-btn-admin-txt">{{'LANGUAGE' | translate }}</span> </button>
+      </div>
+      <div class="admin-panel-container logout radius-15"> <button
+          class="btn-default btn-grey-gradient btn-admin radius-5"
+          (click)="userService.logout()">{{'LOGOUT' | translate | uppercase }}</button>
+      </div>
+    </div>
+  </div>
+  <div fxFlex="33.3">
+
+  </div>
+  <div fxFlex="33.3">
+
+  </div>
+  <div class="logo-with-text admin-logo"></div>
+</div>

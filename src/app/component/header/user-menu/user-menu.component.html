@@ -1,0 +1,33 @@
+<div fxFlexFill fxLayout="row" fxLayoutAlign="end center" class="user-menu">
+  <div fxLayout="column" fxLayoutAlign="top">
+    <!-- NOTIFICATION -->
+    <ng-container *ngIf="notifyIcon">
+      <button class="btn-reset toolbar icon notification counter-btn" >
+        <div 
+          [style.width.px]="notifyIcon.width" 
+          [style.height.px]="notifyIcon.height"
+          class="counter-container">       
+        </div>
+      </button>
+    </ng-container>
+  </div>
+  <div fxLayout="column" class="details">
+    <div fxLayout="column" *ngIf="userService.dataUserDetail?.userDetail">
+      {{'BALANCE' | translate }}:
+      {{userService.dataUserDetail.userDetail?.PlayableBalance | currency : userService.userCurrency : 'symbol-narrow'}}
+    </div>
+    <div fxLayout="row">
+      {{'OPERATOR' | translate }}:
+      <span class="operator"
+        *ngIf="userService.dataUserDetail?.userDetail">{{userService.dataUserDetail.userDetail?.UserName  }}</span>
+      <span class="operator"
+        *ngIf="userService.dataUserDetail?.operatorDetail">{{userService.dataUserDetail.operatorDetail?.UserName }}</span>
+
+    </div>
+  </div>
+  <div fxLayout="row" class="clock elevation-z5" fxFlexAlign="start" *ngIf="notifyIcon">
+    <div [style.width.px]="notifyIcon.height * 0.53" [style.height.px]="notifyIcon.height * 0.53"
+      class="clock-icon icon-baseline-access_time"></div>
+    {{ myTime | date:'hh:mm' }}
+  </div>
+</div>

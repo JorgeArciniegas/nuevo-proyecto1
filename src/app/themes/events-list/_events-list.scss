@@ -1,0 +1,10 @@
+.list-race {
+  .btn-tournament-name {
+    @extend %btn-success-gradient;
+    font-weight: bold;
+    &.selected {
+      @extend %btn-blue-gradient;
+    }
+  }
+
+}

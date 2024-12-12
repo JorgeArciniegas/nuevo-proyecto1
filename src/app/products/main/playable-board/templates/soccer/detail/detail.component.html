@@ -1,0 +1,189 @@
+<mat-grid-list class="detail-section" cols="8" rowHeight="{{rowHeight * 16/11}}">
+  <!-- AREAS -->
+  <mat-grid-tile class="areas-column" colspan="2" rowspan="11">
+    <div [style.width.%]="100">
+      <mat-grid-list cols="1" rowHeight="{{rowHeight * 16/21}}">
+        <mat-grid-tile class="section-identifier">{{ 'AREAS' | translate }}</mat-grid-tile>
+        <mat-grid-tile
+          *ngFor="let area of soccerService.tournament.listDetailAreas[soccerService.selectedMatch]; let i = index"
+          rowspan="2">
+          <button class="btn-soccer-area radius-5" [ngClass]="area.isSelected ?  'btn-selected': 'btn-grey-gradient'"
+            (click)="changeArea(i)">
+            <div class="btn-soccer-area__details" fxLayoutAlign="center center">
+              <span
+                class="btn-soccer-area__details--name">{{ 'DYNAMIC_KEYS.SOCCER.AREAS.' + area.name | translate }}</span>
+              <div class="btn-soccer-area__details--icon"
+                [ngClass]="{'star-yellow-icon': area.hasLowestOdd, 'star-red-icon': area.hasHighestOdd}"
+                *ngIf="area.hasLowestOdd || area.hasHighestOdd">
+              </div>
+            </div>
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </mat-grid-tile>
+
+  <!-- SELECTIONS -->
+  <mat-grid-tile colspan="6" rowspan="11" *ngIf="soccerService.selectedArea !== 4">
+    <div [style.width.%]="100">
+      <mat-grid-list
+        cols="{{ soccerService.tournament.listDetailAreas[soccerService.selectedMatch][soccerService.selectedArea].layoutDefinition.areaCols }}"
+        rowHeight="{{rowHeight * 16/21}}">
+        <mat-grid-tile class="section-identifier"
+          colspan="{{ soccerService.tournament.listDetailAreas[soccerService.selectedMatch][soccerService.selectedArea].layoutDefinition.areaCols }}">
+          {{ 'MARKETS' | translate }}</mat-grid-tile>
+        <mat-grid-tile rowspan="20"
+          *ngFor="let colunm of soccerService.tournament.listDetailAreas[soccerService.selectedMatch][soccerService.selectedArea].layoutDefinition.areaCols | getArrayFromNumber; let i = index">
+          <div [style.width.%]="100">
+            <mat-grid-list class="markets-selections-column"
+              cols="{{ soccerService.tournament.listDetailAreas[soccerService.selectedMatch][soccerService.selectedArea].layoutDefinition.areaMaxMarketColsByCol[i] }}"
+              rowHeight="{{rowHeight * 16/21 * 1/7.82}}">
+              <ng-container
+                *ngFor="let market of soccerService.tournament.listDetailAreas[soccerService.selectedMatch][soccerService.selectedArea].markets">
+                <ng-container *ngFor="let odd of market.selections">
+                  <mat-grid-tile *ngIf="market.layoutGridDefinition.marketPositionOnColArea === i + 1"
+                    colspan="{{ soccerService.tournament.listDetailAreas[soccerService.selectedMatch][soccerService.selectedArea].layoutDefinition.areaMaxMarketColsByCol[i] / market.layoutGridDefinition.marketCols }}"
+                    rowspan="{{ 120 / soccerService.tournament.listDetailAreas[soccerService.selectedMatch][soccerService.selectedArea].layoutDefinition.areaRowsByCol[i] }}">
+                    <button class="btn-soccer-odd radius-5"
+                      [ngClass]="soccerService.tournament.matches[soccerService.selectedMatch].selectedOdds.includes(odd.id) ? 'btn-selected' : 'btn-grey-gradient'"
+                      [disabled]="!odd.isValid" (click)="selectOdd(market.id, odd)">
+                      <div class="btn-soccer-odd__details" fxLayoutAlign="center center">
+                        <div *ngIf="!soccerService.oddsInProcessing.includes(odd.id)" fxLayoutAlign="center center"
+                          fxLayout="column">
+                          <div class="btn-soccer-odd__details--name">
+                            <span
+                              *ngIf="market.id !== 2 && market.id !== 10 && market.id !== 13 && market.id !== 44 && market.id !== 46 && market.id !== 658 && market.id !== 1009 && market.id !== 1018">{{ 'DYNAMIC_KEYS.SOCCER.MARKETS.' + odd.nm | translate }}</span>
+                            <span
+                              *ngIf="market.id === 2 || market.id === 10 || market.id === 13 || market.id === 44 || market.id === 46 || market.id === 658 || market.id === 1009 || market.id === 1018">{{ odd.nm }}</span>
+                            <span *ngIf="market.id === 22"> {{ 'HOME' | translate }}</span>
+                            <span *ngIf="market.id === 23"> {{ 'AWAY' | translate }}</span>
+                            <span *ngIf="market.hasSpecialValue"> {{ market.specialValueOrSpread }}</span>
+                          </div>
+                          <div class="btn-soccer-odd__details--second_line" fxLayoutAlign="center center">
+                            <span class="btn-soccer-odd__details--value" *ngIf="odd.isValid">{{ odd.ods[0].vl }}</span>
+                            <span class="btn-soccer-odd__details--value" *ngIf="!odd.isValid">-</span>
+                            <div class="btn-soccer-odd__details--icon"
+                              [ngClass]="{'star-yellow-icon': odd.isLowestOdd, 'star-red-icon': odd.isHighestOdd}"
+                              *ngIf="odd.isLowestOdd || odd.isHighestOdd">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="vg-loader-spinner" *ngIf="soccerService.oddsInProcessing.includes(odd.id)"></div>
+                      </div>
+                    </button>
+                  </mat-grid-tile>
+                </ng-container>
+              </ng-container>
+            </mat-grid-list>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </mat-grid-tile>
+  <!-- CORRECT SCORE-->
+  <mat-grid-tile colspan="6" rowspan="11" *ngIf="soccerService.selectedArea === 4">
+    <mat-grid-list fxFill cols="3" rowHeight="{{rowHeight * 16/21}}">
+      <mat-grid-tile class="section-identifier" colspan="3">
+        {{ 'MARKETS' | translate }}</mat-grid-tile>
+      <mat-grid-tile rowspan="20" colspan="1">
+        <mat-grid-list cols="1" fxFill class="markets-selections-column" rowHeight="{{rowHeight * 16/21 * 1/7.82}}">
+          <ng-container
+            *ngFor="let market of soccerService.tournament.listDetailAreas[soccerService.selectedMatch][soccerService.selectedArea].markets | extractCorrectScore:'1'">
+            <ng-container *ngFor="let odd of market.selections">
+              <mat-grid-tile
+                rowspan="{{ 120 / soccerService.tournament.listDetailAreas[soccerService.selectedMatch][soccerService.selectedArea].layoutDefinition.areaRowsByCol[0] }}">
+                <button class="btn-soccer-odd radius-5"
+                  [ngClass]="soccerService.tournament.matches[soccerService.selectedMatch].selectedOdds.includes(odd.id) ? 'btn-selected' : 'btn-grey-gradient'"
+                  [disabled]="!odd.isValid" (click)="selectOdd(market.id, odd)">
+                  <div class="btn-soccer-odd__details" fxLayoutAlign="center center">
+                    <div *ngIf="!soccerService.oddsInProcessing.includes(odd.id)" fxLayout="column"
+                      fxLayoutAlign="center center">
+                      <div class="btn-soccer-odd__details--name">
+                        <span>{{ odd.nm }}</span>
+                      </div>
+                      <div class="btn-soccer-odd__details--second_line" fxLayoutAlign="center center">
+                        <span class="btn-soccer-odd__details--value" *ngIf="odd.isValid">{{ odd.ods[0].vl }}</span>
+                        <span class="btn-soccer-odd__details--value" *ngIf="!odd.isValid">-</span>
+                        <div class="btn-soccer-odd__details--icon"
+                          [ngClass]="{'star-yellow-icon': odd.isLowestOdd, 'star-red-icon': odd.isHighestOdd}"
+                          *ngIf="odd.isLowestOdd || odd.isHighestOdd">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="vg-loader-spinner" *ngIf="soccerService.oddsInProcessing.includes(odd.id)"></div>
+                  </div>
+                </button>
+              </mat-grid-tile>
+            </ng-container>
+          </ng-container>
+        </mat-grid-list>
+      </mat-grid-tile>
+      <mat-grid-tile rowspan="20" colspan="1">
+        <mat-grid-list cols="1" fxFill class="markets-selections-column" rowHeight="{{rowHeight * 16/21 * 1/7.82}}">
+          <ng-container
+            *ngFor="let market of soccerService.tournament.listDetailAreas[soccerService.selectedMatch][soccerService.selectedArea].markets | extractCorrectScore:'X'">
+            <ng-container *ngFor="let odd of market.selections">
+              <mat-grid-tile
+                rowspan="{{ 120 / soccerService.tournament.listDetailAreas[soccerService.selectedMatch][soccerService.selectedArea].layoutDefinition.areaRowsByCol[0] }}">
+                <button class="btn-soccer-odd radius-5"
+                  [ngClass]="soccerService.tournament.matches[soccerService.selectedMatch].selectedOdds.includes(odd.id) ? 'btn-selected' : 'btn-grey-gradient'"
+                  [disabled]="!odd.isValid" (click)="selectOdd(market.id, odd)">
+                  <div class="btn-soccer-odd__details" fxLayoutAlign="center center">
+                    <div *ngIf="!soccerService.oddsInProcessing.includes(odd.id)" fxLayout="column"
+                      fxLayoutAlign="center center">
+                      <div class="btn-soccer-odd__details--name">
+                        <span>{{ odd.nm }}</span>
+                      </div>
+                      <div class="btn-soccer-odd__details--second_line" fxLayoutAlign="center center">
+                        <span class="btn-soccer-odd__details--value" *ngIf="odd.isValid">{{ odd.ods[0].vl }}</span>
+                        <span class="btn-soccer-odd__details--value" *ngIf="!odd.isValid">-</span>
+                        <div class="btn-soccer-odd__details--icon"
+                          [ngClass]="{'star-yellow-icon': odd.isLowestOdd, 'star-red-icon': odd.isHighestOdd}"
+                          *ngIf="odd.isLowestOdd || odd.isHighestOdd">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="vg-loader-spinner" *ngIf="soccerService.oddsInProcessing.includes(odd.id)"></div>
+                  </div>
+                </button>
+              </mat-grid-tile>
+            </ng-container>
+          </ng-container>
+        </mat-grid-list>
+      </mat-grid-tile>
+      <mat-grid-tile rowspan="20" colspan="1">
+        <mat-grid-list cols="1" fxFill class="markets-selections-column" rowHeight="{{rowHeight * 16/21 * 1/7.82}}">
+          <ng-container
+            *ngFor="let market of soccerService.tournament.listDetailAreas[soccerService.selectedMatch][soccerService.selectedArea].markets | extractCorrectScore:'2'">
+            <ng-container *ngFor="let odd of market.selections">
+              <mat-grid-tile
+                rowspan="{{ 120 / soccerService.tournament.listDetailAreas[soccerService.selectedMatch][soccerService.selectedArea].layoutDefinition.areaRowsByCol[0] }}">
+                <button class="btn-soccer-odd radius-5"
+                  [ngClass]="soccerService.tournament.matches[soccerService.selectedMatch].selectedOdds.includes(odd.id) ? 'btn-selected' : 'btn-grey-gradient'"
+                  [disabled]="!odd.isValid" (click)="selectOdd(market.id, odd)">
+                  <div class="btn-soccer-odd__details" fxLayoutAlign="center center">
+                    <div *ngIf="!soccerService.oddsInProcessing.includes(odd.id)" fxLayout="column"
+                      fxLayoutAlign="center center">
+                      <div class="btn-soccer-odd__details--name">
+                        <span>{{ odd.nm }}</span>
+                      </div>
+                      <div class="btn-soccer-odd__details--second_line" fxLayoutAlign="center center">
+                        <span class="btn-soccer-odd__details--value" *ngIf="odd.isValid">{{ odd.ods[0].vl }}</span>
+                        <span class="btn-soccer-odd__details--value" *ngIf="!odd.isValid">-</span>
+                        <div class="btn-soccer-odd__details--icon"
+                          [ngClass]="{'star-yellow-icon': odd.isLowestOdd, 'star-red-icon': odd.isHighestOdd}"
+                          *ngIf="odd.isLowestOdd || odd.isHighestOdd">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="vg-loader-spinner" *ngIf="soccerService.oddsInProcessing.includes(odd.id)"></div>
+                  </div>
+                </button>
+              </mat-grid-tile>
+            </ng-container>
+          </ng-container>
+        </mat-grid-list>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-grid-tile>
+</mat-grid-list>

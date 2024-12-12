@@ -1,0 +1,56 @@
+<ng-container *ngIf="eventDetails">
+
+  <ng-container *ngFor="let market of eventDetails.mk | filterAndSortByShownMarkets: shownMarkets">
+    <!-- MARKET'S ROW -->
+    <ng-container *ngIf="market.tp !== marketEnum['OverUnder']">
+      <mat-grid-list class="playable-grid-buttons" cols="30" rowHeight="{{rowHeight * 16/5}}">
+        <mat-grid-tile class="tile-market-name" colspan="6">
+          <span class="playable-row-tile display radius-5">
+            {{ "DYNAMIC_KEYS.CockMarket.NAME." + market.nm | translate | uppercase}}
+          </span>
+        </mat-grid-tile>
+        <ng-container *ngFor="let selection of market.sls">
+          <mat-grid-tile *ngIf="(selection.tp !== 3 || selection.tp === 3 && market.tp !== marketEnum['1X2OverUnder']) &&
+            (selection.tp !== 5 || selection.tp === 5 && market.tp !== marketEnum['1X2WinningSector']) &&
+            (selection.tp !== 5 || selection.tp === 5 && market.tp !== marketEnum['WinningSector']) "
+            colspan="{{(market.tp !== marketEnum['1X2OverUnder'] && market.tp !== marketEnum['1X2WinningSector'] && market.tp !== marketEnum['WinningSector'] ) ? 24 / market.sls.length : 24 / (market.sls.length - 1)}}">
+            <button (click)="selectOdd(market.tp, selection)"
+              [ngClass]="{'btn-actived': oddsSelected?.includes(selection.id)}"
+              class="btn btn-default btn-default-cock radius-5  btn-cock-{{ selection.nm | competitorIto }}"
+              [disabled]="selection.ods[0].vl <= 0">
+              <div *ngIf="market.tp === marketEnum['1X2'] && (selection.tp === 1 || selection.tp === 3)" class="icon"
+                [ngClass]="{'icon-cock-red': selection.tp === 1, 'icon-cock-blue': selection.tp === 3}">
+              </div>
+              <div class="selection-details" fxLayout="column" fxLayoutAlign="center center">
+                <!-- <span>{{selection.tp }} , {{ market.tp }} , {{ marketEnum['1X2WinningSector']}}</span> -->
+                <span class="selection-name"
+                  *ngIf="(market.tp === marketEnum['1X2'] && (selection.tp === 1 || selection.tp === 3)) ">{{ selection.nm | competitorName: eventDetails.tm }}</span>
+                <span class="selection-name"
+                  *ngIf="market.tp !== marketEnum['1X2']">{{ selection.nm | extractSign | translate | uppercase }}</span>
+                <span class="selection-value">{{selection.ods[0].vl > 0 ? (selection.ods[0].vl | number: '1.2-2') : '-'}}</span>
+              </div>
+            </button>
+          </mat-grid-tile>
+        </ng-container>
+      </mat-grid-list>
+    </ng-container>
+
+    <!-- SPECIAL BETS -->
+    <ng-container *ngIf="market.tp === marketEnum['OverUnder']">
+      <mat-grid-list class="playable-grid-buttons playable-special-bets" cols="30" rowHeight="{{rowHeight * 16/5}}">
+        <mat-grid-tile colspan="6"></mat-grid-tile>
+        <mat-grid-tile colspan="12" *ngFor="let index of [0,1]">
+          <button (click)="selectOdd(market.tp, market.sls[index])"
+            class="btn-reset btn-default btn-success radius-5 elevation-z5"
+            [ngClass]="{'actived': oddsSelected?.includes(market.sls[index].id)}" fxLayout="column"
+            fxLayoutAlign="center center"
+            [disabled]="market.sls[index].ods[0].vl <= 0">
+            <span class="selection-name">{{ market.sls[index].nm | translate | uppercase}}</span>
+            <span class="selection-value">{{market.sls[index].ods[0].vl > 0 ? (market.sls[index].ods[0].vl | number: '1.2-2') : '-'}}</span>
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </ng-container>
+  </ng-container>
+
+</ng-container>

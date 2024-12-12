@@ -1,0 +1,4452 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "c6fe5705-6c71-4159-84f6-a81817958d24"
+  },
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "vdesk": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/vdesk",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/app/themes/skins",
+              "src/manifest.webmanifest"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            },
+            "vgen-android-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-vgen",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/develop/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.vgen.ts"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            },
+            "vgen-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-vgen",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/develop/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.vgen.ts"
+                }
+              ]
+            },
+            "vgen-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/develop/"
+                ]
+              },
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/develop/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/develop/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/develop",
+                  "output": "assets"
+                }
+              ],
+              "outputPath": "dist/vg-vgen",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.vgen.ts"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            },
+            "vgen-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-vgen",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/develop/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.vgen-staging.ts"
+                }
+              ]
+            },
+            "vgen-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/develop/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/develop/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/develop",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-vgen",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/develop/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.vgen-staging.ts"
+                }
+              ]
+            },
+            "vgen-qavg-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/develop/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/develop/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/develop",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qavg-vgen",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/develop/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.vgen-staging.ts"
+                }
+              ]
+            },
+            "gensolutions-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-gensolutions",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.gensolutions.ts"
+                }
+              ]
+            },
+            "gensolutions-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/gensolutions/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/gensolutions/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/gensolutions",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-gensolutions",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.gensolutions.ts"
+                }
+              ]
+            },
+            "gensolutions-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-gensolutions",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.gensolutions-staging.ts"
+                }
+              ]
+            },
+            "gensolutions-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/gensolutions/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/gensolutions/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/gensolutions",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-gensolutions",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.gensolutions-staging.ts"
+                }
+              ]
+            },
+            "dngaming-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-dngaming",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dngaming.ts"
+                }
+              ]
+            },
+            "dngaming-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/dngaming/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/dngaming/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/dngaming",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-dngaming",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dngaming.ts"
+                }
+              ]
+            },
+            "dngaming-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-dngaming",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dngaming-staging.ts"
+                }
+              ]
+            },
+            "dngaming-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/dngaming/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/dngaming/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/dngaming",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-dngaming",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dngaming-staging.ts"
+                }
+              ]
+            },
+            "shawis-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-shawis",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.shawis.ts"
+                }
+              ]
+            },
+            "shawis-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/shawis/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/shawis/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/shawis",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-shawis",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.shawis.ts"
+                }
+              ]
+            },
+            "shawis-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-shawis",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.shawis-staging.ts"
+                }
+              ]
+            },
+            "shawis-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/shawis/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/shawis/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/shawis",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-shawis",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.shawis-staging.ts"
+                }
+              ]
+            },
+            "oneway-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-oneway",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/oneway/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.oneway.ts"
+                }
+              ]
+            },
+            "oneway-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/oneway/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/oneway/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/oneway",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-oneway",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/oneway/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.oneway.ts"
+                }
+              ]
+            },
+            "oneway-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-oneway",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/oneway/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.oneway-staging.ts"
+                }
+              ]
+            },
+            "oneway-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/oneway/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/oneway/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/oneway",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-oneway",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/oneway/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.oneway-staging.ts"
+                }
+              ]
+            },
+            "universalsoft-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/universalsoft/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/universalsoft/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/universalsoft",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-universalsoft",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/universalsoft/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.universalsoft.ts"
+                }
+              ]
+            },
+            "universalsoft-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-universalsoft",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/universalsoft/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.universalsoft.ts"
+                }
+              ]
+            },
+            "universalsoft-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-universalsoft",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/universalsoft/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.universalsoft-staging.ts"
+                }
+              ]
+            },
+            "universalsoft-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/universalsoft/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/universalsoft/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/universalsoft",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-universalsoft",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/universalsoft/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.universalsoft-staging.ts"
+                }
+              ]
+            },
+            "mayabet-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-mayabet",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/mayabet/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.mayabet.ts"
+                }
+              ]
+            },
+            "mayabet-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/mayabet/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/mayabet/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/mayabet",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-mayabet",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/mayabet/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.mayabet.ts"
+                }
+              ]
+            },
+            "mayabet-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-mayabet",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/mayabet/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.mayabet-staging.ts"
+                }
+              ]
+            },
+            "mayabet-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/mayabet/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/mayabet/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/mayabet",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-mayabet",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/mayabet/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.mayabet-staging.ts"
+                }
+              ]
+            },
+            "genc01-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-genc01",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/develop/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.genc01.ts"
+                }
+              ]
+            },
+            "genc01-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/develop/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/develop/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/develop",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-genc01",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/develop/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.genc01.ts"
+                }
+              ]
+            },
+            "genc01-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-genc01",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/develop/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.genc01-staging.ts"
+                }
+              ]
+            },
+            "genc01-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/develop/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/develop/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/develop",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-genc01",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/develop/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.genc01-staging.ts"
+                }
+              ]
+            },
+            "genc02-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-genc02",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.genc02.ts"
+                }
+              ]
+            },
+            "genc02-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/no-brand/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/no-brand/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/no-brand",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-genc02",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.genc02.ts"
+                }
+              ]
+            },
+            "genc02-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-genc02",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.genc02-staging.ts"
+                }
+              ]
+            },
+            "genc02-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/no-brand/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/no-brand/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/no-brand",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-genc02",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.genc02-staging.ts"
+                }
+              ]
+            },
+            "genc03-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-genc03",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/develop/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.genc03.ts"
+                }
+              ]
+            },
+            "genc03-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/develop/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/develop/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/develop",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-genc03",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/develop/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.genc03.ts"
+                }
+              ]
+            },
+            "genc03-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-genc03",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/develop/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.genc03-staging.ts"
+                }
+              ]
+            },
+            "genc03-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/develop/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/develop/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/develop",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-genc03",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/develop/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.genc03-staging.ts"
+                }
+              ]
+            },
+            "genc04-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-genc04",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.genc04.ts"
+                }
+              ]
+            },
+            "genc04-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/no-brand/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/no-brand/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/no-brand",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-genc04",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.genc04.ts"
+                }
+              ]
+            },
+            "genc04-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-genc04",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.genc04-staging.ts"
+                }
+              ]
+            },
+            "genc04-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/no-brand/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/no-brand/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/no-brand",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-genc04",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.genc04-staging.ts"
+                }
+              ]
+            },
+            "betese-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-betese",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/universalsoft/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betese.ts"
+                }
+              ]
+            },
+            "betese-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betese/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betese/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/betese",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-betese",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/universalsoft/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betese.ts"
+                }
+              ]
+            },
+            "betese-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-betese",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/universalsoft/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betese-staging.ts"
+                }
+              ]
+            },
+            "betese-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betese/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betese/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/betese",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-betese",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/universalsoft/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betese-staging.ts"
+                }
+              ]
+            },
+            "betconnection-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-betconnection",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/betconnection/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betconnection.ts"
+                }
+              ]
+            },
+            "betconnection-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betconnection/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betconnection/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/betconnection",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-betconnection",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/betconnection/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betconnection.ts"
+                }
+              ]
+            },
+            "betconnection-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-betconnection",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/betconnection/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betconnection-staging.ts"
+                }
+              ]
+            },
+            "betconnection-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betconnection/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betconnection/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/betconnection",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-betconnection",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/betconnection/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betconnection-staging.ts"
+                }
+              ]
+            },
+            "sportrace-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-sportrace",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/sportrace/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.sportrace.ts"
+                }
+              ]
+            },
+            "sportrace-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/sportrace/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/sportrace/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/sportrace",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-sportrace",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/sportrace/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.sportrace.ts"
+                }
+              ]
+            },
+            "sportrace-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-sportrace",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/sportrace/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.sportrace-staging.ts"
+                }
+              ]
+            },
+            "sportrace-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/sportrace/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/sportrace/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/sportrace",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-sportrace",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/sportrace/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.sportrace-staging.ts"
+                }
+              ]
+            },
+            "bolivarbet-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-bolivarbet",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/bolivarbet/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.bolivarbet.ts"
+                }
+              ]
+            },
+            "bolivarbet-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/bolivarbet/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/bolivarbet/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/bolivarbet",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-bolivarbet",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/bolivarbet/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.bolivarbet.ts"
+                }
+              ]
+            },
+            "bolivarbet-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-bolivarbet",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/bolivarbet/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.bolivarbet-staging.ts"
+                }
+              ]
+            },
+            "bolivarbet-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/bolivarbet/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/bolivarbet/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/bolivarbet",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-bolivarbet",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/bolivarbet/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.bolivarbet-staging.ts"
+                }
+              ]
+            },
+            "uganbet-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-uganbet",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.uganbet.ts"
+                }
+              ]
+            },
+            "uganbet-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/uganbet/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/uganbet/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/uganbet",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-uganbet",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.uganbet.ts"
+                }
+              ]
+            },
+            "uganbet-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-uganbet",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.uganbet-staging.ts"
+                }
+              ]
+            },
+            "uganbet-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/uganbet/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/uganbet/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/uganbet",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-uganbet",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.uganbet-staging.ts"
+                }
+              ]
+            },
+            "apuestas-dominicanas-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-apuestas-dominicanas",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/apuestas-dominicanas/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.apuestas-dominicanas.ts"
+                }
+              ]
+            },
+            "apuestas-dominicanas-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/apuestas-dominicanas/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/apuestas-dominicanas/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/apuestas-dominicanas",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-apuestas-dominicanas",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/apuestas-dominicanas/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.apuestas-dominicanas.ts"
+                }
+              ]
+            },
+            "apuestas-dominicanas-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-apuestas-dominicanas",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/apuestas-dominicanas/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.apuestas-dominicanas-staging.ts"
+                }
+              ]
+            },
+            "apuestas-dominicanas-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/apuestas-dominicanas/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/apuestas-dominicanas/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/apuestas-dominicanas",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-apuestas-dominicanas",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/apuestas-dominicanas/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.apuestas-dominicanas-staging.ts"
+                }
+              ]
+            },
+            "f2o-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-f2o",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.f2o.ts"
+                }
+              ]
+            },
+            "f2o-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/f2o/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/f2o/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/f2o",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-f2o",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.f2o.ts"
+                }
+              ]
+            },
+            "f2o-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-f2o",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.f2o-staging.ts"
+                }
+              ]
+            },
+            "f2o-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/f2o/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/f2o/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/f2o",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-f2o",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.f2o-staging.ts"
+                }
+              ]
+            },
+            "soft-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-soft",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/soft/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.soft.ts"
+                }
+              ]
+            },
+            "soft-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/soft/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/soft/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/soft",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-soft",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/soft/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.soft.ts"
+                }
+              ]
+            },
+            "soft-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-soft",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/soft/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.soft-staging.ts"
+                }
+              ]
+            },
+            "soft-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/soft/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/soft/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/soft",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-soft",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/soft/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.soft-staging.ts"
+                }
+              ]
+            },
+            "kyron-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-kyron",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/kyron/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.kyron.ts"
+                }
+              ]
+            },
+            "kyron-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/kyron/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/kyron/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/kyron",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-kyron",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/kyron/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.kyron.ts"
+                }
+              ]
+            },
+            "kyron-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-kyron",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/kyron/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.kyron-staging.ts"
+                }
+              ]
+            },
+            "kyron-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/kyron/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/kyron/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/kyron",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-kyron",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/kyron/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.kyron-staging.ts"
+                }
+              ]
+            },
+            "homerun-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-homerun",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/homerun/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.homerun.ts"
+                }
+              ]
+            },
+            "homerun-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/homerun/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/homerun/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/homerun",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-homerun",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/homerun/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.homerun.ts"
+                }
+              ]
+            },
+            "homerun-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-homerun",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/homerun/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.homerun-staging.ts"
+                }
+              ]
+            },
+            "homerun-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/homerun/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/homerun/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/homerun",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-homerun",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/homerun/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.homerun-staging.ts"
+                }
+              ]
+            },
+            "betlogik-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-betlogik",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/betlogik/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betlogik.ts"
+                }
+              ]
+            },
+            "betlogik-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betlogik/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betlogik/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/betlogik",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-betlogik",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/betlogik/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betlogik.ts"
+                }
+              ]
+            },
+            "betlogik-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-betlogik",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/betlogik/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betlogik-staging.ts"
+                }
+              ]
+            },
+            "betlogik-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betlogik/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betlogik/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/betlogik",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-betlogik",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/betlogik/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betlogik-staging.ts"
+                }
+              ]
+            },
+            "doradobet-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-doradobet",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/doradobet/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.doradobet.ts"
+                }
+              ]
+            },
+            "doradobet-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/doradobet/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/doradobet/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/doradobet",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-doradobet",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/doradobet/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.doradobet.ts"
+                }
+              ]
+            },
+            "doradobet-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-doradobet",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/doradobet/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.doradobet-staging.ts"
+                }
+              ]
+            },
+            "doradobet-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/doradobet/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/doradobet/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/doradobet",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-doradobet",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/doradobet/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.doradobet-staging.ts"
+                }
+              ]
+            },
+            "hbg-peru-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-hbg-peru",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/hbg-peru/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hbg-peru.ts"
+                }
+              ]
+            },
+            "hbg-peru-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/hbg-peru/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/hbg-peru/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/hbg-peru",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-hbg-peru",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/hbg-peru/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hbg-peru.ts"
+                }
+              ]
+            },
+            "hbg-peru-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-hbg-peru",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/hbg-peru/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hbg-peru-staging.ts"
+                }
+              ]
+            },
+            "hbg-peru-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/hbg-peru/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/hbg-peru/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/hbg-peru",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-hbg-peru",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/hbg-peru/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hbg-peru-staging.ts"
+                }
+              ]
+            },
+            "soccerbet-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-soccerbet",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/soccerbet/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.soccerbet.ts"
+                }
+              ]
+            },
+            "soccerbet-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/soccerbet/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/soccerbet/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/soccerbet",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-soccerbet",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/soccerbet/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.soccerbet.ts"
+                }
+              ]
+            },
+            "soccerbet-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-soccerbet",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/soccerbet/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.soccerbet-staging.ts"
+                }
+              ]
+            },
+            "soccerbet-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/soccerbet/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/soccerbet/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/soccerbet",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-soccerbet",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/soccerbet/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.soccerbet-staging.ts"
+                }
+              ]
+            },
+            "betsafi-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-betsafi",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betsafi.ts"
+                }
+              ]
+            },
+            "betsafi-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betsafi/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betsafi/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/betsafi",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-betsafi",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betsafi.ts"
+                }
+              ]
+            },
+            "betsafi-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-betsafi",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betsafi-staging.ts"
+                }
+              ]
+            },
+            "betsafi-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betsafi/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betsafi/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/betsafi",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-betsafi",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betsafi-staging.ts"
+                }
+              ]
+            },
+            "tradabets-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-tradabets",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/tradabets/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.tradabets.ts"
+                }
+              ]
+            },
+            "tradabets-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/tradabets/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/tradabets/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/tradabets",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-tradabets",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/tradabets/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.tradabets.ts"
+                }
+              ]
+            },
+            "tradabets-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-tradabets",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/tradabets/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.tradabets-staging.ts"
+                }
+              ]
+            },
+            "tradabets-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/tradabets/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/tradabets/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/tradabets",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-tradabets",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/tradabets/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.tradabets-staging.ts"
+                }
+              ]
+            },
+            "betsplus-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-betsplus",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betsplus.ts"
+                }
+              ]
+            },
+            "betsplus-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betsplus/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betsplus/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/betsplus",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-betsplus",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betsplus.ts"
+                }
+              ]
+            },
+            "betsplus-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-betsplus",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betsplus-staging.ts"
+                }
+              ]
+            },
+            "betsplus-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betsplus/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betsplus/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/betsplus",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-betsplus",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/no-brand/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betsplus-staging.ts"
+                }
+              ]
+            },
+            "betpro-vg": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-betpro",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/betpro/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betpro.ts"
+                }
+              ]
+            },
+            "betpro-prod-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betpro/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betpro/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/betpro",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/vg-betpro",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/betpro/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betpro.ts"
+                }
+              ]
+            },
+            "betpro-qacom": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "outputPath": "dist-betpro",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/betpro/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betpro-staging.ts"
+                }
+              ]
+            },
+            "betpro-qacom-release": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betpro/image/",
+                  "output": "assets/theme/image/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/themes/skins/betpro/icons/pwa/",
+                  "output": "assets/icons/pwa/"
+                },
+                {
+                  "glob": "manifest.webmanifest",
+                  "input": "src/app/themes/skins/betpro",
+                  "output": "assets"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "outputPath": "dist/qacom-betpro",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/app/themes/skins/betpro/"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.betpro-staging.ts"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": "vgen-prod-release"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "vdesk:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "vdesk:build:production"
+            },
+            "vgen-vg": {
+              "browserTarget": "vdesk:build:vgen-vg"
+            },
+            "vgen-prod-release": {
+              "browserTarget": "vdesk:build:vgen-prod-release"
+            },
+            "vgen-qacom": {
+              "browserTarget": "vdesk:build:vgen-qacom"
+            },
+            "vgen-qacom-release": {
+              "browserTarget": "vdesk:build:vgen-qacom-release"
+            },
+            "vgen-qavg-release": {
+              "browserTarget": "vdesk:build:vgen-qavg-release"
+            },
+            "gensolutions-vg": {
+              "browserTarget": "vdesk:build:gensolutions-vg"
+            },
+            "gensolutions-prod-release": {
+              "browserTarget": "vdesk:build:gensolutions-prod-release"
+            },
+            "gensolutions-qacom": {
+              "browserTarget": "vdesk:build:gensolutions-qacom"
+            },
+            "gensolutions-qacom-release": {
+              "browserTarget": "vdesk:build:gensolutions-qacom-release"
+            },
+            "dngaming-vg": {
+              "browserTarget": "vdesk:build:dngaming-vg"
+            },
+            "dngaming-prod-release": {
+              "browserTarget": "vdesk:build:dngaming-prod-release"
+            },
+            "dngaming-qacom": {
+              "browserTarget": "vdesk:build:dngaming-qacom"
+            },
+            "dngaming-qacom-release": {
+              "browserTarget": "vdesk:build:dngaming-qacom-release"
+            },
+            "shawis-vg": {
+              "browserTarget": "vdesk:build:shawis-vg"
+            },
+            "shawis-prod-release": {
+              "browserTarget": "vdesk:build:shawis-prod-release"
+            },
+            "shawis-qacom": {
+              "browserTarget": "vdesk:build:shawis-qacom"
+            },
+            "shawis-qacom-release": {
+              "browserTarget": "vdesk:build:shawis-qacom-release"
+            },
+            "oneway-vg": {
+              "browserTarget": "vdesk:build:oneway-vg"
+            },
+            "oneway-prod-release": {
+              "browserTarget": "vdesk:build:oneway-prod-release"
+            },
+            "oneway-qacom": {
+              "browserTarget": "vdesk:build:oneway-qacom"
+            },
+            "oneway-qacom-release": {
+              "browserTarget": "vdesk:build:oneway-qacom-release"
+            },
+            "universalsoft-vg": {
+              "browserTarget": "vdesk:build:universalsoft-vg"
+            },
+            "universalsoft-prod-release": {
+              "browserTarget": "vdesk:build:universalsoft-prod-release"
+            },
+            "universalsoft-qacom": {
+              "browserTarget": "vdesk:build:universalsoft-qacom"
+            },
+            "universalsoft-qacom-release": {
+              "browserTarget": "vdesk:build:universalsoft-qacom-release"
+            },
+            "mayabet-vg": {
+              "browserTarget": "vdesk:build:mayabet-vg"
+            },
+            "mayabet-prod-release": {
+              "browserTarget": "vdesk:build:mayabet-prod-release"
+            },
+            "mayabet-qacom": {
+              "browserTarget": "vdesk:build:mayabet-qacom"
+            },
+            "mayabet-qacom-release": {
+              "browserTarget": "vdesk:build:mayabet-qacom-release"
+            },
+            "genc01-vg": {
+              "browserTarget": "vdesk:build:genc01-vg"
+            },
+            "genc01-prod-release": {
+              "browserTarget": "vdesk:build:genc01-prod-release"
+            },
+            "genc01-qacom": {
+              "browserTarget": "vdesk:build:genc01-qacom"
+            },
+            "genc01-qacom-release": {
+              "browserTarget": "vdesk:build:genc01-qacom-release"
+            },
+            "genc02-vg": {
+              "browserTarget": "vdesk:build:genc02-vg"
+            },
+            "genc02-prod-release": {
+              "browserTarget": "vdesk:build:genc02-prod-release"
+            },
+            "genc02-qacom": {
+              "browserTarget": "vdesk:build:genc02-qacom"
+            },
+            "genc02-qacom-release": {
+              "browserTarget": "vdesk:build:genc02-qacom-release"
+            },
+            "genc03-vg": {
+              "browserTarget": "vdesk:build:genc03-vg"
+            },
+            "genc03-prod-release": {
+              "browserTarget": "vdesk:build:genc03-prod-release"
+            },
+            "genc03-qacom": {
+              "browserTarget": "vdesk:build:genc03-qacom"
+            },
+            "genc03-qacom-release": {
+              "browserTarget": "vdesk:build:genc03-qacom-release"
+            },
+            "genc04-vg": {
+              "browserTarget": "vdesk:build:genc04-vg"
+            },
+            "genc04-prod-release": {
+              "browserTarget": "vdesk:build:genc04-prod-release"
+            },
+            "genc04-qacom": {
+              "browserTarget": "vdesk:build:genc04-qacom"
+            },
+            "genc04-qacom-release": {
+              "browserTarget": "vdesk:build:genc04-qacom-release"
+            },
+            "betese-vg": {
+              "browserTarget": "vdesk:build:betese-vg"
+            },
+            "betese-qacom": {
+              "browserTarget": "vdesk:build:betese-qacom"
+            },
+            "betconnection-vg": {
+              "browserTarget": "vdesk:build:betconnection-vg"
+            },
+            "betconnection-qacom": {
+              "browserTarget": "vdesk:build:betconnection-qacom"
+            },
+            "sportrace-vg": {
+              "browserTarget": "vdesk:build:sportrace-vg"
+            },
+            "sportrace-qacom": {
+              "browserTarget": "vdesk:build:sportrace-qacom"
+            },
+            "bolivarbet-vg": {
+              "browserTarget": "vdesk:build:bolivarbet-vg"
+            },
+            "bolivarbet-qacom": {
+              "browserTarget": "vdesk:build:bolivarbet-qacom"
+            },
+            "uganbet-vg": {
+              "browserTarget": "vdesk:build:uganbet-vg"
+            },
+            "uganbet-qacom": {
+              "browserTarget": "vdesk:build:uganbet-qacom"
+            },
+            "apuestas-dominicanas-vg": {
+              "browserTarget": "vdesk:build:apuestas-dominicanas-vg"
+            },
+            "apuestas-dominicanas-qacom": {
+              "browserTarget": "vdesk:build:apuestas-dominicanas-qacom"
+            },
+            "f2o-vg": {
+              "browserTarget": "vdesk:build:f2o-vg"
+            },
+            "f2o-qacom": {
+              "browserTarget": "vdesk:build:f2o-qacom"
+            },
+            "soft-vg": {
+              "browserTarget": "vdesk:build:soft-vg"
+            },
+            "soft-qacom": {
+              "browserTarget": "vdesk:build:soft-qacom"
+            },
+            "kyron-vg": {
+              "browserTarget": "vdesk:build:kyron-vg"
+            },
+            "kyron-qacom": {
+              "browserTarget": "vdesk:build:kyron-qacom"
+            },
+            "homerun-vg": {
+              "browserTarget": "vdesk:build:homerun-vg"
+            },
+            "homerun-qacom": {
+              "browserTarget": "vdesk:build:homerun-qacom"
+            },
+            "betlogik-vg": {
+              "browserTarget": "vdesk:build:betlogik-vg"
+            },
+            "betlogik-qacom": {
+              "browserTarget": "vdesk:build:betlogik-qacom"
+            },
+            "doradobet-vg": {
+              "browserTarget": "vdesk:build:doradobet-vg"
+            },
+            "doradobet-qacom": {
+              "browserTarget": "vdesk:build:doradobet-qacom"
+            },
+            "betese-prod-release": {
+              "browserTarget": "vdesk:build:betese-prod-release"
+            },
+            "betese-qacom-release": {
+              "browserTarget": "vdesk:build:betese-qacom-release"
+            },
+            "betconnection-prod-release": {
+              "browserTarget": "vdesk:build:betconnection-prod-release"
+            },
+            "betconnection-qacom-release": {
+              "browserTarget": "vdesk:build:betconnection-qacom-release"
+            },
+            "sportrace-prod-release": {
+              "browserTarget": "vdesk:build:sportrace-prod-release"
+            },
+            "sportrace-qacom-release": {
+              "browserTarget": "vdesk:build:sportrace-qacom-release"
+            },
+            "bolivarbet-prod-release": {
+              "browserTarget": "vdesk:build:bolivarbet-prod-release"
+            },
+            "bolivarbet-qacom-release": {
+              "browserTarget": "vdesk:build:bolivarbet-qacom-release"
+            },
+            "uganbet-prod-release": {
+              "browserTarget": "vdesk:build:uganbet-prod-release"
+            },
+            "uganbet-qacom-release": {
+              "browserTarget": "vdesk:build:uganbet-qacom-release"
+            },
+            "apuestas-dominicanas-prod-release": {
+              "browserTarget": "vdesk:build:apuestas-dominicanas-prod-release"
+            },
+            "apuestas-dominicanas-qacom-release": {
+              "browserTarget": "vdesk:build:apuestas-dominicanas-qacom-release"
+            },
+            "f2o-prod-release": {
+              "browserTarget": "vdesk:build:f2o-prod-release"
+            },
+            "f2o-qacom-release": {
+              "browserTarget": "vdesk:build:f2o-qacom-release"
+            },
+            "soft-prod-release": {
+              "browserTarget": "vdesk:build:soft-prod-release"
+            },
+            "soft-qacom-release": {
+              "browserTarget": "vdesk:build:soft-qacom-release"
+            },
+            "kyron-prod-release": {
+              "browserTarget": "vdesk:build:kyron-prod-release"
+            },
+            "kyron-qacom-release": {
+              "browserTarget": "vdesk:build:kyron-qacom-release"
+            },
+            "homerun-prod-release": {
+              "browserTarget": "vdesk:build:homerun-prod-release"
+            },
+            "homerun-qacom-release": {
+              "browserTarget": "vdesk:build:homerun-qacom-release"
+            },
+            "betlogik-prod-release": {
+              "browserTarget": "vdesk:build:betlogik-prod-release"
+            },
+            "betlogik-qacom-release": {
+              "browserTarget": "vdesk:build:betlogik-qacom-release"
+            },
+            "doradobet-prod-release": {
+              "browserTarget": "vdesk:build:doradobet-prod-release"
+            },
+            "doradobet-qacom-release": {
+              "browserTarget": "vdesk:build:doradobet-qacom-release"
+            },
+            "hbg-peru-vg": {
+              "browserTarget": "vdesk:build:hbg-peru-vg"
+            },
+            "hbg-peru-qacom": {
+              "browserTarget": "vdesk:build:hbg-peru-qacom"
+            },
+            "hbg-peru-prod-release": {
+              "browserTarget": "vdesk:build:hbg-peru-prod-release"
+            },
+            "hbg-peru-qacom-release": {
+              "browserTarget": "vdesk:build:hbg-peru-qacom-release"
+            },
+            "soccerbet-vg": {
+              "browserTarget": "vdesk:build:soccerbet-vg"
+            },
+            "soccerbet-qacom": {
+              "browserTarget": "vdesk:build:soccerbet-qacom"
+            },
+            "soccerbet-prod-release": {
+              "browserTarget": "vdesk:build:soccerbet-prod-release"
+            },
+            "soccerbet-qacom-release": {
+              "browserTarget": "vdesk:build:soccerbet-qacom-release"
+            },
+            "betsafi-vg": {
+              "browserTarget": "vdesk:build:betsafi-vg"
+            },
+            "betsafi-qacom": {
+              "browserTarget": "vdesk:build:betsafi-qacom"
+            },
+            "betsafi-prod-release": {
+              "browserTarget": "vdesk:build:betsafi-prod-release"
+            },
+            "betsafi-qacom-release": {
+              "browserTarget": "vdesk:build:betsafi-qacom-release"
+            },
+            "tradabets-vg": {
+              "browserTarget": "vdesk:build:tradabets-vg"
+            },
+            "tradabets-qacom": {
+              "browserTarget": "vdesk:build:tradabets-qacom"
+            },
+            "tradabets-prod-release": {
+              "browserTarget": "vdesk:build:tradabets-prod-release"
+            },
+            "tradabets-qacom-release": {
+              "browserTarget": "vdesk:build:tradabets-qacom-release"
+            },
+            "betsplus-vg": {
+              "browserTarget": "vdesk:build:betsplus-vg"
+            },
+            "betsplus-qacom": {
+              "browserTarget": "vdesk:build:betsplus-qacom"
+            },
+            "betsplus-prod-release": {
+              "browserTarget": "vdesk:build:betsplus-prod-release"
+            },
+            "betsplus-qacom-release": {
+              "browserTarget": "vdesk:build:betsplus-qacom-release"
+            },
+            "betpro-vg": {
+              "browserTarget": "vdesk:build:betpro-vg"
+            },
+            "betpro-qacom": {
+              "browserTarget": "vdesk:build:betpro-qacom"
+            },
+            "betpro-prod-release": {
+              "browserTarget": "vdesk:build:betpro-prod-release"
+            },
+            "betpro-qacom-release": {
+              "browserTarget": "vdesk:build:betpro-qacom-release"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "vdesk:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
+            "karmaConfig": "src/karma.conf.js",
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.webmanifest"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/app/themes/skins/develop/"
+              ]
+            },
+            "fileReplacements": [
+              {
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.vgen.ts"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "vdesk-e2e": {
+      "root": "e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "vdesk:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "vdesk:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "vdesk",
+  "schematics": {
+    "@schematics/angular:component": {
+      "skipTests": true,
+      "prefix": "app",
+      "style": "scss"
+    },
+    "@schematics/angular:directive": {
+      "skipTests": true,
+      "prefix": "app"
+    },
+    "@schematics/angular:pipe": {
+      "skipTests": true
+    },
+    "@schematics/angular:service": {
+      "skipTests": true
+    }
+  }
+}

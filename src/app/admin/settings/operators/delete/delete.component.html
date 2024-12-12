@@ -1,0 +1,46 @@
+<div fxFlex fxLayout="row" fxLayoutAlign="center" [style.height.%]="100" class="admin-operators">
+  <div fxFlex fxLayout="column" fxLayoutGap="10px" [style.padding.px]="10">
+    <div class="title">
+      <h1>{{ 'LIST_OF_OPERATORS' | translate | uppercase }} - <small>{{'DELETE' | translate | uppercase}}</small></h1>
+    </div>
+    <div fxFlex="5" fxLayoutAlign="start center" class="padding-horizontal-6">
+      <div fxLayout="row nowrap" fxLayoutAlign="start center">
+        <div fxFlex="5">
+          <button class="btn-default radius-5" routerLink="../">
+            <img class="icon icon-24px" src="assets/icons/baseline-arrow_back-24px.png">
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- DELETE OPERATOR -->
+    <div fxFlex="75" class="padding-20 btn-filter radius-5 elevation-z5 " fxLayout="column"
+      fxLayoutAlign="center center">
+      <div fxLayout="row" fxLayoutAlign="center center" fxFill>
+        <div fxLayout="column" fxFlex.xs="90" fxFlex.sm="50" fxFlex="100" fxLayoutAlign="center center">
+          <div class="input-area">
+            <div class="input-item">
+              <div fxFlexFill fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+                <ng-container *ngIf="!isDeleted && operatorService.operatorMarked">
+                  <i fxFlex="10" class="icon-24px warning-icon"></i>
+                  <p fxFlex="90"
+                    innerHTML="{{ 'OPERATOR.DELETE_MESSAGE' | translate:{'username': operatorService.operatorMarked.UserName} }}">
+                  </p>
+                </ng-container>
+                <ng-container *ngIf="isDeleted">
+                  <i fxFlex="10" class="icon-24px success-icon"></i>
+                  <p fxFlex="90">{{'OPERATOR.DELETE_SUCCESS_MESSAGE' | translate }}</p>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxFlex="5" fxLayoutAlign="end center" class="padding-horizontal-6">
+      <div fxFlex fxLayout="row nowrap" fxLayoutAlign="end center">
+        <button fxFlex="20" *ngIf="!isDeleted" (click)="onSubmit()"
+          class="btn btn-default btn-success radius-5">{{'CONFIRM' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>

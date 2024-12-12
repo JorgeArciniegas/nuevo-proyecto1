@@ -1,0 +1,17 @@
+::ng-deep {
+  app-confirm-destroy-coupon{
+    height: 100%;
+  }
+  mat-dialog-container{
+    height: 100%;
+  }
+  .cdk-overlay-pane{
+    height: 100%;
+  }
+}
+
+.title-tns {
+  font-size: 26;
+  font-weight: bold;
+  color: #dcdcdc;
+}

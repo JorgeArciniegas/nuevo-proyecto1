@@ -1,0 +1,10 @@
+{
+  "name": "vdesk",
+  "short_name": "vdesk",
+  "theme_color": "#1b2432",
+  "background_color": "#1b2432",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [ ]
+}

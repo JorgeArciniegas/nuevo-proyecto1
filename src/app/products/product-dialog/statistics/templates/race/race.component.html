@@ -1,0 +1,28 @@
+<div fxFlex="100" fxLayout="column" fxLayoutGap="20px grid" fxLayoutAlign="space-between stretch">
+  <div fxFlex="10" fxLayout="row" fxLayoutAlign="space-between center" class="border-bottom-overlay-1px">
+    <div fxFlex="10" fxLayoutAlign="center">#</div>
+    <div fxFlex="30" fxLayoutAlign="center">{{'LAST_FIVE' | translate}}</div>
+    <div fxFlex="60" fxLayoutAlign="center">{{'CONDITION' | translate}}</div>
+  </div>
+
+  <div fxFlex="90" *ngIf="data.statistics">
+    <div fxLayout="row" fxLayoutGap="grid" fxLayoutAlign="space-between center" *ngFor="let stat of data.statistics.virtualBetCompetitor"
+      class="statistic-data">
+      <div fxFlex="10" fxLayoutAlign="center">
+        <button class="btn btn-default btn-default-dog-play radius-5 btn-{{data.statistics.codeProduct}}-{{stat.ito}}" disabled>
+          <span>{{stat.ito}}</span>
+        </button>
+      </div>
+      <div fxFlex="30" fxLayoutAlign="center">
+        <strong>{{ stat.lrrs }}</strong>
+      </div>
+      <div fxFlex="60">
+        <div class="fitness-container fitness-race">
+          <div class="fitness-content" [style.width.%]="(( stat.ff / maxDataStatistics) * 100) + 20"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

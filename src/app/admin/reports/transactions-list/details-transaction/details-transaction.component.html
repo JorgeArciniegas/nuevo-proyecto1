@@ -1,0 +1,71 @@
+<div fxFlex fxLayout="column" fxLayoutAlign="center space-between" *ngIf="transactionDetails">
+  <div fxFlex="100" fxLayout="column" [style.padding.px]="20" fxLayoutGap="10px">
+    <div class="title">
+      <h3>{{'TRANSACTIONS_LIST' | translate | uppercase }} - {{'DETAIL' | translate | uppercase }}</h3>
+    </div>
+    <div fxFill fxFlex="6" class="padding-horizontal-6" fxLayoutAlign="start" fxLayoutGap="20px">
+      <div fxFlex="20" fxLayoutAlign="start">
+        <button fxFlex="5" class="btn-default radius-5" routerLink="../../summaryTransactions">
+          <img class="icon icon-24px" src="assets/icons/baseline-arrow_back-24px.png">
+        </button>
+      </div>
+    </div>
+    <div fxFlex class="btn-filter radius-5 elevation-z5" fxLayout="column" fxLayoutAlign="start">
+      <div fxFlexFill fxFlex="90" fxLayout="column" fxLayoutGap="grid" fxLayoutAlign="start">
+        <!-- ROW 1 -->
+        <div fxFlex="20">
+          <div class="padding-vertical-10 border-bottom-overlay-1px" fxLayout="row nowrap" fxLayoutGap="grid"
+            fxLayoutAlign="center center">
+            <div fxFlex="5"></div>
+            <div fxFlex="30" fxLayoutAlign="left center">
+              <div>
+                <h4>{{transactionDetails.UserTransactionDateOffset | date: 'dd/MM/yy HH:mm:ss' }}</h4>
+                <div data="disabled">{{'DATE' | translate }}</div>
+              </div>
+            </div>
+            <div fxFlex="30" fxLayoutAlign="left center">
+              <div>
+                <h4>{{ 'DYNAMIC_KEYS.TransactionType.' + transactionDetails.TransactionType | translate }}</h4>
+                <div data="disabled">{{'TRANSACTION_TYPE' | translate }}</div>
+              </div>
+            </div>
+            <div fxFlex="30" fxLayoutAlign="left center">
+              <div>
+                <h4>{{transactionDetails.TransactionMessage | translate }}</h4>
+                <div data="disabled">{{'REFERENCE' | translate }}</div>
+              </div>
+            </div>
+            <div fxFlex="5"></div>
+          </div>
+        </div>
+        <!-- ROW 2 -->
+        <div fxFlex="20">
+          <div class="padding-vertical-10 border-bottom-overlay-1px" fxLayout="row nowrap" fxLayoutGap="grid"
+            fxLayoutAlign="center center">
+            <div fxFlex="5"></div>
+            <div fxFlex="30" fxLayoutAlign="left center">
+              <div>
+                <h4>{{ transactionDetails.Amount | currency : userService.userCurrency : 'symbol-narrow' }}</h4>
+                <div data="disabled">{{'AMOUNT' | translate }}</div>
+              </div>
+            </div>
+            <div fxFlex="30" fxLayoutAlign="left center">
+              <div>
+                <h4>{{ transactionDetails.PreviousCashBalance | currency : userService.userCurrency : 'symbol-narrow' }}
+                </h4>
+                <div data="disabled">{{'PREVIOUS_CASH_BALANCE' | translate }}</div>
+              </div>
+            </div>
+            <div fxFlex="30" fxLayoutAlign="left center">
+              <div>
+                <h4>{{ transactionDetails.ReferenceId }}</h4>
+                <div data="disabled">{{'REFERENCE_ID' | translate }}</div>
+              </div>
+            </div>
+            <div fxFlex="5"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

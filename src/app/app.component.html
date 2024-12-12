@@ -1,0 +1,17 @@
+<div id="app" class="app" [ngClass]="settings.theme" [style.height]="componentHeight">
+  <div class="main-content">
+    <app-loader></app-loader>
+    <!-- TOOLBAR-->
+    <div fxFlex fxLayout="column">
+      <div *ngIf="userService.isUserLogged" class="toolbar" fxFlex="7" fxLayout="row">
+        <app-header fxFlex="100"></app-header>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+  <router-outlet name="print"></router-outlet>
+</div>
+<div *ngIf="userService.isModalOpen" id="overlayArea1" [style.top.px]="0" [style.left.px]="0"
+  class="overlay global-overlay radius-5">
+</div>

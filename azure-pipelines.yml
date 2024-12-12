@@ -1,0 +1,125 @@
+trigger:
+  branches:
+    include:
+      - master
+  tags:
+    include:
+      - v*
+
+resources:
+  repositories:
+    - repository: azdo-pipeline-templates
+      type: git
+      name: azdo-pipeline-templates
+      ref: master
+
+variables:
+  buildConfiguration: Release
+  appsPackageFeed: Elys-Deploy
+  appPackageId: Elys.Vdesk.Web
+  octopusProjectName: VDesk Web Client
+
+stages:
+  - stage: Build
+    pool: LinuxPool01
+    jobs:
+      # Whitesource
+      # - job: whitesourceJob
+      #   displayName: WhiteSource
+      #   steps:
+      #     - task: WhiteSource@21
+      #       enabled: false
+      #       inputs:
+      #         cwd: $(System.DefaultWorkingDirectory)
+      #         projectName: $(Build.Repository.Name)
+
+      # Build
+      - job: Build
+        timeoutInMinutes: 120 # how long to run the job before automatically cancelling
+        displayName: Build
+        steps:
+          - checkout: self
+            fetchDepth: 0 # disable git shallow  
+
+          - template: build/dotnet-build-versioning.yml@azdo-pipeline-templates
+
+          # ANGULAR APP
+
+          - task: NodeTool@0
+            displayName: Install nodejs
+            inputs:
+              versionSpec: 14.x
+
+          - script: npm install -g @angular/cli
+            displayName: Install @angular/cli
+
+          - task: Npm@1
+            displayName: Install dependencies
+            inputs:
+              command: install
+
+          - script: npm run pipeline-build-all
+            displayName: Build All Companies
+            condition: 
+              and(
+                succeeded(),
+                or(
+                  startsWith(variables['Build.SourceBranch'], 'refs/tags/v'),
+                  eq(variables['Build.SourceBranch'], 'refs/heads/master')
+                )
+              )
+
+          - script: npm run pipeline-build
+            displayName: CI Build
+            condition: 
+              and(
+                succeeded(),
+                or(
+                  not(startsWith(variables['Build.SourceBranch'], 'refs/tags/v')),
+                  not(eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+                )
+              )
+
+          - task: OctopusPack@4
+            displayName: Package Vdesk application
+            inputs:
+              PackageId: $(appPackageId)
+              PackageFormat: NuPkg
+              PackageVersion: $(GitVersion.NuGetVersion)
+              SourcePath: $(Build.SourcesDirectory)/dist
+              OutputPath: $(Build.ArtifactStagingDirectory)/nupkg/apps
+              NuGetAuthor: Odissea
+              NuGetTitle: $(appPackageId)
+              NuGetDescription: VDesk application
+              NuGetReleaseNotes: $(Build.Repository.Uri)/commit/$(Build.SourceVersion)
+
+          # PIPELINE ARTIFACTS
+          - template: release/push-pipeline-artifacts.yml@azdo-pipeline-templates
+            parameters:
+              pushLibraries: false
+
+  - stage: Release
+    condition: 
+        and(
+          succeeded(),
+          or(
+            startsWith(variables['Build.SourceBranch'], 'refs/tags/v'),
+            eq(variables['Build.SourceBranch'], 'refs/heads/master')
+          )
+        )
+    variables:
+      NuGetVersion: $[stageDependencies.Build.Build.outputs['SetVarGitVersion.NuGetVersion']]
+      PreReleaseTag: $[stageDependencies.Build.Build.outputs['SetVarGitVersion.PreReleaseTag']]
+    jobs:
+      - job: CreateOctopusRelease
+        displayName: Create release on Octopus
+        pool: Default
+        workspace:
+          clean: all
+        steps:
+
+          # PUSH ARTIFACTS AND CREATE RELEASE ON OCTOPUS
+          - template: release/octopus-release.yml@azdo-pipeline-templates
+            parameters:
+              packageIds:
+                - $(appPackageId)
